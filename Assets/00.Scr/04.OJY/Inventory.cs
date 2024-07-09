@@ -29,20 +29,6 @@ public class Inventory : MonoBehaviour
         if(result) _inventory[itemToAdd] += amount;
         return result;
     }
-
-    public void PrintShit()
-    {
-        print("-inv-");
-        foreach(var a in _inventory)
-        {
-            print(a.Key + " " + a.Value);
-        }
-        print("-bp-");
-        foreach(var a in _unlockedBlueprints)
-        {
-            print(a);
-        }
-    }
     /// <summary>
     /// this function needs improvement(exception:key not found)
     /// </summary>
@@ -63,7 +49,7 @@ public class Inventory : MonoBehaviour
         }
         return result;
     }
-    public void RemoveAllItemToCraft(Crafter crafter)
+    public void CancelCraft(Crafter crafter)
     {
         var inventory = crafter.GetItemsOnTable;
         //resotre all items from table
@@ -73,8 +59,28 @@ public class Inventory : MonoBehaviour
         }
         inventory.Clear();
     }
-    public void CraftItem()
+    public void TryCraftItem()
     {
+        void CraftItem()
+        {
+            print("Crafted Item");
 
+        }
+        bool canCraft = false;
+        if (canCraft) CraftItem();
+
+    }
+    public void PrintShit()
+    {
+        print("-inv-");
+        foreach (var a in _inventory)
+        {
+            print(a.Key + " " + a.Value);
+        }
+        print("-bp-");
+        foreach (var a in _unlockedBlueprints)
+        {
+            print(a);
+        }
     }
 }

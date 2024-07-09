@@ -20,10 +20,6 @@ public class Crafter : MonoBehaviour
                 if (!itemsOnTable.ContainsKey(currentBPList[j].so_item)) return;
                 if (itemsOnTable[currentBPList[j].so_item] < currentBPList[j].amount) return;
             }
-            void OnCraftSucessful()
-            {
-                this.OnCraftSucessful();
-            }
             OnCraftSucessful();
         }
     }
