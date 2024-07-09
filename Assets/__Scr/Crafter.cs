@@ -11,6 +11,7 @@ public class Crafter : MonoBehaviour
         if (itemsOnTable.ContainsKey(itemToAdd)) itemsOnTable[itemToAdd]++;
         else itemsOnTable.Add(itemToAdd, 1);
 
+        print("-oncrafttable-");
         for (int i = 0; i < bluePrints.Count; i++)
         {
             var currentBPList = bluePrints[i].GetList;
@@ -21,7 +22,7 @@ public class Crafter : MonoBehaviour
             }
             void OnCraftSucessful()
             {
-
+                this.OnCraftSucessful();
             }
             OnCraftSucessful();
         }
