@@ -27,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 bladePos;
     private Vector3 bladeAng;
 
+    private int adhd;
     //º¯¼ö
     private bool isRun;
     public bool isAttacked;
