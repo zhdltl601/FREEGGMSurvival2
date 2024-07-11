@@ -4,17 +4,20 @@ using UnityEngine;
 
 public class PreviewObject : MonoBehaviour
 {
-    public bool foundation;
     public List<Collider> col = new List<Collider>();
+    public Objectsorts sort;
     public Material green;
     public Material red;
     public bool isBuildable;
+
+    public bool second;
+    public PreviewObjectChild childcol;
 
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("´ê´Ù");
 
-        if (other.CompareTag("Building") && foundation)
+        if (other.CompareTag("Building"))
         {
             Debug.Log("¸¶Âü³» ´ê°í¾ß ¸»´Ù");
             col.Add(other);
@@ -24,7 +27,7 @@ public class PreviewObject : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
 
-        if (other.CompareTag("Building") && foundation)
+        if (other.CompareTag("Building"))
         {
             col.Remove(other);
         }
@@ -35,16 +38,37 @@ public class PreviewObject : MonoBehaviour
         ChangeColor();
     }
 
+    public Objectsorts GetSort()
+    {
+        return sort;
+    }
     public void ChangeColor()
     {
-        if (col.Count <= 0)
+        if(sort == Objectsorts.foundation)
         {
-            isBuildable = true;
+            //Debug.Log(isBuildable + " " + col.Count + "" + childcol.IsStuck());
+            if (col.Count <= 0 && childcol.IsStuck())
+            {
+                isBuildable = true;
+            }
+            else
+            {
+                isBuildable = false;
+            }
         }
         else
         {
-            isBuildable = false;
+            if (col.Count <= 0)
+            {
+                isBuildable = true;
+            }
+            else
+            {
+                isBuildable = false;
+            }
         }
+
+        
 
         if (isBuildable)
         {
@@ -88,4 +112,11 @@ public class PreviewObject : MonoBehaviour
             */
         }
     }
+}
+
+public enum Objectsorts
+{
+    normal,
+    foundation,
+    floor
 }

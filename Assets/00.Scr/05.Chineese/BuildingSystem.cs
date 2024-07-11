@@ -21,7 +21,7 @@ public class BuildingSystem : MonoBehaviour
     public bool isBuilding = true;
 
     public MCFace dir;
-    public ObjectSort objectSorts;
+    public Objectsorts sort;
 
     private int currentPosPlusY;
 
@@ -116,9 +116,37 @@ public class BuildingSystem : MonoBehaviour
         }
     }
 
-    public void ShowPreview(RaycastHit hit)
+    public void ShowPreview(RaycastHit hit2)
     {
-        if(objectSorts == ObjectSort.Floor)
+        sort = currentPreview.GetComponent<PreviewObject>().GetSort();
+
+        if (sort == Objectsorts.floor)
+        {
+            dir = GetHitFace(hit2);
+            if (dir == MCFace.Up || dir == MCFace.Down)
+            {
+                currentPos = hit2.point;
+            }
+            else
+            {
+                if(dir == MCFace.North)
+                {
+                    currentPos = hit2.point + new Vector3(0, 0, 2);
+                }
+                if (dir == MCFace.South)
+                {
+                    currentPos = hit2.point + new Vector3(0, 0, -2);
+                }
+                if (dir == MCFace.West)
+                {
+                    currentPos = hit2.point + new Vector3(2, 0, 0);
+                }
+                if (dir == MCFace.East)
+                {
+                    currentPos = hit2.point + new Vector3(-2, 0, 0);
+                }
+            }
+        }
             
         currentPos = hit.point;
         currentPos -= Vector3.one * offset;
@@ -188,7 +216,7 @@ public class buildObject
     public string name;
     public GameObject prefab;
     public GameObject preview;
-    public ObjectSort objectSorts;
+    
     public int gold;
 }
 
@@ -201,10 +229,4 @@ public enum MCFace
     West,
     North,
     South
-}
-
-public enum ObjectSort
-{
-    Floor,
-    Wall
 }
