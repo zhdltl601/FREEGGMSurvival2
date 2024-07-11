@@ -46,7 +46,6 @@ public class PreviewObject : MonoBehaviour
     {
         if(sort == Objectsorts.foundation)
         {
-            //Debug.Log(isBuildable + " " + col.Count + "" + childcol.IsStuck());
             if (col.Count <= 0 && childcol.IsStuck())
             {
                 isBuildable = true;
