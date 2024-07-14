@@ -116,7 +116,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4558657379073137436}
   - component: {fileID: 2274960738171636108}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Coll
   m_TagString: Untagged
   m_Icon: {fileID: 0}

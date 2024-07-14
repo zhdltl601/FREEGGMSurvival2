@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7401424660085603795}
   - component: {fileID: 6841489988833374599}
   - component: {fileID: 7682650434886092905}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Coll
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 7220428545464255173}
   - component: {fileID: 7675825950305800629}
   - component: {fileID: -6633529905887822037}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Stair_Visual
   m_TagString: Building
   m_Icon: {fileID: 0}

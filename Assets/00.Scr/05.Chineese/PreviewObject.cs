@@ -38,10 +38,6 @@ public class PreviewObject : MonoBehaviour
         ChangeColor();
     }
 
-    public Objectsorts GetSort()
-    {
-        return sort;
-    }
     public void ChangeColor()
     {
         if(sort == Objectsorts.foundation)
