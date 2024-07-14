@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 
@@ -118,8 +119,6 @@ public class BuildingSystem : MonoBehaviour
 
     public void ShowPreview(RaycastHit hit2)
     {
-        
-
         if (currentObject.sort == Objectsorts.floor)
         {
             dir = GetHitFace(hit2);
@@ -151,16 +150,64 @@ public class BuildingSystem : MonoBehaviour
                     currentPos = hit2.point + new Vector3(2,  0, 0);
                 }
             }
+
+            currentPos -= Vector3.one * offset;
+            currentPos /= gridSize;
+            currentPos = new Vector3(Mathf.Round(currentPos.x), Mathf.Round(currentPos.y), Mathf.Round(currentPos.z));
+            currentPos *= gridSize;
+            currentPos += Vector3.one * offset;
+
+        }
+        else if(currentObject.sort == Objectsorts.Wall)
+        {
+            //벽벽밍
+
+            dir = GetHitFace(hit2);
+
+            if (dir == MCFace.Up || dir == MCFace.Down)
+            {
+                currentPos = hit2.point;
+            }
+            else
+            {
+                if (dir == MCFace.North)
+                {
+                    Debug.Log("11");
+                    currentPos = hit2.point + new Vector3(0, 0, .25f);
+                    currentRot = new Vector3(0, 90, 0);
+                }
+                else if (dir == MCFace.South)
+                {
+                    Debug.Log("22");
+                    currentPos = hit2.point + new Vector3(0, 0, -.25f);
+                    currentRot = new Vector3(0, -90, 0);
+                }
+                else if (dir == MCFace.West)
+                {
+                    Debug.Log("33");
+                    currentPos = hit2.point + new Vector3(-.25f, 0, 0);
+                    currentRot = new Vector3(0, -180, 0);
+                }
+                else if (dir == MCFace.East)
+                {
+                    Debug.Log("44");
+                    currentPos = hit2.point + new Vector3(.25f, 0, 0);
+                    currentRot = new Vector3(0, 180, 0);
+                }
+            }
+
+            currentPos -= Vector3.one * offset;
+            currentPos /= gridSize;
+            currentPos = new Vector3(currentPos.x, Mathf.Round(currentPos.y), currentPos.z);
+            currentPos *= gridSize;
+            currentPos += Vector3.one * offset;
+
         }
 
         Debug.Log(currentPos + " 포지션 ");
 
         //currentPos = hit.point;
-        currentPos -= Vector3.one * offset;
-        currentPos /= gridSize;
-        currentPos = new Vector3(Mathf.Round(currentPos.x), Mathf.Round(currentPos.y), Mathf.Round(currentPos.z));
-        currentPos *= gridSize;
-        currentPos += Vector3.one * offset;
+        
 
         //내꺼 ㅎㅎ
         //currentPos += new Vector3(0, currentPosPlusY, 0);

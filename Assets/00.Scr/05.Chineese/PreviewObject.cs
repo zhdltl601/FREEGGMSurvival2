@@ -113,5 +113,6 @@ public enum Objectsorts
 {
     normal,
     foundation,
-    floor
+    floor,
+    Wall
 }

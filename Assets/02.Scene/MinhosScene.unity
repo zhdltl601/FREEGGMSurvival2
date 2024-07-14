@@ -491,7 +491,7 @@ MonoBehaviour:
       type: 3}
     preview: {fileID: 6146280844199240306, guid: 1394b0ad8dad3604bbf5995fa7e384c4,
       type: 3}
-    sort: 0
+    sort: 3
     gold: 100
   currentObject:
     name: 
