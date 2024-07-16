@@ -11,4 +11,12 @@ public class FieldsSelector : MonoBehaviour
     {
         fields = GetComponentsInChildren<BaseField>();
     }
+
+    public void CancleSelectField()
+    {
+        foreach(var field in fields)
+        {
+            field.CloseField();
+        }
+    }
 }
