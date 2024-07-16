@@ -4,6 +4,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -12,6 +13,10 @@ public class PlayerMovement : MonoBehaviour
     public float rotationSpeed = 3.0f;
     public Animator visualanime;
     public GameObject slidingObj;
+    public bool isZiplined = false;
+
+    public UnityAction OnZipline;
+
 
     private const float FRICTION = 5.0f;
     private const float DECC_SPEED = 3.5f;
@@ -63,6 +68,12 @@ public class PlayerMovement : MonoBehaviour
         {
             Cursor.visible = false;
         }
+        OnZipline += ZiplineRide;
+    }
+
+    void ZiplineRide()
+    {
+        isZiplined = true;
     }
 
     void Update()
@@ -81,7 +92,7 @@ public class PlayerMovement : MonoBehaviour
 
         //if ((!Input.GetKey(KeyCode.LeftControl) || Input.GetKeyDown(KeyCode.LeftControl)))
         //{
-        //    _moveDirection = _playerRotation * _moveInput;
+        _moveDirection = _playerRotation * _moveInput;
         //}
 
         if ((Input.GetButton("Horizontal") || Input.GetButton("Vertical")))
@@ -96,6 +107,7 @@ public class PlayerMovement : MonoBehaviour
         //visualanime.SetBool("OnAir", !_controller.isGrounded);
         //slidingObj.SetActive(Input.GetKey(KeyCode.LeftControl));
 
+
         if (_controller.isGrounded)
         {
             if (Physics.Raycast(transform.position, _vectorDown, out _hitSurface, _controller.height / 1.5f))
@@ -106,7 +118,7 @@ public class PlayerMovement : MonoBehaviour
             _moveDirection.Normalize();
 #if USE_CROUCH
             //_moveSpeed = _moveDirection.magnitude * (moveSpeed - crouch_value_s * 3.0f);
-            _moveSpeed = _moveDirection.magnitude * moveSpeed * (Input.GetKey(KeyCode.LeftControl) == true ? 3 : 1);
+            _moveSpeed = _moveDirection.magnitude * moveSpeed * (Input.GetKey(KeyCode.LeftControl) == true ? 1 : 3);
             //print(_moveSpeed);
 #else
             _moveSpeed = _moveDirection.magnitude * moveSpeed * (Input.GetKey(KeyCode.LeftControl) == true ? 3 : 1);
