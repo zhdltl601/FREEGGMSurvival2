@@ -30,6 +30,8 @@ public class StatChangeButton : MonoBehaviour
         currentAmount = statAmountText.text;
         int.TryParse(currentAmount, out int result);
 
+        if(result <= 1) return;
+
         result--;
         currentAmount = result.ToString();
 
