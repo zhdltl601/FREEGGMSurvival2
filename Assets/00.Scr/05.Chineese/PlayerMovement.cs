@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+namespace minhomom { 
 public class PlayerMovement : MonoBehaviour
 {
     [Header("LayerMask")]
@@ -185,4 +185,5 @@ public class PlayerMovement : MonoBehaviour
         isAttacked = false;
 
     }
+}
 }
