@@ -10,22 +10,32 @@ public class PausePanel : MonoBehaviour
 
     private bool isPause = false;
 
+    private void Start()
+    {
+        ActivePausePanel(false);
+    }
+
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.Escape))
         {
-            if(isPause)
-            {
-                pausePanel.DOKill();
-                pausePanel.DOMoveX(backSize, 0.3f);
-                isPause = false;
-            }
-            else
-            {
-                pausePanel.DOKill();
-                pausePanel.DOMoveX(0, 0.3f);
-                isPause = true;
-            }
+            ActivePausePanel(!isPause);
         }
+    }
+
+    public void ActivePausePanel(bool isActive)
+    {
+        if (isActive)
+        {
+            pausePanel.DOKill();
+            pausePanel.DOMoveX(0, 0.3f);
+        }
+        else if(!isActive)
+        {
+            pausePanel.DOKill();
+            pausePanel.DOMoveX(backSize, 0.3f);
+        }
+
+        isPause = isActive;
     }
 }
