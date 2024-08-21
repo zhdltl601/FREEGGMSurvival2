@@ -1,21 +1,23 @@
 using System.Collections.Generic;
 using UnityEngine;
-public class InventoryItem : MonoBehaviour
+public class InventoryItemVisual : MonoBehaviour
 {
     [SerializeField] private SO_Item _soItem;
-    public SO_Item GetSO_Item => _soItem;
+    public SO_Item GetSO_Item => _soItem;//
     private static readonly Dictionary<SO_Item, List<GameObject>> _visualDictionary = new();
     /// <summary>
     /// expectes p:amount calculated
+    /// p:adds amount (pos + amount)
     /// <para>_pos.Count + p lower than _soItem.maxamount + 1</para>
     /// <para>_pos.Count + p upper than 0 + 1</para>
     /// </summary>
     public static void UpdateItemVisual(SO_Item itemToAdd, int amount)
     {
         print("visUpdate");
-        if (!_visualDictionary.ContainsKey(itemToAdd))
+        bool firstInit = !_visualDictionary.ContainsKey(itemToAdd);
+        if (firstInit)
         {
-            void CreateInstance()
+            void Init()
             {
                 _visualDictionary.Add(itemToAdd, new());
                 var list = _visualDictionary[itemToAdd];
@@ -24,7 +26,7 @@ public class InventoryItem : MonoBehaviour
                     list.Add(null);
                 }
             }
-            CreateInstance();
+            Init();
         }
         var list = _visualDictionary[itemToAdd];
         bool isIncreassing = amount > 0;
@@ -50,12 +52,10 @@ Transform spawnPos = DebugUI.Instance._piv;//
             list[index] = newInstance;
         }
         int target = index + amount;
-int collectionMaxAmount = itemToAdd.GetPosMaxCount;
         if (isIncreassing)
         {
             for(int i = index; i < target; i++)
             {
-//if (i >= collectionMaxAmount) break;
                 bool isNull = list[i] == null;
                 if (isNull) CreateVis(i);
                 list[i].SetActive(true);

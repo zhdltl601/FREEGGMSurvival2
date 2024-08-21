@@ -1,7 +1,7 @@
-//#define DEBUG_SO
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+//#define DEBUG_SO
 [CreateAssetMenu(menuName = "SO/SO_Item")]
 public class SO_Item : ScriptableObject
 {
@@ -9,13 +9,11 @@ public class SO_Item : ScriptableObject
     [SerializeField] private SpriteRenderer _icon;
     [SerializeField] private int _maxAmount;
     public int GetMaxAmount => _maxAmount;
-    public int GetPosMaxCount => _pos.Count;
-    [Header("Inventory")]
-    /// <summary>
-    /// localValue
-    /// </summary>
+
+    [Header("InventoryVisual")]
     [SerializeField] private List<Vector3> _pos;
     [SerializeField] private List<GameObject> _models;
+    public int GetPosMaxCount => _pos.Count;
     public List<Vector3> GetPos => _pos;
     public GameObject GetPrefab
     {

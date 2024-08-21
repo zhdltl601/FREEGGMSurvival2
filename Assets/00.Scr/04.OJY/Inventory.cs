@@ -18,7 +18,7 @@ public class Inventory : MonoBehaviour
 
     public bool TryAddItemToInventory(SO_Item itemToAdd, int amount = 1, bool allowOverTake = true)
     {
-        // i(optimazation:dictionary seraching) and
+        // todo(optimazation:dictionary seraching) and
         // amount can be negative value
         if (amount < 1)
         {
@@ -33,8 +33,7 @@ public class Inventory : MonoBehaviour
         }
 
         bool isNotOver = !firstInit && _inventory[itemToAdd] + amount <= itemToAdd.GetMaxAmount;
-        bool result = firstInit ||
-                      isNotOver;
+        bool result = firstInit || isNotOver;
         if (result)
         {
             if (firstInit)
@@ -48,7 +47,6 @@ public class Inventory : MonoBehaviour
             result = true;
             int val = itemToAdd.GetMaxAmount - _inventory[itemToAdd];
             _inventory[itemToAdd] += val;
-            print("val" + val);
             OnItemChanged(itemToAdd, val);
         }
 
@@ -56,7 +54,7 @@ public class Inventory : MonoBehaviour
     }
     public bool TrySubtractItemToInventory(SO_Item itemToSubtract, int amount = 1, bool allowOverTake = true)
     {
-        // i(amount can be negative value)
+        // todo(amount can be negative value)
         if (amount < 1)
         {
             Debug.LogError("add amount is small than \'1\'");
@@ -77,13 +75,12 @@ public class Inventory : MonoBehaviour
                 _inventory[itemToSubtract] -= amount;
                 OnItemChanged(itemToSubtract, -amount);
             }
-            if(!isNotOver && amount != 1 && allowOverTake)
+            else if(!isNotOver && amount != 1 && allowOverTake)
             {
                 result = true;
                 int val = _inventory[itemToSubtract];
-                print("val" + val);
                 _inventory[itemToSubtract] -= val;
-                OnItemChanged(itemToSubtract, val);
+                OnItemChanged(itemToSubtract, -val);
             }
         }
         return result;
@@ -92,7 +89,6 @@ public class Inventory : MonoBehaviour
     public bool TryAddItemToCraft(SO_Item itemToAdd, Crafter crafter, List<SO_ItemBlueprint> unlockedBlueprints = null)
     {
         // <para>adds item to table
-        // i(exception:key not found)
         unlockedBlueprints = unlockedBlueprints is null ? _unlockedBlueprints : unlockedBlueprints;
         void AddItemToCraft()
         {
@@ -101,7 +97,7 @@ public class Inventory : MonoBehaviour
             OnItemChanged?.Invoke(itemToAdd, -1);
         }
         bool result = false;
-        if(_inventory[itemToAdd] > 0)//exception
+        if(_inventory.ContainsKey(itemToAdd) && _inventory[itemToAdd] > 0)
         {
             AddItemToCraft();
             result = true;
@@ -113,14 +109,14 @@ public class Inventory : MonoBehaviour
     /// </summary>
     public void CancelCraft(Crafter crafter)
     {
-        var inventory = crafter.GetItemsOnTable;
-        foreach (var item in inventory.Keys)
+        var inventory = crafter.GetKeyCollectionOfItemsOnTable;
+        foreach (var item in inventory)
         {
             int amount = crafter.GetItemsOnTable[item];
             _inventory[item] += amount;
             OnItemChanged?.Invoke(item, amount);
         }
-        inventory.Clear();
+        crafter.ClearItemsOnTable();
     }
     public void TryCraftItem()//unfin
     {
