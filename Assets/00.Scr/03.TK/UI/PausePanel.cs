@@ -7,7 +7,7 @@ public class PausePanel : MonoBehaviour
 {
     [SerializeField] private float backSize;
     [SerializeField] private RectTransform pausePanel;
-
+    
     private bool isPause = false;
 
     private void Start()
@@ -27,13 +27,15 @@ public class PausePanel : MonoBehaviour
     {
         if (isActive)
         {
+            pausePanel.gameObject.SetActive(true);
             pausePanel.DOKill();
             pausePanel.DOMoveX(0, 0.3f);
         }
         else if(!isActive)
         {
             pausePanel.DOKill();
-            pausePanel.DOMoveX(backSize, 0.3f);
+            pausePanel.DOMoveX(backSize, 0.3f)
+                .OnComplete(() => pausePanel.gameObject.SetActive(false));
         }
 
         isPause = isActive;
