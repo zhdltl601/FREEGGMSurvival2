@@ -71,12 +71,15 @@ public class DebugUI : MonoSingleton<DebugUI>
         void DebugText()
         {
             list[0].text = changedItem + " " + itemAmount;
-            var craft = crafter.GetItemsOnTable;
-            if (craft.ContainsKey(changedItem))
+            if (crafter.GetItemsOnTable.ContainsKey(changedItem))
             {
-                list[1].text = craft[changedItem].ToString();
-
+                list[1].text = crafter.GetItemTableValue(changedItem).ToString();
             }
+            //if (crafter.ContainsKey(changedItem))
+            //{
+            //    list[1].text = crafter.GetItemTableValue(changedItem).ToString();
+            //
+            //}
             list[2].text = changeValue.ToString();
         }
         DebugText();

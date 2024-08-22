@@ -112,7 +112,8 @@ public class Inventory : MonoBehaviour
         var inventory = crafter.GetKeyCollectionOfItemsOnTable;
         foreach (var item in inventory)
         {
-            int amount = crafter.GetItemsOnTable[item];
+            //int amount = crafter.GetItemsOnTable[item];
+            int amount = crafter.GetItemTableValue(item);
             _inventory[item] += amount;
             OnItemChanged?.Invoke(item, amount);
         }
