@@ -1,7 +1,8 @@
 using System;
 
 /// <summary>
-/// to use like dictionary serialized
+/// to use sudo dictionary serialized 
+/// key(SO_Item) = so_item, amount(int) = value
 /// </summary>
 [Serializable]
 public struct ItemStruct

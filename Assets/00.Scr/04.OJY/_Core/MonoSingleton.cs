@@ -13,8 +13,7 @@ public abstract class MonoSingleton<T> : MonoBehaviour where T : MonoSingleton<T
     private static T Initialize()
     {
         //CreateInstance
-        GameObject gameObject = new GameObject();
-        gameObject.name = "Singleton_" + typeof(T).Name;
+        GameObject gameObject = new("Singleton_" + typeof(T).Name);
         T result = gameObject.AddComponent<T>();
         return result;
     }
