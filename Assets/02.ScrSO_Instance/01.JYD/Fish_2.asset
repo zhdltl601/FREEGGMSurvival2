@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fishName: "\uD770\uB3D9\uAC00\uB9AC"
   fishObj: {fileID: 9211205449375110997, guid: 3cb1393d647515e4ab9141d9d0b34f1b, type: 3}
-  fishFlipInterval: 2.23
-  catchTime: 3
+  fishFlipInterval: 3
+  catchTime: 0.3
   minMoveSpeed: 200
   maxMoveSpeed: 600

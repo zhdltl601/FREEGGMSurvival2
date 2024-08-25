@@ -637,7 +637,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 9500000, guid: 9e1cb89bae143d046bb9dba32b57bed0, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -733,7 +734,7 @@ PrefabInstance:
         type: 3}
       propertyPath: fishData
       value: 
-      objectReference: {fileID: 11400000, guid: c3a4a091b21066647ad9bfd8752d8c81,
+      objectReference: {fileID: 11400000, guid: ce82dd8c6c4563446b7dd0cc8613ee4d,
         type: 2}
     - target: {fileID: 4154761807869683413, guid: 40be9bc0a072c124e8687ab22a2bf5b2,
         type: 3}
