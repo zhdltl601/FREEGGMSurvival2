@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,17 +12,29 @@ public class SO_Item : ScriptableObject
     public int GetMaxAmount => _maxAmount;
 
     [Header("InventoryVisual")]
-    [SerializeField] private List<Vector3> _pos;
+    [SerializeField] private List<Vector3> _posVisInv;
+    [SerializeField] private List<Vector3> _posVisCraft;
     [SerializeField] private List<GameObject> _models;
-    public int GetPosMaxCount => _pos.Count;
-    public List<Vector3> GetPos => _pos;
+    public int GetPosMaxCount => _posVisInv.Count;
+
+    /// <summary>
+    /// sdadda
+    /// </summary>
+    [Obsolete] public List<Vector3> GetPosInv => _posVisInv;
+    /// <summary>
+    /// awdadwadadad
+    /// </summary>
+    [Obsolete] public List<Vector3> GetPosCraft => _posVisCraft;
+    public IReadOnlyList<Vector3> GetPosInv2 => _posVisInv;
+    public IReadOnlyList<Vector3> GetPosCraft2 => _posVisCraft;
+
     public GameObject GetPrefab
     {
         get
         {
             if(_models.Count > 1)
             {
-                int r = Random.Range(0, _models.Count);
+                int r = UnityEngine.Random.Range(0, _models.Count);
                 return _models[r];
             }
             return _models[0];

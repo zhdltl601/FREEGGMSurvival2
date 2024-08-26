@@ -5,9 +5,18 @@ using UnityEngine;
 public class Crafter : MonoBehaviour
 {
     private readonly Dictionary<SO_Item, int> _itemsOnTable = new();
-    [Obsolete]
-    public Dictionary<SO_Item, int> GetItemsOnTable => _itemsOnTable; //use this for only debug purpose. use GetKeyCollection insted.
-    public Dictionary<SO_Item, int>.KeyCollection GetKeyCollectionOfItemsOnTable => _itemsOnTable.Keys;
+
+    /// <summary>
+    /// use GetitemsOnTable2 insted.
+    /// </summary>
+    [Obsolete] public Dictionary<SO_Item, int> GetItemsOnTable => _itemsOnTable;
+
+    /// <summary>
+    /// will be deleted
+    /// </summary>
+    [Obsolete] public Dictionary<SO_Item, int>.KeyCollection GetKeyCollectionOfItemsOnTable => _itemsOnTable.Keys; 
+    public IReadOnlyDictionary<SO_Item, int> GetItemsOnTable2 => _itemsOnTable;
+
     public int GetItemTableValue(SO_Item value)
     {
         return _itemsOnTable[value];
@@ -28,14 +37,15 @@ public class Crafter : MonoBehaviour
                 var item = currentBPList[j].so_item;
                 if (!_itemsOnTable.ContainsKey(item)) return;
                 if (_itemsOnTable[item] < currentBPList[j].amount) return;
-                OnCraftSucessful();
-                void OnCraftSucessful()
+            }
+            //waht the fuck
+            OnCraftSucessful();
+            void OnCraftSucessful()
+            {
+                print("CRAFT_SUCCESSFUL ");
+                foreach(var item2 in bluePrints[i].GetResult)
                 {
-                    print("CRAFT_SUCCESSFUL ");
-                    foreach(var item2 in bluePrints[i].GetResult)
-                    {
-                        print("item result name : " + item2.so_item + " amount : " + item2.amount);
-                    }
+                    print("item result name : " + item2.so_item + " amount : " + item2.amount);
                 }
             }
         }
@@ -43,6 +53,15 @@ public class Crafter : MonoBehaviour
     public void ClearItemsOnTable()
     {
         _itemsOnTable.Clear();
+    }
+    public void AddItemToCraft(SO_Item itemToAdd, int amount)
+    {
+        if (amount > 1) Debug.LogError("Fuck");
+        InventoryItemVisual.UpdateItemVisCraft(itemToAdd);
+    }
+    public void OnCancelItem()
+    {
+
     }
 }
 

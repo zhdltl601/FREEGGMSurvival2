@@ -6,7 +6,13 @@ public class Inventory : MonoBehaviour
 {
     private readonly Dictionary<SO_Item, int> _inventory = new();
     private static readonly List<SO_ItemBlueprint> _unlockedBlueprints = new();
-    public Dictionary<SO_Item, int> GetInventory => _inventory;
+
+    /// <summary>
+    /// use GetInventory2 Insted
+    /// </summary>
+    [Obsolete] public Dictionary<SO_Item, int> GetInventory => _inventory;
+    public IReadOnlyDictionary<SO_Item, int> GetInventory2 => _inventory;
+
     #region Events
     public static event Action<SO_Item, int> OnItemChanged; // only call this function after calculation
     //public static event Action<SO_ItemBlueprint, int> OnBPChanged;
@@ -89,16 +95,16 @@ public class Inventory : MonoBehaviour
     public bool TryAddItemToCraft(SO_Item itemToAdd, Crafter crafter, List<SO_ItemBlueprint> unlockedBlueprints = null)
     {
         // <para>adds item to table
-        unlockedBlueprints = unlockedBlueprints is null ? _unlockedBlueprints : unlockedBlueprints;
-        void AddItemToCraft()
-        {
-            _inventory[itemToAdd]--;
-            crafter.OnCraftTable(itemToAdd, unlockedBlueprints);
-            OnItemChanged?.Invoke(itemToAdd, -1);
-        }
+        unlockedBlueprints = unlockedBlueprints is null ? _unlockedBlueprints : unlockedBlueprints; // to check if it's possible to craft one. set bp(2para) null for most cases
         bool result = false;
         if(_inventory.ContainsKey(itemToAdd) && _inventory[itemToAdd] > 0)
         {
+            void AddItemToCraft()
+            {
+                _inventory[itemToAdd]--;
+                crafter.OnCraftTable(itemToAdd, unlockedBlueprints);
+                OnItemChanged?.Invoke(itemToAdd, -1);
+            }
             AddItemToCraft();
             result = true;
         }
@@ -109,7 +115,7 @@ public class Inventory : MonoBehaviour
     /// </summary>
     public void CancelCraft(Crafter crafter)
     {
-        var inventory = crafter.GetKeyCollectionOfItemsOnTable;
+        var inventory = crafter.GetItemsOnTable2.Keys;//crafter.GetKeyCollectionOfItemsOnTable;
         foreach (var item in inventory)
         {
             //int amount = crafter.GetItemsOnTable[item];

@@ -48,7 +48,7 @@ public class DebugUI : MonoSingleton<DebugUI>
 
             if(changeValue > 0)
             {
-                InventoryItemVisual.UpdateItemVisual(changedItem, changeValue);
+                InventoryItemVisual.UpdateItemVisInventory(changedItem, changeValue);
             }
         }
         else
@@ -59,19 +59,19 @@ public class DebugUI : MonoSingleton<DebugUI>
                 if(visualMaxPos + amount > 0)
                 {
                     changeValue = amount;
-                    InventoryItemVisual.UpdateItemVisual(changedItem, changeValue);
+                    InventoryItemVisual.UpdateItemVisInventory(changedItem, changeValue);
                 }
                 else
                 {
                     changeValue = -visualMaxPos;
-                    InventoryItemVisual.UpdateItemVisual(changedItem, changeValue);
+                    InventoryItemVisual.UpdateItemVisInventory(changedItem, changeValue);
                 }
             }
         }
         void DebugText()
         {
             list[0].text = changedItem + " " + itemAmount;
-            if (crafter.GetItemsOnTable.ContainsKey(changedItem))
+            if (crafter.GetItemsOnTable2.ContainsKey(changedItem))
             {
                 list[1].text = crafter.GetItemTableValue(changedItem).ToString();
             }
@@ -88,10 +88,10 @@ public class DebugUI : MonoSingleton<DebugUI>
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.B)) Inventory.AddBluePrint(bpToAdd);
-        if (Input.GetKeyDown(KeyCode.A) && !Input.GetKey(KeyCode.LeftShift)) inv.TryAddItemToInventory(itemToAdd, 2);
+        if (Input.GetKeyDown(KeyCode.A) && !Input.GetKey(KeyCode.LeftShift)) inv.TryAddItemToInventory(itemToAdd, 1);
         if (Input.GetKeyDown(KeyCode.A) && Input.GetKey(KeyCode.LeftShift)) inv.TrySubtractItemToInventory(itemToAdd, 1);
 
-        if (Input.GetKeyDown(KeyCode.K)) inv.TryAddItemToCraft(itemToAdd, crafter);
+        //if (Input.GetKeyDown(KeyCode.K)) inv.TryAddItemToCraft(itemToAdd, crafter);
         if (Input.GetKeyDown(KeyCode.C)) inv.CancelCraft(crafter);
 
         if (Input.GetKeyDown(KeyCode.P)) inv.Debug_PrintShit();
@@ -114,7 +114,7 @@ public class DebugUI : MonoSingleton<DebugUI>
 
             }
         }
-        //if (Input.GetKeyDown(KeyCode.Mouse0)) ObjSelect();
+        if (Input.GetKeyDown(KeyCode.Mouse0)) ObjSelect();
 
     }
     public void ToggleInventory()

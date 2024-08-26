@@ -11,7 +11,7 @@ public class InventoryItemVisual : MonoBehaviour
     /// <para>_pos.Count + p lower than _soItem.maxamount + 1</para>
     /// <para>_pos.Count + p upper than 0 + 1</para>
     /// </summary>
-    public static void UpdateItemVisual(SO_Item itemToAdd, int amount)
+    public static void UpdateItemVisInventory(SO_Item itemToAdd, int amount)
     {
         print("visUpdate");
         bool firstInit = !_visualDictionary.ContainsKey(itemToAdd);
@@ -44,7 +44,7 @@ public class InventoryItemVisual : MonoBehaviour
         void CreateVis(int index)
         {
             GameObject prefab = itemToAdd.GetPrefab;
-            Vector3 pos = itemToAdd.GetPos[index];
+            Vector3 pos = itemToAdd.GetPosInv[index];
             Quaternion quaternion = Quaternion.identity;
 Transform spawnPos = DebugUI.Instance._piv;//
 
@@ -70,4 +70,9 @@ Transform spawnPos = DebugUI.Instance._piv;//
         }
 
     }
+    public static void UpdateItemVisCraft(SO_Item itemToAdd)
+    {
+
+    }
+    
 }
