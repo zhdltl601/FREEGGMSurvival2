@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [Serializable]
 public class Node
@@ -29,6 +31,7 @@ public class AStartManager : MonoBehaviour
     Node StartNode, TargetNode, CurNode;
     List<Node> OpenList, ClosedList;
 
+    public LayerMask whatIsWall;
     public GameObject target;
     public Vector3 mousePos;
         
@@ -40,14 +43,20 @@ public class AStartManager : MonoBehaviour
         sizeY = topRight.y - bottomLeft.y + 1;
         NodeArray = new Node[sizeX, sizeY];
     }
-
+    
     private void Start()
     {
-        for (int i = -20; i < sizeX; i++)
+        float spacing = 3.0f;
+
+        int aStartSizeX = Mathf.RoundToInt(sizeX/spacing);
+        int aStartSizeY = Mathf.RoundToInt(sizeY/spacing);
+        
+        for (int i = 0; i < aStartSizeX; i++)
         {
-            for (int j = -20; j < sizeY; j++)
+            for (int j = 0; j < aStartSizeY; j++)
             {
-                Instantiate(nodePrefab ,  new Vector3(0 + (1.05f * j),1.05f * i , 0) ,Quaternion.identity);
+                Vector3 nodePosition = new Vector3(bottomLeft.x + (spacing * j), bottomLeft.y + (spacing * i), 0);
+                Instantiate(nodePrefab, nodePosition, Quaternion.identity);
             }
         }
     }
@@ -73,12 +82,12 @@ public class AStartManager : MonoBehaviour
             {
                 bool isWall = false;
                 foreach (Collider2D col in Physics2D.OverlapCircleAll(new Vector2(i + bottomLeft.x, j + bottomLeft.y), 0.25f))
-                    if (col.gameObject.layer == LayerMask.NameToLayer("Wall")) isWall = true;
+                    if ((whatIsWall & (1 << col.gameObject.layer)) != 0) 
+                        isWall = true;
                 
                 NodeArray[i, j] = new Node(isWall, i + bottomLeft.x, j + bottomLeft.y);
             }
         }
-
         
         StartNode = NodeArray[startPos.x - bottomLeft.x, startPos.y - bottomLeft.y];
         TargetNode = NodeArray[targetPos.x - bottomLeft.x, targetPos.y - bottomLeft.y];
@@ -112,8 +121,7 @@ public class AStartManager : MonoBehaviour
                 StartCoroutine(GoRoutine());
                 return;
             }
-
-            
+                        
             OpenListAdd(CurNode.x, CurNode.y + 1);
             OpenListAdd(CurNode.x + 1, CurNode.y);
             OpenListAdd(CurNode.x, CurNode.y - 1);
@@ -142,7 +150,7 @@ public class AStartManager : MonoBehaviour
         
         line.SetUpLineInfo(renderPos);
         line.ActiveLine(true);
-                
+        
         foreach (var node in FinalNodeList)
         {
             Vector3 targetPosition = new Vector3(node.x, node.y, 0);
@@ -159,17 +167,33 @@ public class AStartManager : MonoBehaviour
             line.RemoveList(new Vector2Int(node.x, node.y));
         }
         
+        Collider2D[] closeNode = Physics2D.OverlapCircleAll(target.transform.position, 0.35f,~whatIsWall);
+        
+        closeNode[0].TryGetComponent(out Stage stage);
+        if (stage != null)
+        {
+            stage.SceneMove();   
+        }
+        
         line.ActiveLine(false);
     }
 
     private void DecreaseNodeAlpha()
     {
-        Collider2D[] nodes = Physics2D.OverlapCircleAll(target.transform.position, 1.15f);
-        foreach (var item in nodes)
+        Collider2D[] farNode = Physics2D.OverlapCircleAll(target.transform.position, 1.3f,~whatIsWall);
+        Collider2D[] closeNode = Physics2D.OverlapCircleAll(target.transform.position, 0.5f,~whatIsWall);
+        
+        farNode = farNode.Where(item => !closeNode.Contains(item)).ToArray();
+            
+        foreach (var item in farNode)
         {
-            SpriteRenderer itemSpriteRenderer = item.GetComponent<SpriteRenderer>();
-            float targetFade = itemSpriteRenderer.color.a <= 0.4f ? 0 : 0.4f;
-
+            float targetFade = 0.4f;
+            item.GetComponent<SpriteRenderer>().DOFade(targetFade, 0.4f);
+        }
+        
+        foreach (var item in closeNode)
+        {
+            float targetFade = 0;
             item.GetComponent<SpriteRenderer>().DOFade(targetFade, 0.4f);
         }
     }
@@ -205,5 +229,14 @@ public class AStartManager : MonoBehaviour
         //if (FinalNodeList.Count != 0)
         //    for (int i = 0; i < FinalNodeList.Count - 1; i++)
         //        Gizmos.DrawLine(new Vector2(FinalNodeList[i].x, FinalNodeList[i].y), new Vector2(FinalNodeList[i + 1].x, FinalNodeList[i + 1].y));
+        
+        for (int i = 0; i < sizeX; i++)
+        {
+            for (int j = 0; j < sizeY; j++)
+            {
+                Vector3 nodePosition = new Vector3(bottomLeft.x + j, bottomLeft.y + i, 0);
+                Gizmos.DrawWireCube(nodePosition, new Vector3(0.9f, 0.9f, 0.9f)); // Adjust size if needed
+            }
+        }
     }
 }

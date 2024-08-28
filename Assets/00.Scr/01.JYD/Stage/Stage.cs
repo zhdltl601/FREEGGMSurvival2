@@ -1,20 +1,12 @@
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
-public class Stage : MonoBehaviour,IPointerDownHandler,IPointerEnterHandler
+public class Stage : MonoBehaviour
 {
-    [SerializeField] private string stateName;
-    
-            
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        
-    }
+    [SerializeField] private string sceneName;
 
-
-    public void OnPointerEnter(PointerEventData eventData)
+    public void SceneMove()
     {
-        print($"이 맵의 이름은{stateName}입니다.");
+        SceneManager.LoadScene(sceneName);
     }
 }

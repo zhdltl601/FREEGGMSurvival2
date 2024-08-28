@@ -89,7 +89,7 @@ public class FishSystem : MonoBehaviour
         Time.timeScale = 0;
         
         isCatch = true;
-
+        
         GameObject textObj = new GameObject("SuccessText");
         TextMeshProUGUI text = textObj.AddComponent<TextMeshProUGUI>();
         text.text = "<color=#FFD700> SEX! </color>";

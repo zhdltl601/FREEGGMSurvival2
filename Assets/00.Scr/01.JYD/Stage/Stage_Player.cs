@@ -12,8 +12,7 @@ public class Stage_Player : MonoBehaviour
         _lineRenderer = GetComponent<LineRenderer>();
         renderPosList = new List<Vector2Int>();
     }
-
-
+    
     private void Update()
     {
         if(_lineRenderer.positionCount <= 0)return;
@@ -29,7 +28,6 @@ public class Stage_Player : MonoBehaviour
 
     public void DrawLine()
     {
-        
         _lineRenderer.SetPosition(0 , transform.position);
         
         for (int i = 1; i < renderPosList.Count; i++)
@@ -37,7 +35,6 @@ public class Stage_Player : MonoBehaviour
             Vector2 render = renderPosList[i];
             _lineRenderer.SetPosition(i ,render);
         }
-        
     }
 
     public void SetUpLineInfo(List<Vector2Int> list)
