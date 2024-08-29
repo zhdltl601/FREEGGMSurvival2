@@ -208,6 +208,7 @@ MonoBehaviour:
   itemToAdd: {fileID: 11400000, guid: ab06225582c78284888a905711070f7e, type: 2}
   crafter: {fileID: 848355400}
   inv: {fileID: 2142853723}
+  fuck: 1
   _piv: {fileID: 574973300}
   _lm_item:
     serializedVersion: 2

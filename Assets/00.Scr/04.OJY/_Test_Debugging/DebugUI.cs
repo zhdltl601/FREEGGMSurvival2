@@ -14,6 +14,7 @@ public class DebugUI : MonoSingleton<DebugUI>
 
     public Crafter crafter;
     public Inventory inv;
+    public int fuck;
 
     [Header("Inv Visual/def")]
     public Transform _piv;
@@ -34,53 +35,41 @@ public class DebugUI : MonoSingleton<DebugUI>
         base.OnDestroy();
         Inventory.OnItemChanged -= HandleOnItemChanged;
     }
+    /// <param name="amount">amount is how much item has changed</param>
+    //todo : remove hard reference
     private void HandleOnItemChanged(SO_Item changedItem, int amount)
     {
-        int itemAmount = inv.GetInventory[changedItem];
-        int itemAmountBeforeCalc = itemAmount - amount;
+        int visMax = changedItem.GetVisPosInv.Count;
+        int currentItemAmount = inv.GetInventory[changedItem];
+        int beforeItemAmount = currentItemAmount - amount;
+
         bool isIncreassing = amount > 0;
-        int changeValue = default;
         if (isIncreassing)
         {
-            int posSpaceLeft = changedItem.GetPosMaxCount - itemAmountBeforeCalc;
-            changeValue = posSpaceLeft > 0 ? 
-            (posSpaceLeft - amount > 0 ? amount : posSpaceLeft) : 0;
-
-            if(changeValue > 0)
+            bool isVisOver = visMax < currentItemAmount;
+            if (!isVisOver)
             {
-                InventoryItemVisual.UpdateItemVisInventory(changedItem, changeValue);
+                InventoryItemVisual.UpdateItemVisAdd(changedItem, amount);
+            }
+            else if (visMax > beforeItemAmount)
+            {
+                //calc if legit
+                InventoryItemVisual.UpdateItemVisSet(changedItem, visMax);
             }
         }
         else
         {
-            int visualMaxPos = changedItem.GetPosMaxCount;
-            if(itemAmountBeforeCalc <= visualMaxPos)
+            bool canDecreease = visMax > currentItemAmount;
+            if (canDecreease)
             {
-                if(visualMaxPos + amount > 0)
-                {
-                    changeValue = amount;
-                    InventoryItemVisual.UpdateItemVisInventory(changedItem, changeValue);
-                }
-                else
-                {
-                    changeValue = -visualMaxPos;
-                    InventoryItemVisual.UpdateItemVisInventory(changedItem, changeValue);
-                }
+                InventoryItemVisual.UpdateItemVisSet(changedItem, currentItemAmount);
             }
         }
         void DebugText()
         {
-            list[0].text = changedItem + " " + itemAmount;
-            if (crafter.GetItemsOnTable2.ContainsKey(changedItem))
-            {
-                list[1].text = crafter.GetItemTableValue(changedItem).ToString();
-            }
-            //if (crafter.ContainsKey(changedItem))
-            //{
-            //    list[1].text = crafter.GetItemTableValue(changedItem).ToString();
-            //
-            //}
-            list[2].text = changeValue.ToString();
+            list[0].text = inv.GetInventory[changedItem].ToString();//; changedItem
+            //list[1].text = "itemBeforeCalc" + itemAmountBeforeCalc;
+            //list[2].text = changeValue.ToString();
         }
         DebugText();
     }
@@ -88,10 +77,9 @@ public class DebugUI : MonoSingleton<DebugUI>
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.B)) Inventory.AddBluePrint(bpToAdd);
-        if (Input.GetKeyDown(KeyCode.A) && !Input.GetKey(KeyCode.LeftShift)) inv.TryAddItemToInventory(itemToAdd, 1);
-        if (Input.GetKeyDown(KeyCode.A) && Input.GetKey(KeyCode.LeftShift)) inv.TrySubtractItemToInventory(itemToAdd, 1);
+        if (Input.GetKeyDown(KeyCode.A) && !Input.GetKey(KeyCode.LeftShift)) inv.TryAddItemToInventory(itemToAdd, fuck);
+        if (Input.GetKeyDown(KeyCode.A) && Input.GetKey(KeyCode.LeftShift)) inv.TrySubtractItemToInventory(itemToAdd, fuck);
 
-        //if (Input.GetKeyDown(KeyCode.K)) inv.TryAddItemToCraft(itemToAdd, crafter);
         if (Input.GetKeyDown(KeyCode.C)) inv.CancelCraft(crafter);
 
         if (Input.GetKeyDown(KeyCode.P)) inv.Debug_PrintShit();
@@ -114,7 +102,7 @@ public class DebugUI : MonoSingleton<DebugUI>
 
             }
         }
-        if (Input.GetKeyDown(KeyCode.Mouse0)) ObjSelect();
+        //if (Input.GetKeyDown(KeyCode.Mouse0)) ObjSelect();
 
     }
     public void ToggleInventory()
@@ -146,21 +134,5 @@ public class DebugUI : MonoSingleton<DebugUI>
         }
         UpdateInventory();
         UpdateTable();
-    }
-    public void OnBtnAdd(SO_Item itemToAdd)
-    {
-
-    }
-    public void OnBtnDrop(SO_Item itemToDrop)
-    {
-
-    }
-    public void OnBtnTryCraft()
-    {
-
-    }
-    public void OnBtnFuck()
-    {
-
     }
 }

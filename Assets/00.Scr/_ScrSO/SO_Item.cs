@@ -15,18 +15,8 @@ public class SO_Item : ScriptableObject
     [SerializeField] private List<Vector3> _posVisInv;
     [SerializeField] private List<Vector3> _posVisCraft;
     [SerializeField] private List<GameObject> _models;
-    public int GetPosMaxCount => _posVisInv.Count;
-
-    /// <summary>
-    /// sdadda
-    /// </summary>
-    [Obsolete] public List<Vector3> GetPosInv => _posVisInv;
-    /// <summary>
-    /// awdadwadadad
-    /// </summary>
-    [Obsolete] public List<Vector3> GetPosCraft => _posVisCraft;
-    public IReadOnlyList<Vector3> GetPosInv2 => _posVisInv;
-    public IReadOnlyList<Vector3> GetPosCraft2 => _posVisCraft;
+    public IReadOnlyList<Vector3> GetVisPosInv => _posVisInv;
+    public IReadOnlyList<Vector3> GetVisPosCraft => _posVisCraft;
 
     public GameObject GetPrefab
     {
