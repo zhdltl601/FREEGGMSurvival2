@@ -7,6 +7,6 @@ public class Stage : MonoBehaviour
 
     public void SceneMove()
     {
-        SceneManager.LoadScene(sceneName);
+        //SceneManager.LoadScene(sceneName);
     }
 }

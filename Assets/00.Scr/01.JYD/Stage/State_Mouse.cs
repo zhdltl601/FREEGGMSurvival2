@@ -7,15 +7,22 @@ public class State_Mouse : MonoBehaviour
     [SerializeField] private float minCamDistance;
 
     [SerializeField] private Transform target;
-    
+
+    private Vector3 _mousePos;
     private void FixedUpdate()
     {
-        target.DOMove(GetDesiredCameraPosition(),1F);
+        if(IsMouseMoved())
+            target.DOMove(GetDesiredCameraPosition(),1F);
+    }
+    
+    private bool IsMouseMoved()
+    {
+        return Input.GetAxis("Mouse X") != 0 || Input.GetAxis("Mouse Y") != 0;
     }
     
     private Vector3 GetDesiredCameraPosition()
     {
-        Vector3 _mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        _mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         _mousePos.z = 0;
         Vector3 aimDirection = _mousePos - transform.position;
         float distance = Vector3.Distance(transform.position , _mousePos);

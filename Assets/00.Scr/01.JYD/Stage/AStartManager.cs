@@ -34,7 +34,8 @@ public class AStartManager : MonoBehaviour
     public LayerMask whatIsWall;
     public GameObject target;
     public Vector3 mousePos;
-        
+    public float moveSpeed;
+    
     public GameObject nodePrefab;
     
     private void Awake()
@@ -155,11 +156,11 @@ public class AStartManager : MonoBehaviour
         {
             Vector3 targetPosition = new Vector3(node.x, node.y, 0);
             
-            while (Vector3.Distance(target.transform.position, targetPosition) > 0.1f)
+            while (Vector3.Distance(target.transform.position, targetPosition) > 0.01f)
             {
                 DecreaseNodeAlpha();
                 
-                target.transform.position = Vector3.MoveTowards(target.transform.position, targetPosition, Time.deltaTime);
+                target.transform.position = Vector3.MoveTowards(target.transform.position, targetPosition, Time.deltaTime * moveSpeed);
                 yield return null;
             }
 
@@ -230,13 +231,13 @@ public class AStartManager : MonoBehaviour
         //    for (int i = 0; i < FinalNodeList.Count - 1; i++)
         //        Gizmos.DrawLine(new Vector2(FinalNodeList[i].x, FinalNodeList[i].y), new Vector2(FinalNodeList[i + 1].x, FinalNodeList[i + 1].y));
         
-        for (int i = 0; i < sizeX; i++)
+        /*for (int i = 0; i < sizeX; i++)
         {
             for (int j = 0; j < sizeY; j++)
             {
                 Vector3 nodePosition = new Vector3(bottomLeft.x + j, bottomLeft.y + i, 0);
                 Gizmos.DrawWireCube(nodePosition, new Vector3(0.9f, 0.9f, 0.9f)); // Adjust size if needed
             }
-        }
+        }*/
     }
 }
