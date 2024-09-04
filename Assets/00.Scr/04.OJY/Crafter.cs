@@ -25,7 +25,6 @@ public class Crafter : MonoBehaviour
                 if (!_itemsOnTable.ContainsKey(item)) return;
                 if (_itemsOnTable[item] < currentBPList[j].amount) return;
             }
-            //waht the fuck
             OnCraftSucessful();
             void OnCraftSucessful()
             {

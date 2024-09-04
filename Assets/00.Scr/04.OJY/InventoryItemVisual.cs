@@ -5,12 +5,6 @@ public class InventoryItemVisual : MonoBehaviour
     [SerializeField] private SO_Item _soItem;
     public SO_Item GetSO_Item => _soItem;//
     private static readonly Dictionary<SO_Item, List<GameObject>> _visualDictionary = new();
-    /// <summary>
-    /// expectes p:amount calculated
-    /// p:adds amount (pos + amount)
-    /// <para>_pos.Count + p lower than _soItem.maxamount + 1</para>
-    /// <para>_pos.Count + p upper than 0 + 1</para>
-    /// </summary>
     public static void UpdateItemVisAdd(SO_Item itemToAdd, int amount)
     {
         print("vuADD");
@@ -46,7 +40,7 @@ public class InventoryItemVisual : MonoBehaviour
             GameObject prefab = itemToAdd.GetPrefab;
             Vector3 pos = itemToAdd.GetVisPosInv[index];
             Quaternion quaternion = Quaternion.identity;
-Transform spawnPos = DebugUI.Instance._piv;//
+            Transform spawnPos = InventoryUI.Instance._piv;
 
             GameObject newInstance = Instantiate(prefab, pos, quaternion, parent : spawnPos);
             list[index] = newInstance;
@@ -104,7 +98,7 @@ Transform spawnPos = DebugUI.Instance._piv;//
             GameObject prefab = itemToSet.GetPrefab;
             Vector3 pos = itemToSet.GetVisPosInv[index];
             Quaternion quaternion = Quaternion.identity;
-Transform spawnPos = DebugUI.Instance._piv;//
+            Transform spawnPos = InventoryUI.Instance._piv;
 
             GameObject newInstance = Instantiate(prefab, pos, quaternion, parent: spawnPos);
             list[index] = newInstance;
