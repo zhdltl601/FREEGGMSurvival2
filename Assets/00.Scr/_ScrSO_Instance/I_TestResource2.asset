@@ -13,4 +13,9 @@ MonoBehaviour:
   m_Name: I_TestResource2
   m_EditorClassIdentifier: 
   _icon: {fileID: 0}
-  maxAmount: 5
+  _maxAmount: 4
+  _posVisInv:
+  - {x: 0, y: 0, z: 0}
+  _posVisCraft:
+  - {x: 0, y: 0, z: 0}
+  _models: []
