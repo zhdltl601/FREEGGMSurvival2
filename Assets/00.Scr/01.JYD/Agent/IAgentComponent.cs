@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IEnmyComponent
+public interface IAgentComponent
 {
-    public void Initialize(Enemy _enemy);
-    
+    public void Initialize(Agent agent);
 }

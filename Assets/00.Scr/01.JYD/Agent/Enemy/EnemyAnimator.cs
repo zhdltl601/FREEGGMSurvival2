@@ -1,16 +1,16 @@
 using System;
 using UnityEngine;
 
-public class EnemyAnimator : MonoBehaviour,IEnmyComponent
+public class EnemyAnimator : MonoBehaviour,IAgentComponent
 {
     private readonly int RecoveryIndex = Animator.StringToHash("RecoveryIndex");
     
     private Enemy enemy;
     public Animator animator { get; private set; }
-
-    public void Initialize(Enemy _enemy)
+    
+    public void Initialize(Agent agent)
     {
-        enemy = _enemy;
+        enemy = agent as Enemy;
         animator = GetComponent<Animator>();
     }
 
@@ -23,4 +23,6 @@ public class EnemyAnimator : MonoBehaviour,IEnmyComponent
     {
         animator.SetInteger(RecoveryIndex,index);
     }
+
+   
 }

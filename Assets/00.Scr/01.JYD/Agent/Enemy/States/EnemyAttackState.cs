@@ -4,12 +4,12 @@ public class EnemyAttackState : EnemyState
 {
     private readonly int AtkIndex = Animator.StringToHash("AtkIndex");
     
-    private EnemyMovement movement;
+    private AgentMovement movement;
     private EnemyAnimator enemyAnimator;
 
     public EnemyAttackState(Enemy _enemy, EnemyStateMachine _stateMachine, string animBoolName) : base(_enemy, _stateMachine, animBoolName)
     {
-        movement = _enemy.GetCompo<EnemyMovement>();
+        movement = _enemy.GetCompo<AgentMovement>();
         enemyAnimator = _enemy.GetCompo<EnemyAnimator>();
     }
 

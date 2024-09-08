@@ -2,9 +2,9 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyMovement : MonoBehaviour,IEnmyComponent
+public class AgentMovement : MonoBehaviour,IAgentComponent
 {
-    public Enemy Enemy { get; private set; }
+    public Agent _agent { get; private set; }
     public NavMeshAgent NavMeshAgent { get; private set; }
     public Rigidbody Rigidbody { get; private set; }
 
@@ -21,9 +21,9 @@ public class EnemyMovement : MonoBehaviour,IEnmyComponent
 
     public bool IsArrived => !NavMeshAgent.isPathStale && NavMeshAgent.remainingDistance < NavMeshAgent.stoppingDistance + stopOffset;
     
-    public void Initialize(Enemy _enemy)
+    public void Initialize(Agent agent)
     {
-        Enemy = _enemy;
+        _agent = agent;
         NavMeshAgent = GetComponent<NavMeshAgent>();
         Rigidbody = GetComponent<Rigidbody>();
     }
@@ -57,7 +57,7 @@ public class EnemyMovement : MonoBehaviour,IEnmyComponent
         NavMeshAgent.Warp(transform.position);
         _isKnockBack = false;
 
-        if(!Enemy.isDead)
+        if(!_agent.IsDead)
         {
             NavMeshAgent.enabled = true;
         }

@@ -4,10 +4,10 @@ using UnityEngine;
 public class EnemyMoveState : EnemyState
 {
     private Vector3 targetDestination;
-    private EnemyMovement movement;
+    private AgentMovement movement;
     public EnemyMoveState(Enemy enemy, EnemyStateMachine stateMachine, string animBoolName) : base(enemy, stateMachine, animBoolName)
     {
-        movement = enemy.GetCompo<EnemyMovement>();
+        movement = enemy.GetCompo<AgentMovement>();
     }
 
     public override void Enter()

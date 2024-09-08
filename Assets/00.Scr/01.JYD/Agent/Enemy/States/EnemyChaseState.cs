@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 public class EnemyChaseState : EnemyState
 {
-    private EnemyMovement movement;
+    private AgentMovement movement;
     private EnemyCombatSystem combatSystem;
     public EnemyChaseState(Enemy _enemy, EnemyStateMachine _stateMachine, string animBoolName) : base(_enemy, _stateMachine, animBoolName)
     {
-        movement = enemy.GetCompo<EnemyMovement>();
+        movement = enemy.GetCompo<AgentMovement>();
         combatSystem = enemy.GetCompo<EnemyCombatSystem>();
     }
 

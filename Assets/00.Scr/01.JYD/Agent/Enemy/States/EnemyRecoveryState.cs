@@ -2,11 +2,11 @@
 
 public class EnemyRecoveryState : EnemyState
 {
-    private EnemyMovement movement;
+    private AgentMovement movement;
     private EnemyCombatSystem combatSystem;
     public EnemyRecoveryState(Enemy _enemy, EnemyStateMachine _stateMachine, string animBoolName) : base(_enemy, _stateMachine, animBoolName)
     {
-        movement = _enemy.GetComponent<EnemyMovement>();
+        movement = _enemy.GetComponent<AgentMovement>();
         combatSystem = _enemy.GetComponent<EnemyCombatSystem>();
     }
 

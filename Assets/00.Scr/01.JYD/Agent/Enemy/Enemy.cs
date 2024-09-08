@@ -11,14 +11,13 @@ public enum EnemyStateEnum
     Attack,
 }
 
-public class Enemy : MonoBehaviour
+public class Enemy : Agent
 {
     private EnemyStateMachine stateMachine;
     
     [Header("Target")]
     public Transform targetTrm;
-    
-    
+        
     [Header("Move info")] 
     public float runningSpeed;
     public float walkSpeed;
@@ -29,28 +28,15 @@ public class Enemy : MonoBehaviour
     public float attackAbleRange;
     public bool isBattleMode;
     
-    public bool isDead;
-    
     public LayerMask whatIsPlayer;
     public LayerMask whatIsObstacle;
 
-    private Dictionary<Type, IEnmyComponent> enemyCompo; 
-    
 
     private readonly Collider[] _enemyCheckCollider = new Collider[1];
     
-    private void Awake()
+    protected override void Awake()
     {
-        enemyCompo = new Dictionary<Type, IEnmyComponent>();
-        GetComponentsInChildren<IEnmyComponent>().ToList().ForEach(x =>
-        {
-            enemyCompo.Add(x.GetType() , x);
-        });
-        foreach (var item in enemyCompo.Values)
-        {
-            item.Initialize(this);
-        }
-        
+        base.Awake();
         stateMachine = new EnemyStateMachine();
         
         #region StateAdd
@@ -63,21 +49,12 @@ public class Enemy : MonoBehaviour
 
         #endregion
     }
-
-    public T GetCompo<T>() where T : class
-    {
-        if(enemyCompo.TryGetValue(typeof(T), out IEnmyComponent compo))
-        {
-            return compo as T;
-        }
-        return default;
-    }
-    
+        
     private void Start()
     {
         stateMachine.Initialize(EnemyStateEnum.Idle);
         
-        GetCompo<EnemyMovement>().SetSpeed(walkSpeed);
+        GetCompo<AgentMovement>().SetSpeed(walkSpeed);
     }
 
     private void Update()
@@ -98,16 +75,6 @@ public class Enemy : MonoBehaviour
         return Physics.Raycast(transform.position, direction, distance,whatIsObstacle);
     }*/
     
-    public void FactToTarget(Vector3 target)
-    {
-        Quaternion targetRot = Quaternion.LookRotation(target - transform.position);
-        Vector3 currentEulerAngle = transform.rotation.eulerAngles;
-        
-        float yRotation = Mathf.LerpAngle(currentEulerAngle.y , targetRot.eulerAngles.y , 5 * Time.deltaTime);
-        
-        transform.rotation = Quaternion.Euler(currentEulerAngle.x , yRotation , currentEulerAngle.z);
-    }
-
     private bool IsPlayerInAggressiveRange()
     {
         Vector3 pos = transform.position;
@@ -123,7 +90,7 @@ public class Enemy : MonoBehaviour
             stateMachine.ChangeState(EnemyStateEnum.Recovery);
         }
     }
-
+    
     public void AnimationEnd()
     {
         stateMachine.currentState.AnimationTriggerCalled();

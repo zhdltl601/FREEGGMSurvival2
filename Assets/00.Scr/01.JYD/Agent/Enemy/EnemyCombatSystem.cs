@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 
-public class EnemyCombatSystem : MonoBehaviour , IEnmyComponent
+public class EnemyCombatSystem : MonoBehaviour , IAgentComponent
 {
     private Enemy enemy;
-    public void Initialize(Enemy _enemy)
+  
+    public void Initialize(Agent agent)
     {
-        enemy = _enemy;
+        enemy = agent as Enemy;;
     }
 
     public bool IsAttackAble()
@@ -18,6 +19,7 @@ public class EnemyCombatSystem : MonoBehaviour , IEnmyComponent
     {
         
     }
-    
-    
+
+
+   
 }
