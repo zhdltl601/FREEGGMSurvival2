@@ -168,6 +168,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6a9c9a65de423845ad50f8287e7995a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _lm_item:
+    serializedVersion: 2
+    m_Bits: 0
+  _inventory: {fileID: 2142853723}
+  _crafter: {fileID: 848355400}
+  itemTOADD: {fileID: 11400000, guid: ab06225582c78284888a905711070f7e, type: 2}
 --- !u!1 &157379395
 GameObject:
   m_ObjectHideFlags: 0
@@ -200,14 +206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91164ac8cc85b0f42bb1b88a101beab2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  list:
-  - {fileID: 632304215}
-  - {fileID: 328948078}
-  - {fileID: 425568683}
-  bpToAdd: {fileID: 11400000, guid: 0b4f0e0ba1a13f14681047b52362259a, type: 2}
-  itemToAdd: {fileID: 11400000, guid: ab06225582c78284888a905711070f7e, type: 2}
-  crafter: {fileID: 848355400}
-  inv: {fileID: 2142853723}
+  dbg_list: []
   _piv: {fileID: 574973300}
   _lm_item:
     serializedVersion: 2

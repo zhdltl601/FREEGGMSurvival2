@@ -13,4 +13,12 @@ MonoBehaviour:
   m_Name: I_TestResource2
   m_EditorClassIdentifier: 
   _icon: {fileID: 0}
-  maxAmount: 5
+  _maxAmount: 4
+  _posVisInv:
+  - {x: 2, y: -1, z: 0}
+  - {x: 2.2, y: 1, z: 0}
+  - {x: 2, y: 1.5, z: 0}
+  _posVisCraft:
+  - {x: 0, y: 0, z: 0}
+  _models:
+  - {fileID: 3847931630611256104, guid: 435897d6cd444e346b95774068ee15f9, type: 3}
