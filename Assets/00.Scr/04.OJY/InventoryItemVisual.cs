@@ -24,34 +24,15 @@ public class InventoryItemVisual : MonoBehaviour
         }
         var list = _visualDictionary[itemToAdd];
         bool isIncreassing = amount > 0;
-        int firstNullIndex = GetFirstNullIndex();
+        int firstNullIndex = GetFirstNullIndex(list);
 
-        int GetFirstNullIndex()
-        {
-            int count = list.Count;
-            for (int i = 0; i < count; i++)
-            {
-                if (list[i] == null || !list[i].activeSelf) return i;
-            }
-            return list.Count;
-        }
-        void CreateVis(int index)
-        {
-            GameObject prefab = itemToAdd.GetPrefab;
-            Vector3 pos = itemToAdd.GetVisPosInv[index];
-            Quaternion quaternion = Quaternion.identity;
-            Transform spawnPos = InventoryUI.Instance._piv;
-
-            GameObject newInstance = Instantiate(prefab, pos, quaternion, parent : spawnPos);
-            list[index] = newInstance;
-        }
         int target = firstNullIndex + amount;
         if (isIncreassing)
         {
             for(int i = firstNullIndex; i < target; i++)
             {
                 bool isNull = list[i] == null;
-                if (isNull) CreateVis(i);
+                if (isNull) list[i] = CreateVis(i, itemToAdd);
                 list[i].SetActive(true);
             }
         }
@@ -81,35 +62,16 @@ public class InventoryItemVisual : MonoBehaviour
             Init();
         }
         var list = _visualDictionary[itemToSet];
-        int firstNullIndex = GetFirstNullIndex();
+        int firstNullIndex = GetFirstNullIndex(list);
         bool isIncreassing = value > firstNullIndex;
 
-        int GetFirstNullIndex()
-        {
-            int count = list.Count;
-            for (int i = 0; i < count; i++)
-            {
-                if (list[i] == null || !list[i].activeSelf) return i;
-            }
-            return list.Count;
-        }
-        void CreateVis(int index)
-        {
-            GameObject prefab = itemToSet.GetPrefab;
-            Vector3 pos = itemToSet.GetVisPosInv[index];
-            Quaternion quaternion = Quaternion.identity;
-            Transform spawnPos = InventoryUI.Instance._piv;
-
-            GameObject newInstance = Instantiate(prefab, pos, quaternion, parent: spawnPos);
-            list[index] = newInstance;
-        }
         int target = value;
         if (isIncreassing)
         {
             for (int i = firstNullIndex; i < target; i++)
             {
                 bool isNull = list[i] == null;
-                if (isNull) CreateVis(i);
+                if (isNull) list[i] = CreateVis(i, itemToSet);
                 list[i].SetActive(true);
             }
         }
@@ -120,5 +82,23 @@ public class InventoryItemVisual : MonoBehaviour
                 list[i].SetActive(false);
             }
         }
+    }
+    private static int GetFirstNullIndex(List<GameObject> list)
+    {
+        int count = list.Count;
+        for (int i = 0; i < count; i++)
+        {
+            if (list[i] == null || !list[i].activeSelf) return i;
+        }
+        return list.Count;
+    }
+    private static GameObject CreateVis(int index, SO_Item itemToCreate)
+    {
+        GameObject prefab = itemToCreate.GetPrefab;
+        Quaternion quaternion = Quaternion.identity;
+        Transform spawnParent = InventoryUI.Instance._piv;
+        Vector3 pos = itemToCreate.GetVisPosInv[index] + spawnParent.position;
+        GameObject newInstance = Instantiate(prefab, pos, quaternion, parent: spawnParent);
+        return newInstance;
     }
 }

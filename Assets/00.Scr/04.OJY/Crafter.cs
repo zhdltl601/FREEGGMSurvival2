@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class Crafter : MonoBehaviour
+public class Crafter : MonoBehaviour, IInteractable
 {
     private readonly Dictionary<SO_Item, int> _itemsOnTable = new();
 
@@ -39,5 +39,10 @@ public class Crafter : MonoBehaviour
     public void ClearItemsOnTable()
     {
         _itemsOnTable.Clear();
+    }
+    public void OnPlayerInteract(Player player)
+    {
+        //InventoryUI.Instance.CurrentCrafter = this; //special crafter not implemented yet
+        player.ToggleInventory();
     }
 }
