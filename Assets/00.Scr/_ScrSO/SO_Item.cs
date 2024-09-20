@@ -7,8 +7,12 @@ using UnityEngine;
 public class SO_Item : ScriptableObject
 {
     [Header("General")]
-    [SerializeField] private SpriteRenderer _icon;
+    [SerializeField] private Sprite _icon;
     [SerializeField] private int _maxAmount;
+    [SerializeField] private string _name;
+
+    public Sprite GetIcon => _icon;
+    public string GetName => _name;
     public int GetMaxAmount => _maxAmount;
 
     [Header("InventoryVisual")]
