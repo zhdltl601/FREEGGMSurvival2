@@ -17,12 +17,11 @@ public class InventoryUI : MonoSingleton<InventoryUI>
     public LayerMask _lm_item;
 
     [SerializeField] private Camera _camInv;
-    public Crafter CurrentCrafter { get; set; }
     public Inventory PlayerInventory { get; set; }
     protected override void Awake()
     {
         base.Awake();
-//_camInv = Camera.main;//
+        //_camInv = Camera.main;//
         Inventory.OnItemChanged += HandleOnItemChanged;
     }
     protected override void OnDestroy()
@@ -34,7 +33,7 @@ public class InventoryUI : MonoSingleton<InventoryUI>
     {
         void KeyInput()
         {
-            if (Input.GetKeyDown(KeyCode.C)) PlayerInventory.CancelCraft(CurrentCrafter);
+            if (Input.GetKeyDown(KeyCode.C)) PlayerInventory.CancelCraft(Player.CurrentCrafter);
         }
         void DebugInput()
         {
@@ -48,7 +47,7 @@ public class InventoryUI : MonoSingleton<InventoryUI>
             Debug.DrawRay(_camInv.transform.position, mDir.direction * 50, Color.red, 2);
             if (Physics.Raycast(_camInv.transform.position, mDir.direction, out RaycastHit hitInfo, 50, _lm_item))
             {
-                if (hitInfo.transform.TryGetComponent(out InventoryItemVisual c)) PlayerInventory.TryAddItemToCraft(c.GetSO_Item, CurrentCrafter);
+                if (hitInfo.transform.TryGetComponent(out InventoryItemVisual c)) PlayerInventory.TryAddItemToCraft(c.GetSO_Item, Player.CurrentCrafter);
                 else Debug.LogError("ItemDoesntHave InventoryItem Comp" + hitInfo.transform.name);
             }
         }
@@ -90,7 +89,7 @@ public class InventoryUI : MonoSingleton<InventoryUI>
         }
         void OFF()
         {
-            PlayerInventory.CancelCraft(CurrentCrafter);
+            PlayerInventory.CancelCraft(Player.CurrentCrafter);
             _camInv.gameObject.SetActive(false);
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;

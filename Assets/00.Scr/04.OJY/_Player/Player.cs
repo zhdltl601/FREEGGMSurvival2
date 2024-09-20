@@ -9,7 +9,6 @@ public class Player : MonoBehaviour
     [SerializeField] private Inventory _inventory;
     private Rigidbody _rigidbody;
 
-
     private bool isCrafting = false;
 
     [Header("Movement")]
@@ -32,6 +31,7 @@ public class Player : MonoBehaviour
 
     [Header("Debugging")]
     [SerializeField] private Crafter defaultCrafter;
+    public static Crafter CurrentCrafter { get; set; }
 
     private void Awake()
     {
@@ -41,7 +41,7 @@ public class Player : MonoBehaviour
     }
     private void Start()
     {
-        InventoryUI.Instance.CurrentCrafter = defaultCrafter;
+        CurrentCrafter = defaultCrafter;
         InventoryUI.Instance.PlayerInventory = _inventory;
         InventoryUI.Instance.SetActive(false);
     }
@@ -77,6 +77,7 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
 float speed = _walkSpeed;// get current state and apply speed
+
         _rigidbody.velocity = moveDirection * speed;
         _rigidbody.velocity *= _movementSens;
     }

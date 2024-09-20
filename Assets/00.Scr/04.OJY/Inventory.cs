@@ -103,10 +103,11 @@ public class Inventory : MonoBehaviour
         }
         return result;
     }
+    /// <summary>
+    /// creates if possible r:true
+    /// </summary>
     public bool TryAddItemToCraft(SO_Item itemToAdd, Crafter crafter)
     {
-        //todo : remove this and make separate function that check if player can craft stuff 
-        //unlockedBlueprints = unlockedBlueprints is null ? _unlockedBlueprints : unlockedBlueprints; // to check if it's possible to craft one. set ubp(3) null for most cases 
         IReadOnlyList<SO_ItemBlueprint> unlockedBlueprints = _unlockedBlueprints;
 
         bool result = _inventory.ContainsKey(itemToAdd) && _inventory[itemToAdd] > 0;
