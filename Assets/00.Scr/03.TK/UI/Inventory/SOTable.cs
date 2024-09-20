@@ -14,6 +14,6 @@ public class SOTable : MonoBehaviour
     {
         SO_ItemBlueprint bp = Instantiate(bluePrint);
         
-        bpViewer.SetCurrentItemBlueprint(bp);
+        //bpViewer.SetCurrentItemBlueprint(bp);
     }
 }
