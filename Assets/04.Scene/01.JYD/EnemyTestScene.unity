@@ -194,7 +194,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDead: 0
-  isDead: 0
+  whatIsEating:
+    serializedVersion: 2
+    m_Bits: 4096
+  eatRadius: 5
 --- !u!195 &35861354
 NavMeshAgent:
   m_ObjectHideFlags: 0

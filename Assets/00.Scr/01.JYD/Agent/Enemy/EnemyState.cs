@@ -19,7 +19,6 @@ public class EnemyState
 
         animator = _enemy.GetCompo<EnemyAnimator>().animator;
         
-        Debug.Log(this);
     }
     
     public virtual void Enter()

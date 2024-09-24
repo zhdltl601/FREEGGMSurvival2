@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
+﻿using UnityEngine;
 public enum EnemyStateEnum
 {
     Idle,
@@ -55,6 +52,8 @@ public class Enemy : Agent
         stateMachine.Initialize(EnemyStateEnum.Idle);
         
         GetCompo<AgentMovement>().SetSpeed(walkSpeed);
+        
+        
     }
 
     private void Update()

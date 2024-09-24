@@ -1,4 +1,6 @@
-﻿public class AnimalMoveState : AnimalState
+﻿using UnityEngine;
+
+public class AnimalMoveState : AnimalState
 {
     private AgentMovement movement;
     
@@ -11,7 +13,15 @@
     {
         base.Enter();
         movement.SetSpeed(1.5f);
-        movement.SetDestination(movement.GetNextPatrolPoint());
+
+        Vector3 target = movement.GetNextPatrolPoint();
+        
+        if (Animal.isEatingMode)
+        {
+            target = Animal.eatingTarget.position;
+        }
+        
+        movement.SetDestination(target);
     }
 
     public override void Update()
@@ -21,7 +31,13 @@
 
         if (movement.IsArrived)
         {
-            StateMachine.ChangeState(AnimalStateEnum.Idle);
+            AnimalStateEnum nextState = AnimalStateEnum.Idle;
+            if (Animal.isEatingMode)
+            {
+                nextState = AnimalStateEnum.Eat;
+            }
+
+            StateMachine.ChangeState(nextState);
         }
     }
 

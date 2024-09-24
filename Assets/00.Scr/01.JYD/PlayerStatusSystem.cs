@@ -18,11 +18,11 @@ public class PlayerStatusSystem : MonoBehaviour
 
     private void Update()
     {
-        /*if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.A))
         {
             ApplyBuff(new AttackBuff(3 , gameObject , 10));
             ApplyBuff(new BurnDebuff(3 , gameObject , 4 , 2.5f , this));
-        }*/
+        }
     }
 
     public void ApplyBuff(StatusEffect effect)
