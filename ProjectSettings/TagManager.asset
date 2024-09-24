@@ -3,22 +3,21 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Building
+  tags: []
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - InventoryItem
+  - 
   - Water
   - UI
-  - Ground
-  - Build
   - Wall
-  - Interactable
   - 
   - 
-  - 
+  - Obstacle
+  - Player
+  - Stage
+  - Eating
   - 
   - 
   - 
@@ -41,4 +40,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Line
+    uniqueID: 3830977989
     locked: 0

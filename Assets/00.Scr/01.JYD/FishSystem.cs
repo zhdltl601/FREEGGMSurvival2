@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
+using DG.Tweening;
+using TMPro;
 
 public class FishSystem : MonoBehaviour
 {
@@ -8,6 +10,7 @@ public class FishSystem : MonoBehaviour
     
     private float _catchTimer;
     public float checkbarSpeed;
+    private float _startTimer;
     
     public Slider successSlider;
     public RectTransform fish;
@@ -20,12 +23,14 @@ public class FishSystem : MonoBehaviour
     
     private float _checkBarOffset;
     private float _fishOffset;
+
+    private bool isCatch;
     
     private void OnEnable()
     {
         fish = Instantiate(fishData.fishObj,transform).GetComponent<RectTransform>();
     }
-
+    
     private void Update()
     {
         FishFlipController();
@@ -33,6 +38,13 @@ public class FishSystem : MonoBehaviour
         CheckBarMove();
 
         CheckFishIsInBox();
+
+        _startTimer += Time.deltaTime;
+        if (_startTimer >= 60)
+        {
+            _startTimer = 0;
+            FishEnd();
+        }
     }
 
     private void CheckFishIsInBox()
@@ -65,6 +77,7 @@ public class FishSystem : MonoBehaviour
     {
         if (CheckSuccess())
         {
+            if(isCatch)return;
             CatchFish();
         }
                 
@@ -74,8 +87,35 @@ public class FishSystem : MonoBehaviour
     private void CatchFish()
     {
         Time.timeScale = 0;
-                
         
+        isCatch = true;
+        
+        GameObject textObj = new GameObject("SuccessText");
+        TextMeshProUGUI text = textObj.AddComponent<TextMeshProUGUI>();
+        text.text = "<color=#FFD700> SEX! </color>";
+        text.alignment = TextAlignmentOptions.Center;
+        text.transform.SetParent(transform, false);
+        
+        RectTransform rectTransform = text.GetComponent<RectTransform>();
+        rectTransform.anchoredPosition = fish.anchoredPosition + new Vector2(0, 120f);
+        rectTransform.localScale = Vector3.one;
+        
+        Sequence seq = DOTween.Sequence().SetUpdate(true);
+        seq.Append(text.rectTransform.DOScale(2f, 0.7f));
+        seq.AppendCallback(() =>
+        {
+            Destroy(textObj.gameObject);
+            FishEnd();
+        });
+    }
+
+    private void FishEnd()
+    {
+        gameObject.SetActive(false);
+        isCatch = false;
+        fishData = null;
+        Destroy(fish.gameObject);
+        Time.timeScale = 1;
     }
     
     private bool CheckSuccess()
