@@ -63,10 +63,6 @@ public class Player : MonoBehaviour
         void L_KeyDebug()
         {
             InventoryUI.Instance.dbg_list[0].text = isCrafting.ToString();
-            //if (Input.GetKeyDown(KeyCode.A) && !Input.GetKey(KeyCode.LeftShift)) _inventory.TryAddItemToInventory(itemTOADD, 1);
-            //if (Input.GetKeyDown(KeyCode.A) && Input.GetKey(KeyCode.LeftShift)) _inventory.TrySubtractItemToInventory(itemTOADD, 1);
-            //if (Input.GetKeyDown(KeyCode.B)) Inventory.AddBluePrint(bpToAdd);
-            //if (Input.GetKeyDown(KeyCode.P)) _inventory.Debug_PrintShit();
         }
         L_KeyInput();
         L_KeyDebug();
