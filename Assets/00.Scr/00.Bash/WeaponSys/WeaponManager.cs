@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
@@ -27,14 +28,25 @@ public class WeaponManager : MonoBehaviour
         _bFireHash = Animator.StringToHash("Fire");
         _bReloadHash = Animator.StringToHash("Reload");
         _fAmmoHash = Animator.StringToHash("AmmoPerMag");// (현재총알/탄창)  -> 잔탄수 표시 애니메이션 파라미터
+
+        weaponList = GetComponentsInChildren<WeaponCompo>(true).ToList();
+    }
+
+    public void SwapWeaponNum(int idx1,int idx2)
+    {
+        BashUtils.SwapList(idx1, idx2, ref weaponList);
     }
 
     public void ChangeWeapon(int index)//무기 번호(숫자키 번호)입력
     {
-        if(weaponList.Count <= index)
+
+        if(weaponList.Count >= index)
         {
             if (weaponList[index].isHave)
             {
+                weaponList[currentWeapon].gameObject.SetActive(false);
+                weaponList[index].gameObject.SetActive(true);
+
                 currentWeapon = index;
                 animator.runtimeAnimatorController = weaponList[index].weaponSO.controller;
 
@@ -66,6 +78,31 @@ public class WeaponManager : MonoBehaviour
         animator.SetBool(_bFireHash, Input.GetKey(KeyCode.Mouse0));
 
         animator.SetBool(_bReloadHash, Input.GetKey(KeyCode.R));
+
+
+        if(Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            ChangeWeapon(0);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            ChangeWeapon(1);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            ChangeWeapon(2);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            ChangeWeapon(3);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            ChangeWeapon(4);
+        }
+
+
+
     }
 
     
