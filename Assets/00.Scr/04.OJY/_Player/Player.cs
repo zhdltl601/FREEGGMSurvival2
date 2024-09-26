@@ -5,8 +5,9 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [Header("General")]
-    [SerializeField] private PlayerCamera _camera;
-    [SerializeField] private Inventory _inventory;
+    [SerializeField] private PlayerCamera   _camera;
+    [SerializeField] private Inventory      _inventory;
+    [SerializeField] private PlayerAnimator _playerAnimator;
     private Rigidbody _rigidbody;
 
     private bool isCrafting = false;
@@ -32,6 +33,7 @@ public class Player : MonoBehaviour
     [Header("Debugging")]
     [SerializeField] private Crafter defaultCrafter;
     public static Crafter CurrentCrafter { get; set; }
+    [ SerializeField]private Item currentItem;
 
     private void Awake()
     {
@@ -53,8 +55,15 @@ public class Player : MonoBehaviour
         Vector3 rightDirection   = _camera.right;
         void L_KeyInput()
         {
-            if (Input.GetKeyDown(KeyCode.E))   RaycastInteract();
-            if (Input.GetKeyDown(KeyCode.Tab)) ToggleInventory();
+            void ItemInspect() => _playerAnimator.PlayAnim(Item.inspectHash);//currentItem.Inspect();
+            void ItemInteractNormal() => currentItem.OnNormalInteraction();
+            void ItemInteractionSpeicial() => currentItem.OnSpecialInteraction();
+            if (Input.GetKeyDown(KeyCode.B))        ItemInspect();
+            if (Input.GetKeyDown(KeyCode.Mouse0))   ItemInteractNormal();
+            if (Input.GetKeyDown(KeyCode.Mouse1))   ItemInteractionSpeicial();
+
+            if (Input.GetKeyDown(KeyCode.E))        RaycastInteract();
+            if (Input.GetKeyDown(KeyCode.Tab))      ToggleInventory();
             yRot += Input.GetAxis("Mouse X") * ySens; 
             xRot -= Input.GetAxis("Mouse Y") * xSens; xRot = Mathf.Clamp(xRot, -85, 85);
             moveDirection = forwardDirection * Input.GetAxis("Vertical") + rightDirection * Input.GetAxis("Horizontal");
@@ -76,6 +85,8 @@ float speed = _walkSpeed;// get current state and apply speed
 
         _rigidbody.velocity = moveDirection * speed;
         _rigidbody.velocity *= _movementSens;
+
+
     }
     public void ToggleInventory()
     {
