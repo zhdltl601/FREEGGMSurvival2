@@ -12,7 +12,10 @@ public class Bullet : Damageable
     [SerializeField]
     LayerMask _layerMask;
     protected RaycastHit _hit;
-
+    private void Start()
+    {
+        Init();
+    }
     public virtual void Init()
     {
         _time = 0; // 총알 LifeTime 초기화
