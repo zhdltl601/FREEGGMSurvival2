@@ -16,7 +16,7 @@ public class ButtonAnimation : MonoBehaviour, IPointerEnterHandler, IPointerExit
 
     private void Start()
     {
-        rectTransform = GetComponent<RectTransform>();
+        rectTransform = GetComponentInChildren<RectTransform>();
 
         originScale = Vector3.one;
         addedScale = originScale * targetScaleMultiplier;
@@ -26,6 +26,7 @@ public class ButtonAnimation : MonoBehaviour, IPointerEnterHandler, IPointerExit
     {
         if(!isScaleIncreasing)
         {
+            rectTransform.DOKill();
             rectTransform.DOScale(addedScale, spentTimeToScaleUp);
             isScaleIncreasing = true;
         }
