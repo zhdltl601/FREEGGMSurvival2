@@ -98,6 +98,7 @@ public class ResultItemBP : MonoBehaviour, IPointerDownHandler
         {
             inventory.TryAddItemToInventory(resultItem);
             BlueprintViewer.Instance.RemoveBPOnCraftTable();
+            Debug.Log($"item {resultItem} is add in inventory");
         }
         else
         {
