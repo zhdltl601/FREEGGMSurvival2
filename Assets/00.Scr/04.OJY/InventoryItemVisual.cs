@@ -5,15 +5,9 @@ public class InventoryItemVisual : MonoBehaviour
     [SerializeField] private SO_Item _soItem;
     public SO_Item GetSO_Item => _soItem;//
     private static readonly Dictionary<SO_Item, List<GameObject>> _visualDictionary = new();
-    /// <summary>
-    /// expectes p:amount calculated
-    /// p:adds amount (pos + amount)
-    /// <para>_pos.Count + p lower than _soItem.maxamount + 1</para>
-    /// <para>_pos.Count + p upper than 0 + 1</para>
-    /// </summary>
-    public static void UpdateItemVisual(SO_Item itemToAdd, int amount)
+    public static void UpdateItemVisAdd(SO_Item itemToAdd, int amount)
     {
-        print("visUpdate");
+        print("vuADD");
         bool firstInit = !_visualDictionary.ContainsKey(itemToAdd);
         if (firstInit)
         {
@@ -21,7 +15,7 @@ public class InventoryItemVisual : MonoBehaviour
             {
                 _visualDictionary.Add(itemToAdd, new());
                 var list = _visualDictionary[itemToAdd];
-                for(int i = 0; i < itemToAdd.GetMaxAmount; i++)
+                for(int i = 0; i < itemToAdd.GetVisPosInv.Count; i++)
                 {
                     list.Add(null);
                 }
@@ -30,44 +24,81 @@ public class InventoryItemVisual : MonoBehaviour
         }
         var list = _visualDictionary[itemToAdd];
         bool isIncreassing = amount > 0;
-        int index = GetFirstNullIndex();
+        int firstNullIndex = GetFirstNullIndex(list);
 
-        int GetFirstNullIndex()
-        {
-            int count = list.Count;
-            for (int i = 0; i < count; i++)
-            {
-                if (list[i] == null || !list[i].activeSelf) return i;
-            }
-            return list.Count;
-        }
-        void CreateVis(int index)
-        {
-            GameObject prefab = itemToAdd.GetPrefab;
-            Vector3 pos = itemToAdd.GetPos[index];
-            Quaternion quaternion = Quaternion.identity;
-Transform spawnPos = DebugUI.Instance._piv;//
-
-            GameObject newInstance = Instantiate(prefab, pos, quaternion, parent : spawnPos);
-            list[index] = newInstance;
-        }
-        int target = index + amount;
+        int target = firstNullIndex + amount;
         if (isIncreassing)
         {
-            for(int i = index; i < target; i++)
+            for(int i = firstNullIndex; i < target; i++)
             {
                 bool isNull = list[i] == null;
-                if (isNull) CreateVis(i);
+                if (isNull) list[i] = CreateVis(i, itemToAdd);
                 list[i].SetActive(true);
             }
         }
         else
         {
-            for(int i = index - 1; i >= target; i--)
+            for(int i = firstNullIndex - 1; i >= target; i--)
             {
                 list[i].SetActive(false);
             }
         }
+    }
+    public static void UpdateItemVisSet(SO_Item itemToSet, int value)
+    {
+        print("vuSet");
+        bool firstInit = !_visualDictionary.ContainsKey(itemToSet);
+        if (firstInit)
+        {
+            void Init()
+            {
+                _visualDictionary.Add(itemToSet, new());
+                var list = _visualDictionary[itemToSet];
+                for (int i = 0; i < itemToSet.GetVisPosInv.Count; i++)
+                {
+                    list.Add(null);
+                }
+            }
+            Init();
+        }
+        var list = _visualDictionary[itemToSet];
+        int firstNullIndex = GetFirstNullIndex(list);
+        bool isIncreassing = value > firstNullIndex;
 
+        int target = value;
+        if (isIncreassing)
+        {
+            for (int i = firstNullIndex; i < target; i++)
+            {
+                bool isNull = list[i] == null;
+                if (isNull) list[i] = CreateVis(i, itemToSet);
+                list[i].SetActive(true);
+            }
+        }
+        else
+        {
+            for (int i = firstNullIndex - 1; i >= target; i--)
+            {
+                list[i].SetActive(false);
+            }
+        }
+    }
+    private static int GetFirstNullIndex(List<GameObject> list)
+    {
+        int count = list.Count;
+        for (int i = 0; i < count; i++)
+        {
+            if (list[i] == null || !list[i].activeSelf) return i;
+        }
+        return list.Count;
+    }
+    private static GameObject CreateVis(int index, SO_Item itemToCreate)
+    {
+        GameObject prefab = itemToCreate.GetPrefab;
+        Quaternion quaternion = Quaternion.identity;
+        Transform spawnParent = InventoryUI.Instance._piv;
+        Vector3 pos = itemToCreate.GetVisPosInv[index] + spawnParent.position;
+        GameObject newInstance = Instantiate(prefab, pos, quaternion, parent: spawnParent);
+        return newInstance;
     }
 }

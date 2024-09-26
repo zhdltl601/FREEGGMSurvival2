@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class Resource : Item
+namespace BshAmiKlr
 {
+    public class Resource : Item
+    {
 
+    }
 }
