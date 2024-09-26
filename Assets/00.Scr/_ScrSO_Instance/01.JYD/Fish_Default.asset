@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b91eb49ba3c68a342ae225fbd9808391, type: 3}
+  m_Name: Fish_Default
+  m_EditorClassIdentifier: 
+  fishName: "\uD64D\uC5B4"
+  fishObj: {fileID: 9211205449375110997, guid: 074dbbd0deaa7fa43ae44355f68550e5, type: 3}
+  fishFlipInterval: 1.4
+  catchTime: 3
+  minMoveSpeed: 100
+  maxMoveSpeed: 700

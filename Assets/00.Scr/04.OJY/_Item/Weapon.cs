@@ -2,7 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Weapon : Item
+namespace BshAmiKlr
 {
+    public class Weapon : Item
+    {
+        private PlayerAnimator _animator;
 
+
+    }
 }

@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 public class Inventory : MonoBehaviour
 {
+    [Header("Items")]
+    [SerializeField] private List<Item> items;
+
     private readonly Dictionary<SO_Item, int> _inventory = new();
     private static readonly List<SO_ItemBlueprint> _unlockedBlueprints = new();
 
@@ -63,7 +66,7 @@ public class Inventory : MonoBehaviour
         }
         return result;
     }
-    public bool TrySubtractItemToInventory(SO_Item itemToSubtract, int amount = 1, bool allowOverTake = true)
+    public bool TrySubtractFromInventory(SO_Item itemToSubtract, int amount = 1, bool allowOverTake = true)
     {
         #region Exception
         if (amount < 1)
@@ -100,11 +103,11 @@ public class Inventory : MonoBehaviour
         }
         return result;
     }
-    #region crafter //can remove Crafter parameter
+    /// <summary>
+    /// creates if possible r:true
+    /// </summary>
     public bool TryAddItemToCraft(SO_Item itemToAdd, Crafter crafter)
     {
-        //todo : remove this and make separate function that check if player can craft stuff 
-        //unlockedBlueprints = unlockedBlueprints is null ? _unlockedBlueprints : unlockedBlueprints; // to check if it's possible to craft one. set ubp(3) null for most cases 
         IReadOnlyList<SO_ItemBlueprint> unlockedBlueprints = _unlockedBlueprints;
 
         bool result = _inventory.ContainsKey(itemToAdd) && _inventory[itemToAdd] > 0;
@@ -112,7 +115,7 @@ public class Inventory : MonoBehaviour
         {
             void AddItemToCraft()
             {
-                TrySubtractItemToInventory(itemToAdd, 1);
+                TrySubtractFromInventory(itemToAdd, 1);
                 crafter.OnCraftTable(itemToAdd, unlockedBlueprints);
             }
             AddItemToCraft();
@@ -133,7 +136,6 @@ public class Inventory : MonoBehaviour
         }
         crafter.ClearItemsOnTable();
     }
-    #endregion
     #region Debug
     public void Debug_PrintShit()
     {

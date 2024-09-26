@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 //#define DEBUG_SO
@@ -17,10 +15,8 @@ public class SO_Item : ScriptableObject
 
     [Header("InventoryVisual")]
     [SerializeField] private List<Vector3> _posVisInv;
-    [SerializeField] private List<Vector3> _posVisCraft;
     [SerializeField] private List<GameObject> _models;
     public IReadOnlyList<Vector3> GetVisPosInv => _posVisInv;
-    public IReadOnlyList<Vector3> GetVisPosCraft => _posVisCraft;
 
     public GameObject GetPrefab
     {
@@ -28,7 +24,7 @@ public class SO_Item : ScriptableObject
         {
             if(_models.Count > 1)
             {
-                int r = UnityEngine.Random.Range(0, _models.Count);
+                int r = Random.Range(0, _models.Count);
                 return _models[r];
             }
             return _models[0];

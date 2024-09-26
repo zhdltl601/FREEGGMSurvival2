@@ -2,11 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class Crafter : MonoBehaviour
+public class Crafter : MonoBehaviour, IInteractable
 {
     private readonly Dictionary<SO_Item, int> _itemsOnTable = new();
-
+    [SerializeField] private List<SO_ItemBlueprint> _additionalBluePrtins;
     public IReadOnlyDictionary<SO_Item, int> GetItemsOnTable => _itemsOnTable;
+    public IReadOnlyList<SO_ItemBlueprint> GetAdditionalBPs => _additionalBluePrtins;
 
     /// <summary>
     /// when crafting adding item to crafter is only limited to one
@@ -39,5 +40,10 @@ public class Crafter : MonoBehaviour
     public void ClearItemsOnTable()
     {
         _itemsOnTable.Clear();
+    }
+    public void OnPlayerInteract(Player player)
+    {
+        Player.CurrentCrafter = this; //special crafter not implemented yet
+        player.ToggleInventory();
     }
 }

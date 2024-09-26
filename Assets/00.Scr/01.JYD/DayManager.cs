@@ -8,9 +8,18 @@ public class DayManager : MonoBehaviour
     [SerializeField] private Light directionalLight;
     [SerializeField] private LightingPreset lightingPreset;
 
-    [SerializeField] [Range(0, 24)] private float TimeOfDay;
+    [SerializeField] [Range(0, 24)] private float timeOfDay;
     [SerializeField] private float period;
+    [SerializeField] private float startTime;
 
+    private float initialY;
+    public static int Mul { get; set; } = 1;
+    private void Awake()
+    {
+        timeOfDay = startTime;
+        if(directionalLight != null)
+            initialY = directionalLight.transform.eulerAngles.y;
+    }
     private void Update()
     {
         if (lightingPreset == null)
@@ -20,14 +29,14 @@ public class DayManager : MonoBehaviour
 
         if (Application.isPlaying)
         {
-            TimeOfDay += (Time.deltaTime / period);
-            TimeOfDay %= 24;
+            timeOfDay += (Time.deltaTime / period) * Mul;
+            timeOfDay %= 24;
             
-            UpdateLighting(TimeOfDay /24f);
+            UpdateLighting(timeOfDay /24f);
         }
         else
         {
-            UpdateLighting(TimeOfDay /24f);
+            UpdateLighting(timeOfDay /24f);
         }
         
     }
@@ -40,7 +49,7 @@ public class DayManager : MonoBehaviour
         if (directionalLight != null)
         {
             directionalLight.color = lightingPreset.DirectionalColor.Evaluate(timePercent);
-            directionalLight.transform.localRotation = Quaternion.Euler(new Vector3(timePercent * 360 - 90f , 170f , 0));
+            directionalLight.transform.localRotation = Quaternion.Euler(new Vector3(timePercent * 360 - 90f , initialY, 0));
 
         }
     }
@@ -65,5 +74,7 @@ public class DayManager : MonoBehaviour
                 }
             }
         }
+        initialY = directionalLight.transform.eulerAngles.y;
+
     }
 }
