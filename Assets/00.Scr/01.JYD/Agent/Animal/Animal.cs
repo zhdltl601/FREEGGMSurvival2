@@ -1,5 +1,3 @@
-
-
 using UnityEngine;
 
 public enum AnimalStateEnum
@@ -22,7 +20,7 @@ public class Animal : Agent
     private Collider[] cols;
     
     
-    private void Awake()
+    protected override void Awake()
     {
         base.Awake();
         
