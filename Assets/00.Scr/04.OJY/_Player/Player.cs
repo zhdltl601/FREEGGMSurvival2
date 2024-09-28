@@ -33,7 +33,7 @@ public class Player : MonoBehaviour
     [Header("Debugging")]
     [SerializeField] private Crafter defaultCrafter;
     public static Crafter CurrentCrafter { get; set; }
-    [ SerializeField]private Item currentItem;
+    [SerializeField] private Item currentItem;
 
     private void Awake()
     {
@@ -55,12 +55,12 @@ public class Player : MonoBehaviour
         Vector3 rightDirection   = _camera.right;
         void L_KeyInput()
         {
-            void ItemInspect() => _playerAnimator.PlayAnim(Item.inspectHash);//currentItem.Inspect();
-            void ItemInteractNormal() => currentItem.OnNormalInteraction();
-            void ItemInteractionSpeicial() => currentItem.OnSpecialInteraction();
-            if (Input.GetKeyDown(KeyCode.B))        ItemInspect();
-            if (Input.GetKeyDown(KeyCode.Mouse0))   ItemInteractNormal();
-            if (Input.GetKeyDown(KeyCode.Mouse1))   ItemInteractionSpeicial();
+            void ItemInspect() =>                   _playerAnimator.PlayAnim(Item.inspectHash);//currentItem.Inspect();
+            void ItemInteractNormal() =>            currentItem.OnNormalInteraction();
+            void ItemInteractionSpeicial() =>       currentItem.OnSpecialInteraction();
+            //if (Input.GetKeyDown(KeyCode.B))        ItemInspect();
+            //if (Input.GetKeyDown(KeyCode.Mouse0))   ItemInteractNormal();
+            //if (Input.GetKeyDown(KeyCode.Mouse1))   ItemInteractionSpeicial();
 
             if (Input.GetKeyDown(KeyCode.E))        RaycastInteract();
             if (Input.GetKeyDown(KeyCode.Tab))      ToggleInventory();
@@ -75,7 +75,7 @@ public class Player : MonoBehaviour
         }
         L_KeyInput();
         L_KeyDebug();
-
+        if (Input.GetKeyDown(KeyCode.M)) DayManager.CanProcess = !DayManager.CanProcess;
         this._camera.SetCameraRotation(Quaternion.Euler(xRot, yRot, 0));
         //_camera.rotation = Quaternion.Euler(xRot, yRot, 0);
     }
