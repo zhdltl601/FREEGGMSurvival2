@@ -2,7 +2,12 @@ using System;
 using System.Collections;
 using UnityEditor.Presets;
 using UnityEngine;
-
+public enum EDayState
+{
+    None = 0,
+    Morning,
+    Night
+}
 public class DayManager : MonoSingleton<DayManager>
 {
     [Header("unityGameObject")]
@@ -15,6 +20,9 @@ public class DayManager : MonoSingleton<DayManager>
     private float initialY;
     public static bool CanProcess { get; set; } = false;
     public static int Multiplier { get; set; } = 1;
+
+    private static EDayState _currentState = EDayState.None;
+    public static event Action<EDayState> OnChangeState;
     protected override void Awake()
     {
         base.Awake();
@@ -56,11 +64,24 @@ public class DayManager : MonoSingleton<DayManager>
             timeOfDay += (Time.deltaTime / period) * Multiplier;
             timeOfDay %= 24;
         }
+        void CalcCurrentState()
+        {
+
+            bool IsMorning(float time)
+            {
+                bool isDay = 6 <= timeOfDay && timeOfDay <= 19;
+                return isDay;// ? EDayState.Day : EDayState.Night;
+            }
+            EDayState _updatedState = IsMorning(timeOfDay) ? EDayState.Morning : EDayState.Night;
+            bool onChange = _currentState != _updatedState;
+            if (onChange)
+            {
+                _currentState = _updatedState;// isDay ? EDayState.Morning : EDayState.Night;
+                OnChangeState?.Invoke(_updatedState);
+            }
+        }
+        CalcCurrentState();
         UpdateLighting(timeOfDay /24f);
-    }
-    public static void ToggleTime(bool value)
-    {
-        CanProcess = value;
     }
     private void UpdateLighting(float timePercent)
     {

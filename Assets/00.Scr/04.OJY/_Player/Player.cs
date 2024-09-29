@@ -44,6 +44,7 @@ public class Player : MonoBehaviour
         _cc = GetComponent<CharacterController>();
         _camera = GetComponentInChildren<PlayerCamera>();
         _inventory = GetComponentInChildren<Inventory>();
+        //Application.targetFrameRate = 50;
     }
     private void Start()
     {
@@ -59,9 +60,9 @@ public class Player : MonoBehaviour
         Vector3 rightDirection   = _camera.right;
         void L_KeyInput()
         {
-            void ItemInspect() =>                   _playerAnimator.PlayAnim(Item.inspectHash);//currentItem.Inspect();
-            void ItemInteractNormal() =>            currentItem.OnNormalInteraction();
-            void ItemInteractionSpeicial() =>       currentItem.OnSpecialInteraction();
+            //void ItemInspect() =>                   _playerAnimator.PlayAnim(Item.inspectHash);//currentItem.Inspect();
+            //void ItemInteractNormal() =>            currentItem.OnNormalInteraction();
+            //void ItemInteractionSpeicial() =>       currentItem.OnSpecialInteraction();
             //if (Input.GetKeyDown(KeyCode.B))        ItemInspect();
             //if (Input.GetKeyDown(KeyCode.Mouse0))   ItemInteractNormal();
             //if (Input.GetKeyDown(KeyCode.Mouse1))   ItemInteractionSpeicial();
@@ -96,7 +97,7 @@ float speed = _walkSpeed;// get current state and apply speed
         {
             _yVal -= 9.81f * Time.deltaTime;
         }
-        Vector3 velocitiy = moveDirection * speed;
+        Vector3 velocitiy = moveDirection * speed * _movementSens;
         velocitiy.y = _yVal;
         _cc.Move(velocitiy * Time.deltaTime);
     }
