@@ -58,7 +58,10 @@ public class DayManager : MonoSingleton<DayManager>
         }
         UpdateLighting(timeOfDay /24f);
     }
-
+    public static void ToggleTime(bool value)
+    {
+        CanProcess = value;
+    }
     private void UpdateLighting(float timePercent)
     {
         RenderSettings.ambientLight = lightingPreset.AembientColor.Evaluate(timePercent);

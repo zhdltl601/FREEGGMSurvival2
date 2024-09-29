@@ -3054,7 +3054,7 @@ PrefabInstance:
     - target: {fileID: 738378283335357153, guid: b69ee45a9bda4df49abb02f540b77227,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2629594267917234643, guid: b69ee45a9bda4df49abb02f540b77227,
         type: 3}
@@ -3096,6 +3096,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 4919655966551164938, guid: b69ee45a9bda4df49abb02f540b77227,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5370176992256200714, guid: b69ee45a9bda4df49abb02f540b77227,
         type: 3}
       propertyPath: m_Layer
@@ -3115,6 +3120,11 @@ PrefabInstance:
         type: 3}
       propertyPath: jumpHeight
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5530605887850906690, guid: b69ee45a9bda4df49abb02f540b77227,
+        type: 3}
+      propertyPath: _lm_item.m_Bits
+      value: 2147483648
       objectReference: {fileID: 0}
     - target: {fileID: 6011212251993697768, guid: b69ee45a9bda4df49abb02f540b77227,
         type: 3}
