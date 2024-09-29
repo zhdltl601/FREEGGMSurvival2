@@ -47,10 +47,31 @@ public class InventoryUI : MonoSingleton<InventoryUI>
             Debug.DrawRay(_camInv.transform.position, mDir.direction * 50, Color.red, 2);
             if (Physics.Raycast(_camInv.transform.position, mDir.direction, out RaycastHit hitInfo, 50, _lm_item))
             {
-                if (hitInfo.transform.TryGetComponent(out InventoryItemVisual c)) PlayerInventory.TryAddItemToCraft(c.GetSO_Item, Player.CurrentCrafter);
+                if (hitInfo.transform.TryGetComponent(out InventoryItemVisual c))
+                {
+                    PlayerInventory.TryAddItemToCraft(c.GetSO_Item, Player.CurrentCrafter);
+                    c.SelectObj(c.GetSO_ItemBlueprint);
+                    c.DestroyThisObj();
+                }
                 else Debug.LogError("ItemDoesntHave InventoryItem Comp" + hitInfo.transform.name);
             }
         }
+        void ObjFocus()
+        {
+            Ray mDir = _camInv.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(_camInv.transform.position, mDir.direction, out RaycastHit hitInfo, 50, _lm_item))
+            {
+                if (hitInfo.transform.TryGetComponent(out InventoryItemVisual c))
+                {
+                    c.SetItemInfoPanelOn(c.GetSO_Item);
+                }
+                else
+                {
+                    ItemInfoPanel.Instance.DisableInfoPanel();
+                }
+            }
+        }
+        ObjFocus();
         KeyInput();
         DebugInput();
         if (Input.GetKeyDown(KeyCode.Mouse0)) ObjSelect();

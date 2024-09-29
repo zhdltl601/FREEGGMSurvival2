@@ -23,7 +23,6 @@ public class BlueprintViewer : MonoBehaviour
     ///아이템이 blueprint리스트를 가지고 있어야 함.
     ///</summary>
     private SO_ItemBlueprint currentBlueprint;
-    private InteractInvenItemVis currentItemVis;
 
     [Tooltip("Blueprints List")]
     private Dictionary<string, CraftBlueprint> bpTable = new();

@@ -3,6 +3,8 @@ using UnityEngine;
 public class InventoryItemVisual : MonoBehaviour
 {
     [SerializeField] private SO_Item _soItem;
+    [SerializeField] private SO_ItemBlueprint _soItemBlueprint;
+    public SO_ItemBlueprint GetSO_ItemBlueprint => _soItemBlueprint;
     public SO_Item GetSO_Item => _soItem;//
     private static readonly Dictionary<SO_Item, List<GameObject>> _visualDictionary = new();
     public static void UpdateItemVisAdd(SO_Item itemToAdd, int amount)
@@ -83,6 +85,23 @@ public class InventoryItemVisual : MonoBehaviour
             }
         }
     }
+    public void SelectObj(SO_ItemBlueprint bp)
+    {
+        ItemInfoPanel.Instance.DisableInfoPanel();
+        BlueprintViewer.Instance.SetCurrentItemBlueprint(bp);
+    }
+
+    public void SetItemInfoPanelOn(SO_Item soItem)
+    {
+        ItemInfoPanel.Instance.SetItemInfoPanel(soItem.GetIcon,
+            soItem.GetName, soItem.GetMaxAmount.ToString());
+    }
+
+    public void DestroyThisObj()
+    {
+        Destroy(this.gameObject);
+    }
+
     private static int GetFirstNullIndex(List<GameObject> list)
     {
         int count = list.Count;
