@@ -94,16 +94,11 @@ float speed = _walkSpeed;// get current state and apply speed
         }
         else
         {
-            print("fall");
             _yVal -= 9.81f * Time.deltaTime;
         }
         Vector3 velocitiy = moveDirection * speed;
         velocitiy.y = _yVal;
         _cc.Move(velocitiy * Time.deltaTime);
-        //_rigidbody.velocity = moveDirection * speed;
-        //_rigidbody.velocity *= _movementSens;
-
-
     }
     public void ToggleInventory()
     {
