@@ -3028,8 +3028,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5530605887850906690, guid: b69ee45a9bda4df49abb02f540b77227,
         type: 3}
-      propertyPath: currentItem
-      value: 
+      propertyPath: _runSpeed
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5530605887850906690, guid: b69ee45a9bda4df49abb02f540b77227,
+        type: 3}
+      propertyPath: _walkSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5530605887850906690, guid: b69ee45a9bda4df49abb02f540b77227,
+        type: 3}
+      propertyPath: jumpHeight
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6628944014873434752, guid: b69ee45a9bda4df49abb02f540b77227,
         type: 3}
