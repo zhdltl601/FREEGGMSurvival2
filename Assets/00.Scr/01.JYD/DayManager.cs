@@ -3,22 +3,47 @@ using System.Collections;
 using UnityEditor.Presets;
 using UnityEngine;
 
-public class DayManager : MonoBehaviour
+public class DayManager : MonoSingleton<DayManager>
 {
+    [Header("unityGameObject")]
     [SerializeField] private Light directionalLight;
-    [SerializeField] private LightingPreset lightingPreset;
 
+    [Header("Data")]
+    [SerializeField] private LightingPreset lightingPreset;
     [SerializeField] [Range(0, 24)] private float timeOfDay;
     [SerializeField] private float period;
-    [SerializeField] private float startTime;
-
     private float initialY;
-    public static int Mul { get; set; } = 1;
-    private void Awake()
+    public static bool CanProcess { get; set; } = false;
+    public static int Multiplier { get; set; } = 1;
+    protected override void Awake()
     {
-        timeOfDay = startTime;
-        if(directionalLight != null)
+        base.Awake();
+        DontDestroyOnLoad(gameObject);
+
+        if (directionalLight != null)
             initialY = directionalLight.transform.eulerAngles.y;
+    }
+    private void OnEnable()
+    {
+        if (directionalLight != null)
+            return;
+
+        if (RenderSettings.sun != null)
+            return;
+        else
+        {
+            Light[] lights = FindObjectsOfType<Light>();
+
+            foreach (var light in lights)
+            {
+                if (light.type == LightType.Directional)
+                {
+                    directionalLight = light;
+                    return;
+                }
+            }
+        }
+        initialY = directionalLight.transform.eulerAngles.y;
     }
     private void Update()
     {
@@ -26,19 +51,12 @@ public class DayManager : MonoBehaviour
         {
             return;
         }
-
-        if (Application.isPlaying)
+        if (Application.isPlaying && CanProcess)
         {
-            timeOfDay += (Time.deltaTime / period) * Mul;
+            timeOfDay += (Time.deltaTime / period) * Multiplier;
             timeOfDay %= 24;
-            
-            UpdateLighting(timeOfDay /24f);
         }
-        else
-        {
-            UpdateLighting(timeOfDay /24f);
-        }
-        
+        UpdateLighting(timeOfDay /24f);
     }
 
     private void UpdateLighting(float timePercent)
@@ -50,31 +68,6 @@ public class DayManager : MonoBehaviour
         {
             directionalLight.color = lightingPreset.DirectionalColor.Evaluate(timePercent);
             directionalLight.transform.localRotation = Quaternion.Euler(new Vector3(timePercent * 360 - 90f , initialY, 0));
-
         }
-    }
-    
-    private void OnEnable()
-    {
-        if (directionalLight != null)
-            return;
-
-        if (RenderSettings.sun != null)
-            return;
-        else
-        {
-            Light[] lights = FindObjectsOfType<Light>();
-            
-            foreach (var light in lights)
-            {
-                if (light.type == LightType.Directional)
-                {
-                    directionalLight = light;
-                    return;
-                }
-            }
-        }
-        initialY = directionalLight.transform.eulerAngles.y;
-
     }
 }

@@ -8,15 +8,19 @@ public class Player : MonoBehaviour
     [SerializeField] private PlayerCamera   _camera;
     [SerializeField] private Inventory      _inventory;
     [SerializeField] private PlayerAnimator _playerAnimator;
-    private Rigidbody _rigidbody;
+    private CharacterController _cc;
 
     private bool isCrafting = false;
 
     [Header("Movement")]
     [SerializeField] private float _walkSpeed;
     [SerializeField] private float _runSpeed;
+    [SerializeField] private float jumpHeight;
+
     private Vector3 moveDirection;
+    private float _yVal;
     private float _movementSens = 1;
+    bool IsGround => _cc.isGrounded;
 
     [Header("Interact")]
     [SerializeField] private float interactDistance;
@@ -33,11 +37,11 @@ public class Player : MonoBehaviour
     [Header("Debugging")]
     [SerializeField] private Crafter defaultCrafter;
     public static Crafter CurrentCrafter { get; set; }
-    [ SerializeField]private Item currentItem;
+    [SerializeField] private Item currentItem;
 
     private void Awake()
     {
-        _rigidbody = GetComponent<Rigidbody>();
+        _cc = GetComponent<CharacterController>();
         _camera = GetComponentInChildren<PlayerCamera>();
         _inventory = GetComponentInChildren<Inventory>();
     }
@@ -55,13 +59,14 @@ public class Player : MonoBehaviour
         Vector3 rightDirection   = _camera.right;
         void L_KeyInput()
         {
-            void ItemInspect() => _playerAnimator.PlayAnim(Item.inspectHash);//currentItem.Inspect();
-            void ItemInteractNormal() => currentItem.OnNormalInteraction();
-            void ItemInteractionSpeicial() => currentItem.OnSpecialInteraction();
-            if (Input.GetKeyDown(KeyCode.B))        ItemInspect();
-            if (Input.GetKeyDown(KeyCode.Mouse0))   ItemInteractNormal();
-            if (Input.GetKeyDown(KeyCode.Mouse1))   ItemInteractionSpeicial();
+            void ItemInspect() =>                   _playerAnimator.PlayAnim(Item.inspectHash);//currentItem.Inspect();
+            void ItemInteractNormal() =>            currentItem.OnNormalInteraction();
+            void ItemInteractionSpeicial() =>       currentItem.OnSpecialInteraction();
+            //if (Input.GetKeyDown(KeyCode.B))        ItemInspect();
+            //if (Input.GetKeyDown(KeyCode.Mouse0))   ItemInteractNormal();
+            //if (Input.GetKeyDown(KeyCode.Mouse1))   ItemInteractionSpeicial();
 
+            if (Input.GetKeyDown(KeyCode.Space))    _yVal = jumpHeight;
             if (Input.GetKeyDown(KeyCode.E))        RaycastInteract();
             if (Input.GetKeyDown(KeyCode.Tab))      ToggleInventory();
             yRot += Input.GetAxis("Mouse X") * ySens; 
@@ -75,7 +80,7 @@ public class Player : MonoBehaviour
         }
         L_KeyInput();
         L_KeyDebug();
-
+        if (Input.GetKeyDown(KeyCode.M)) DayManager.CanProcess = !DayManager.CanProcess;
         this._camera.SetCameraRotation(Quaternion.Euler(xRot, yRot, 0));
         //_camera.rotation = Quaternion.Euler(xRot, yRot, 0);
     }
@@ -83,10 +88,17 @@ public class Player : MonoBehaviour
     {
 float speed = _walkSpeed;// get current state and apply speed
 
-        _rigidbody.velocity = moveDirection * speed;
-        _rigidbody.velocity *= _movementSens;
-
-
+        if(IsGround && _yVal <= 0)
+        {
+            _yVal = -1;
+        }
+        else
+        {
+            _yVal -= 9.81f * Time.deltaTime;
+        }
+        Vector3 velocitiy = moveDirection * speed;
+        velocitiy.y = _yVal;
+        _cc.Move(velocitiy * Time.deltaTime);
     }
     public void ToggleInventory()
     {
