@@ -15,6 +15,7 @@ public class Bullet : Damageable
     private void Start()
     {
         Init();
+        
     }
     public virtual void Init()
     {
