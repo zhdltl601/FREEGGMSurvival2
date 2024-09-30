@@ -823,7 +823,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 0.1
+  m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -6839,10 +6839,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1673317570342940286, guid: 78eded2d42c2bec478d68791bfe3a472,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2093432882105860622, guid: 78eded2d42c2bec478d68791bfe3a472,
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 5.533332
+      objectReference: {fileID: 0}
+    - target: {fileID: 2601244822981626820, guid: 78eded2d42c2bec478d68791bfe3a472,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3099092830744319404, guid: 78eded2d42c2bec478d68791bfe3a472,
         type: 3}
@@ -6905,7 +6915,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3839547838394919898, guid: 78eded2d42c2bec478d68791bfe3a472,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4055616849025556403, guid: 78eded2d42c2bec478d68791bfe3a472,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4583528084643584394, guid: 78eded2d42c2bec478d68791bfe3a472,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5253330569996017148, guid: 78eded2d42c2bec478d68791bfe3a472,
         type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -6959,6 +6984,21 @@ PrefabInstance:
         type: 3}
       propertyPath: moveWithTransform
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8835723523893894184, guid: 78eded2d42c2bec478d68791bfe3a472,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8858892156243120044, guid: 78eded2d42c2bec478d68791bfe3a472,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8927018773883574003, guid: 78eded2d42c2bec478d68791bfe3a472,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8959758668823655440, guid: 78eded2d42c2bec478d68791bfe3a472,
         type: 3}

@@ -6,12 +6,13 @@ using UnityEngine;
 public class WeaponManager : MonoBehaviour
 {
     public int currentWeapon = 0; // 외부에서도 접근가능(임시로)
-    
+
     public Animator animator;
-    
+
     public List<WeaponCompo> weaponList = new List<WeaponCompo>();//무기리스트
 
-    int _bFireHash, _bReloadHash,_fAmmoHash;//b:bool,t:Trigger,f:float;
+    int _bFireHash, _tCreateHash, _bReloadHash, _fAmmoHash;//b:bool,t:Trigger,f:float;
+
 
     [SerializeField]
     AudioSource _audioSource;
@@ -26,13 +27,14 @@ public class WeaponManager : MonoBehaviour
         animator = GetComponent<Animator>();
 
         _bFireHash = Animator.StringToHash("Fire");
+        _tCreateHash = Animator.StringToHash("CreateObjectChange");//건설모드
         _bReloadHash = Animator.StringToHash("Reload");
         _fAmmoHash = Animator.StringToHash("AmmoPerMag");// (현재총알/탄창)  -> 잔탄수 표시 애니메이션 파라미터
 
         weaponList = GetComponentsInChildren<WeaponCompo>(true).ToList();
     }
 
-    public void SwapWeaponNum(int idx1,int idx2)
+    public void SwapWeaponNum(int idx1, int idx2)
     {
         BashUtils.SwapList(idx1, idx2, ref weaponList);
     }
@@ -40,7 +42,7 @@ public class WeaponManager : MonoBehaviour
     public void ChangeWeapon(int index)//무기 번호(숫자키 번호)입력
     {
 
-        if(weaponList.Count >= index)
+        if (weaponList.Count >= index)
         {
             if (weaponList[index].isHave)
             {
@@ -55,9 +57,9 @@ public class WeaponManager : MonoBehaviour
         }
 
     }
-
     public void TryUseWeapon(int fireType)
     {
+        Debug.Log("으아잇푸르르");
         weaponList[currentWeapon].Fire(fireType);
         animator.SetFloat(_fAmmoHash, (float)weaponList[currentWeapon].currentAmmo / (float)weaponList[currentWeapon].weaponSO.maxAmmo);
     }
@@ -79,8 +81,10 @@ public class WeaponManager : MonoBehaviour
 
         animator.SetBool(_bReloadHash, Input.GetKey(KeyCode.R));
 
+        animator.SetBool("AltFire", Input.GetKey(KeyCode.Mouse1));
+        //if (Input.GetKeyDown(KeyCode.Mouse1)) animator.SetTrigger(_tCreateHash);
 
-        if(Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             ChangeWeapon(0);
         }
@@ -100,10 +104,5 @@ public class WeaponManager : MonoBehaviour
         {
             ChangeWeapon(4);
         }
-
-
-
     }
-
-    
 }

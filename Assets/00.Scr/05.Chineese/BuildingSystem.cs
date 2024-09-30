@@ -36,6 +36,17 @@ public class BuildingSystem : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
     }
 
+    public void InputLeftMouseButton()
+    {
+        Debug.Log("빌드밍");
+        Build();
+    }
+
+    public void InputRightMouseButton(int currentBuildingIdx)
+    {
+        Debug.Log(currentBuildingIdx + " 로 바뀌었노");
+        ChangeCurrentBuilding(currentBuildingIdx);
+    }
     private void Update()
     {
         if (isBuilding)
@@ -43,10 +54,10 @@ public class BuildingSystem : MonoBehaviour
             StartPreview();
         }
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            Build();
-        }
+        //if (Input.GetMouseButtonDown(0))
+        //{
+        //    Build();
+        //}
 
         /*
         if(Input.GetKeyDown("0") || Input.GetKeyDown("1"))
@@ -55,22 +66,7 @@ public class BuildingSystem : MonoBehaviour
         }
         */
 
-        if (Input.GetKeyDown("1"))
-        {
-            Debug.Log("1로 바뀌었노");
-            ChangeCurrentBuilding(0);
-        }
-
-        if (Input.GetKeyDown("2"))
-        {
-            Debug.Log("2로 바뀌었노");
-            ChangeCurrentBuilding(1);
-        }
-        if (Input.GetKeyDown("3"))
-        {
-            Debug.Log("3로 바뀌었노");
-            ChangeCurrentBuilding(2);
-        }
+        
 
         if(Input.GetKeyDown(KeyCode.Q))
         {
@@ -104,6 +100,8 @@ public class BuildingSystem : MonoBehaviour
         }
         GameObject curPrev = Instantiate(currentObject.preview, currentPos, Quaternion.Euler(currentRot)) as GameObject;
         currentPreview = curPrev.transform;
+        //curPrev.transform.parent = this.transform;
+        //curPrev.GetComponent<PreviewObject>();
     }
 
     public void StartPreview()
@@ -204,7 +202,7 @@ public class BuildingSystem : MonoBehaviour
 
         }
 
-        Debug.Log(currentPos + " 포지션 ");
+        //Debug.Log(currentPos + " 포지션 ");
 
         //currentPos = hit.point;
         
@@ -214,7 +212,7 @@ public class BuildingSystem : MonoBehaviour
 
         currentPreview.position = currentPos;
 
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetKeyDown(KeyCode.R))
         {
             currentRot += new Vector3(0, 90, 0);
         }
@@ -237,37 +235,37 @@ public class BuildingSystem : MonoBehaviour
 
         if(inComingVec == new Vector3(0, -1, -1))
         {
-            Debug.Log("1");
+            //Debug.Log("1");
             return MCFace.South;
         }
         else if(inComingVec == new Vector3(0, -1, 1))
         {
-            Debug.Log("2");
+            //Debug.Log("2");
             return MCFace.North;
         }
         else if(inComingVec == new Vector3(0, 0, 0))
         {
-            Debug.Log("3");
+            //Debug.Log("3");
             return MCFace.Up;
         }
         else if(inComingVec == new Vector3(1, 1, 1))
         {
-            Debug.Log("4");
+            //Debug.Log("4");
             return MCFace.Down;
         }
         else if(inComingVec == new Vector3(-1, -1, 0))
         {
-            Debug.Log("5");
+            //Debug.Log("5");
             return MCFace.West;
         }
         else if(inComingVec == new Vector3(1, -1, 0))
         {
-            Debug.Log("6");
+            //Debug.Log("6");
             return MCFace.East;
         }
         else
         {
-            Debug.Log("7");
+            //Debug.Log("7");
             return MCFace.None;
         }
     }
