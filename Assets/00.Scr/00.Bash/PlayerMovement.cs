@@ -52,6 +52,9 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
         _playerRotation = transform.rotation;
         _controller = GetComponent<CharacterController>();
         _controller.skinWidth = 0.03f;
