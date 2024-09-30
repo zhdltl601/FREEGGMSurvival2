@@ -4,9 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 public class Inventory : MonoBehaviour
 {
-    [Header("Items")]
-    [SerializeField] private List<Item> items;
-
     private readonly Dictionary<SO_Item, int> _inventory = new();
     private static readonly List<SO_ItemBlueprint> _unlockedBlueprints = new();
 
@@ -117,6 +114,7 @@ public class Inventory : MonoBehaviour
             {
                 TrySubtractFromInventory(itemToAdd, 1);
                 crafter.OnCraftTable(itemToAdd, unlockedBlueprints);
+                print("crafADDDt");
             }
             AddItemToCraft();
         }
