@@ -25,11 +25,14 @@ public class Enemy : Agent
     public float attackAbleRange;
     public bool isBattleMode;
     
+    
     public LayerMask whatIsPlayer;
     public LayerMask whatIsObstacle;
 
 
     private readonly Collider[] _enemyCheckCollider = new Collider[1];
+
+    private EnemyHealth _enemyHealth;
     
     protected override void Awake()
     {
@@ -52,8 +55,8 @@ public class Enemy : Agent
         stateMachine.Initialize(EnemyStateEnum.Idle);
         
         GetCompo<AgentMovement>().SetSpeed(walkSpeed);
-        
-        
+
+        _enemyHealth = GetCompo<EnemyHealth>();
     }
 
     private void Update()
@@ -62,7 +65,7 @@ public class Enemy : Agent
         
         EnterBattleMode();
     }
-
+    
     /*public virtual Collider IsPlayerDetected()
     {
         int cnt = Physics.OverlapSphereNonAlloc(transform.position, chaseCheckDistance, _enemyCheckCollider, whatIsPlayer);
@@ -73,6 +76,11 @@ public class Enemy : Agent
     {
         return Physics.Raycast(transform.position, direction, distance,whatIsObstacle);
     }*/
+
+    public void GetDamage(int amount , Vector3 hitPoint , Vector3 hitNormal)
+    {
+        _enemyHealth.GetDamage(amount , hitPoint , hitNormal);
+    }
     
     private bool IsPlayerInAggressiveRange()
     {

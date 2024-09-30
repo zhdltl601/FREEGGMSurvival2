@@ -3,7 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
+using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
 
 [Serializable]
@@ -36,7 +38,10 @@ public class AStartManager : MonoBehaviour
     public Vector3 mousePos;
     public float moveSpeed;
     
-    public GameObject nodePrefab;
+    public Stage nodePrefab;
+    private int index;
+    
+    [SerializeField] private StageUIManager StageUIManager;
     
     private void Awake()
     {
@@ -57,14 +62,17 @@ public class AStartManager : MonoBehaviour
             for (int j = 0; j < aStartSizeY; j++)
             {
                 Vector3 nodePosition = new Vector3(bottomLeft.x + (spacing * j), bottomLeft.y + (spacing * i), 0);
-                Instantiate(nodePrefab, nodePosition, Quaternion.identity);
+                Stage newStage =  Instantiate(nodePrefab,nodePosition , quaternion.identity);
+                
+                ++index;
+                newStage.sceneName = index.ToString();
             }
         }
     }
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))  
+        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())  
         {
             mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             targetPos = new Vector2Int(Mathf.RoundToInt(mousePos.x), Mathf.RoundToInt(mousePos.y));
@@ -173,7 +181,11 @@ public class AStartManager : MonoBehaviour
         closeNode[0].TryGetComponent(out Stage stage);
         if (stage != null)
         {
-            stage.SceneMove();   
+            StageUIManager.SetActive(true);
+            StageUIManager.SetScene(stage.sceneName);
+                        
+            
+            //stage.SceneMove();   
         }
         
         line.ActiveLine(false);
@@ -188,7 +200,7 @@ public class AStartManager : MonoBehaviour
             
         foreach (var item in farNode)
         {
-            float targetFade = 0.4f;
+            float targetFade = 0.1f;
             item.GetComponent<SpriteRenderer>().DOFade(targetFade, 0.4f);
         }
         
