@@ -20,14 +20,14 @@ public class WeaponCompo : MonoBehaviour
         this.isHave = isHave;
     }
 
-    public void Fire(int bulletIndex)
+    public virtual void Fire(int bulletIndex)
     {
         if(UseAmmo())
         {
             Instantiate(weaponSO.bullet[bulletIndex],_shotPos.position,_shotPos.rotation);
         }
     }
-    public void EffectInvoke(int EffectIndex)
+        public void EffectInvoke(int EffectIndex)
     {
         _particles[EffectIndex].Play();
     }
@@ -37,5 +37,9 @@ public class WeaponCompo : MonoBehaviour
         if (currentAmmo - 1 >= 0)
             currentAmmo -= 1;
         return currentAmmo != 0;
+    }
+    public virtual void TestETSe()
+    {
+
     }
 }
