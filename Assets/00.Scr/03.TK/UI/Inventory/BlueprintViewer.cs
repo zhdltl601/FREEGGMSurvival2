@@ -3,11 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
-public class BlueprintViewer : MonoBehaviour
+public class BlueprintViewer : MonoSingleton<BlueprintViewer>
 {
-    [Header("Singleton Instance")]
-    public static BlueprintViewer Instance;
-
     [Header("Blueprint prefab")]
     public CraftBlueprint blueprintPrefab;
     public ResultItemBP resultItemPrefab;
@@ -32,14 +29,6 @@ public class BlueprintViewer : MonoBehaviour
     [Tooltip("Child of parentOfBlueprints is set position autometicly by layout group")]
     private RectTransform parentOfBlueprints;
     
-    private void Awake()
-    {
-        //간단한 싱글톤
-        if (Instance != null) Destroy(Instance.gameObject);
-
-        Instance ??= this;
-    }
-
     private void Start()
     {
         //블루프인트의 엄마

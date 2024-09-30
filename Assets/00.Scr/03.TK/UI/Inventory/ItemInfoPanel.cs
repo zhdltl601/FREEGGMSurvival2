@@ -2,32 +2,26 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ItemInfoPanel : MonoBehaviour
+public class ItemInfoPanel : MonoSingleton<ItemInfoPanel>
 {
-    public static ItemInfoPanel Instance;
     private CanvasGroup cG;
     [SerializeField] private Image icon;
     [SerializeField] private TextMeshProUGUI itemName;
     [SerializeField] private TextMeshProUGUI count;
 
-    private void Awake()
+    protected override void Awake()
     {
-        if (Instance != null)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        Instance ??= this;
+        base.Awake();
         cG = GetComponent<CanvasGroup>();
     }
 
-    public void SetItemInfoPanel(Sprite icon, string itemName, string itemCnt)
+    public void SetItemInfoPanel(Sprite icon, string itemName, string itemCnt, Vector3 canvasPos)
     {
         cG.alpha = 1;
         this.icon.sprite = icon;
         this.itemName.text = itemName;
         this.count.text = itemCnt;
+        //transform.position = canvasPos;
     }
 
     public void DisableInfoPanel()

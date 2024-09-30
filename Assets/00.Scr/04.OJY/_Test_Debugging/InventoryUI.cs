@@ -40,6 +40,7 @@ public class InventoryUI : MonoSingleton<InventoryUI>
             if (Input.GetKeyDown(KeyCode.A) && !Input.GetKey(KeyCode.LeftShift)) PlayerInventory.TryAddItemToInventory(itemTOADD);
             if (Input.GetKeyDown(KeyCode.A) && Input.GetKey(KeyCode.LeftShift)) PlayerInventory.TrySubtractFromInventory(itemTOADD);
             if (Input.GetKeyDown(KeyCode.B)) Inventory.AddBluePrint(bpToAdd);
+            if (Input.GetKeyDown(KeyCode.Backspace)) PlayerInventory.CancelCraft(Player.CurrentCrafter);
         }
         void ObjSelect()
         {
@@ -50,8 +51,8 @@ public class InventoryUI : MonoSingleton<InventoryUI>
                 if (hitInfo.transform.TryGetComponent(out InventoryItemVisual c))
                 {
                     PlayerInventory.TryAddItemToCraft(c.GetSO_Item, Player.CurrentCrafter);
-                    c.SelectObj(c.GetSO_ItemBlueprint);
-                    c.DestroyThisObj();
+                    //c.SelectObj(c.GetSO_ItemBlueprint);
+                    //c.DestroyThisObj();
                 }
                 else Debug.LogError("ItemDoesntHave InventoryItem Comp" + hitInfo.transform.name);
             }
@@ -63,13 +64,19 @@ public class InventoryUI : MonoSingleton<InventoryUI>
             {
                 if (hitInfo.transform.TryGetComponent(out InventoryItemVisual c))
                 {
-                    c.SetItemInfoPanelOn(c.GetSO_Item);
-                }
-                else
-                {
-                    ItemInfoPanel.Instance.DisableInfoPanel();
+                    c.SetItemInfoPanelOn(c.GetSO_Item, PlayerInventory.GetInventory[c.GetSO_Item], hitInfo.point, _camInv);
                 }
             }
+            else
+            {
+                ItemInfoPanel.Instance.DisableInfoPanel();
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+
+            dbg_list[0].text = "fuck : " + Player.CurrentCrafter.GetItemsOnTable[itemTOADD];
+            dbg_list[1].text = "fuc2 : " + PlayerInventory.GetInventory[itemTOADD];
         }
         ObjFocus();
         KeyInput();

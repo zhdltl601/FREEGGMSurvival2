@@ -2219,7 +2219,7 @@ MonoBehaviour:
   _piv: {fileID: 0}
   _lm_item:
     serializedVersion: 2
-    m_Bits: 16
+    m_Bits: 2147483648
   _camInv: {fileID: 0}
 --- !u!1 &8783670801884105392
 GameObject:

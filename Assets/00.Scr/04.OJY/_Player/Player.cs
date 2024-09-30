@@ -26,8 +26,8 @@ public class Player : MonoBehaviour
     [SerializeField] private float interactDistance;
 
     [Header("layerMasks")]
-    [SerializeField] LayerMask _lm_item;
-    [SerializeField] LayerMask _lm_interactive;
+    [SerializeField] private LayerMask _lm_item;
+    [SerializeField] private LayerMask _lm_interactive;
 
     private float yRot;
     private float xRot;
@@ -77,7 +77,7 @@ public class Player : MonoBehaviour
         }
         void L_KeyDebug()
         {
-            InventoryUI.Instance.dbg_list[0].text = isCrafting.ToString();
+            //InventoryUI.Instance.dbg_list[0].text = isCrafting.ToString();
         }
         L_KeyInput();
         L_KeyDebug();

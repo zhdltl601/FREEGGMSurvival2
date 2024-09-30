@@ -114,6 +114,7 @@ public class Inventory : MonoBehaviour
             {
                 TrySubtractFromInventory(itemToAdd, 1);
                 crafter.OnCraftTable(itemToAdd, unlockedBlueprints);
+                print("crafADDDt");
             }
             AddItemToCraft();
         }
