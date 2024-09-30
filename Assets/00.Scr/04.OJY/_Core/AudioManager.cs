@@ -5,8 +5,13 @@ using UnityEngine;
 
 public class AudioManager : MonoSingleton<AudioManager>
 {
+    [SerializeField] private AudioClip audMorning;
+    [SerializeField] private AudioClip audNight;
+    private AudioSource audSource;
     private void Start()
     {
+        audSource = GetComponent<AudioSource>();
+        audSource.loop = false;
         DayManager.OnChangeState += HandleOnStateChange;
     }
     protected override void OnDestroy()
@@ -19,12 +24,26 @@ public class AudioManager : MonoSingleton<AudioManager>
         switch (obj)
         {
             case EDayState.Morning:
-                print("Morning");
+                OnMorning();
                 break;
             case EDayState.Night:
-                print("Night");
+                OnNight();
                 break;
 
         }
+    }
+
+    private void OnNight()
+    {
+        print("Night");
+        audSource.clip = audNight;
+        audSource.Play();
+    }
+
+    private void OnMorning()
+    {
+        print("Morning");
+        audSource.clip = audMorning;
+        audSource.Play();
     }
 }

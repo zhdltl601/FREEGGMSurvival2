@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
     private Vector3 moveDirection;
     private float _yVal;
     private float _movementSens = 1;
-    bool IsGround => _cc.isGrounded;
+    public bool IsGround => _cc.isGrounded;
 
     [Header("Interact")]
     [SerializeField] private float interactDistance;
@@ -95,11 +95,11 @@ float speed = _walkSpeed;// get current state and apply speed
         }
         else
         {
-            _yVal -= 9.81f * Time.deltaTime;
+            _yVal -= 9.81f * Time.fixedDeltaTime;
         }
-        Vector3 velocitiy = moveDirection * speed * _movementSens;
+        Vector3 velocitiy = _movementSens * speed * moveDirection;
         velocitiy.y = _yVal;
-        _cc.Move(velocitiy * Time.deltaTime);
+        _cc.Move(velocitiy * Time.fixedDeltaTime);
     }
     public void ToggleInventory()
     {
