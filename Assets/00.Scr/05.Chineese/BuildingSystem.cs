@@ -102,6 +102,9 @@ public class BuildingSystem : MonoBehaviour
         currentPreview = curPrev.transform;
         //curPrev.transform.parent = this.transform;
         //curPrev.GetComponent<PreviewObject>();
+        //설명
+        //노래
+        
     }
 
     public void StartPreview()
