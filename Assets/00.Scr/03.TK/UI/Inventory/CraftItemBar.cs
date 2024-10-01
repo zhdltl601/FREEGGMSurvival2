@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CraftBlueprint : MonoBehaviour
+public class CraftItemBar : MonoBehaviour
 {
     [SerializeField] private Image ingredientIcon;
     [SerializeField] private TextMeshProUGUI resultItemName;
