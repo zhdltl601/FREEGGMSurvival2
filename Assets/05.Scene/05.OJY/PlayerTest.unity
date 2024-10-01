@@ -1022,6 +1022,17 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1825544768}
+    - target: {fileID: 4119509689141262194, guid: 0f3028d60d7f6644384e1e0810d21cc3,
+        type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 1735879163}
+    - target: {fileID: 4119509689141262194, guid: 0f3028d60d7f6644384e1e0810d21cc3,
+        type: 3}
+      propertyPath: craftItemPrefab
+      value: 
+      objectReference: {fileID: 4787716359345416501, guid: ade769d619803564682d7d287d27b4d2,
+        type: 3}
     - target: {fileID: 4183921348409561586, guid: 0f3028d60d7f6644384e1e0810d21cc3,
         type: 3}
       propertyPath: m_IsActive
@@ -1408,6 +1419,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1735879163 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8655826184511489361, guid: b69ee45a9bda4df49abb02f540b77227,
+    type: 3}
+  m_PrefabInstance: {fileID: 2666289970295232706}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 870e7c7a143f1474295d4a4afc35b208, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1825544766
