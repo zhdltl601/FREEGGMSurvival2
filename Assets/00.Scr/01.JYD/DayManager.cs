@@ -20,6 +20,7 @@ public class DayManager : MonoSingleton<DayManager>
     private float initialY;
     public float GetTimeOfDay => timeOfDay;
     public static bool CanProcess { get; set; } = false;
+    public static bool Is2D { get; set; } = false;
     public static int Multiplier { get; set; } = 1;
 
     private static EDayState _currentState = EDayState.None;

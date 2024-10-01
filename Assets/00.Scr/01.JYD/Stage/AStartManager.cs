@@ -78,12 +78,13 @@ public class AStartManager : MonoBehaviour
             targetPos = new Vector2Int(Mathf.RoundToInt(mousePos.x), Mathf.RoundToInt(mousePos.y));
             startPos = new Vector2Int(Mathf.RoundToInt(target.transform.position.x), Mathf.RoundToInt(target.transform.position.y));
 DayManager.CanProcess = true;
+StageUIManager.OnTimeToggle(true);
             StopAllCoroutines();
             PathFinding();
         }
-            int hour = (int)DayManager.Instance.GetTimeOfDay;
-            int min = (int)((DayManager.Instance.GetTimeOfDay - hour) * 10);
-            StageUIManager.UpdateTime(hour, min / 10f * 60);
+        int hour = (int)DayManager.Instance.GetTimeOfDay;
+        int min = (int)((DayManager.Instance.GetTimeOfDay - hour) * 10);
+        StageUIManager.UpdateTime(hour, min / 10f * 60);
 
     }
 
@@ -189,6 +190,7 @@ DayManager.CanProcess = true;
             StageUIManager.SetScene(stage.sceneName);
 
 DayManager.CanProcess = false;
+StageUIManager.OnTimeToggle(false);
             print("end");
             //stage.SceneMove();   
         }
