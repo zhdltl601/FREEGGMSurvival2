@@ -7,11 +7,11 @@ public class AudioManager : MonoSingleton<AudioManager>
 {
     [SerializeField] private AudioClip audMorning;
     [SerializeField] private AudioClip audNight;
-    private AudioSource audSource;
+    private AudioSource audSrc2D;
     private void Start()
     {
-        audSource = GetComponent<AudioSource>();
-        audSource.loop = false;
+        audSrc2D = GetComponent<AudioSource>();
+        audSrc2D.loop = false;
         DayManager.OnChangeState += HandleOnStateChange;
     }
     protected override void OnDestroy()
@@ -36,14 +36,14 @@ public class AudioManager : MonoSingleton<AudioManager>
     private void OnNight()
     {
         print("Night");
-        audSource.clip = audNight;
-        audSource.Play();
+        audSrc2D.clip = audNight;
+        audSrc2D.Play();
     }
 
     private void OnMorning()
     {
         print("Morning");
-        audSource.clip = audMorning;
-        audSource.Play();
+        audSrc2D.clip = audMorning;
+        audSrc2D.Play();
     }
 }

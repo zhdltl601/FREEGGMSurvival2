@@ -65,5 +65,9 @@ public class Stage_Player : MonoBehaviour
             _lineRenderer.enabled = false;
         }
     }
-
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(transform.position, new Vector3(1, 1, 1));
+    }
 }
