@@ -34,7 +34,7 @@ public class PlayerMovementV2 : MonoBehaviour
 
     private void Start()
     {
-        //PlayerManager.Instance.jumpAction += Jump;
+        PlayerInput.Instance.Jump += Jump;
     }
 
     // Update is called once per frame

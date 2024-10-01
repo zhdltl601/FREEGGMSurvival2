@@ -12,6 +12,8 @@ public class PlayerInput :MonoSingleton<PlayerInput>, Input2.IActionsActions,Inp
 
     public bool isFire,isSliding;
 
+    public Action Jump;
+
     protected override void Awake()
     {
         _input = new Input2();
@@ -66,8 +68,8 @@ public class PlayerInput :MonoSingleton<PlayerInput>, Input2.IActionsActions,Inp
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        //if(context.performed)
-        //PlayerManager.Instance.jumpAction();
+        if (context.performed)
+            Jump?.Invoke();
     }
 
     public void OnDash(InputAction.CallbackContext context)
