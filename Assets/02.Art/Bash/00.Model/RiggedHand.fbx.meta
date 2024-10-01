@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 8b294e3bb1877df419de9a7aaa4c233f
+guid: 8219a158c8ab7e34181dbf903dd30912
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -47,7 +47,7 @@ ModelImporter:
     importLights: 1
     nodeNameCollisionStrategy: 1
     fileIdsGeneration: 2
-    swapUVChannels: 0
+    swapUVChannels: 1
     generateSecondaryUV: 0
     useFileUnits: 1
     keepQuads: 0
@@ -67,11 +67,11 @@ ModelImporter:
     secondaryUVMinLightmapResolution: 40
     secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
-    useFileScale: 1
+    useFileScale: 0
     strictVertexDataChecks: 0
   tangentSpace:
-    normalSmoothAngle: 78
-    normalImportMode: 1
+    normalSmoothAngle: 60
+    normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
