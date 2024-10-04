@@ -7,6 +7,7 @@ public class QuestManager : MonoSingleton<QuestManager>
     [SerializeField] private Quest[] _mainQuest;
     private int _currentIndex = 0;
     public Quest GetCurrentQuest => _mainQuest[_currentIndex];
+    
     public bool IsCurrentQuestCompleted(IReadOnlyDictionary<SO_Item, int> _inv)
     {
         bool result = false;
