@@ -8,9 +8,7 @@ public class FishingRod : MonoBehaviour
     [SerializeField] private Transform aim;
     
     private Camera mainCam;
-
-
-    
+        
     private void Awake()
     {
         mainCam = Camera.main;;
@@ -18,13 +16,8 @@ public class FishingRod : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0) &&  CheckAimOnWater())
+        if (Input.GetMouseButtonDown(0) && CheckAimOnWater())
         {
-            if (FishSystem.isFishing)
-            {
-                OffFishing();
-                return;
-            }
             OnFishing();
         }
     }
@@ -44,7 +37,6 @@ public class FishingRod : MonoBehaviour
     private void OnFishing()
     {
         PlayerInput.Instance.canRotate = false;
-        FishSystem.isFishing = true;
         FishSystem.gameObject.SetActive(true);
     }
 

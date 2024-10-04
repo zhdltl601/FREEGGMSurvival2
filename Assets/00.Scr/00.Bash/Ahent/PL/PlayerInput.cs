@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -81,8 +83,17 @@ public class PlayerInput :MonoSingleton<PlayerInput>, InputAc.IActionsActions,In
 
     public void OnMouseMove(InputAction.CallbackContext context)
     {
-        if(canRotate == false)return;
+        if (canRotate == false)
+        {
+            mouseMov = Vector2.zero;
+            return;
+        }
         
         mouseMov = context.ReadValue<Vector2>();
+    }
+
+    public bool IsMoving()
+    {
+        return movement.magnitude > 0 ? true : false;
     }
 }
