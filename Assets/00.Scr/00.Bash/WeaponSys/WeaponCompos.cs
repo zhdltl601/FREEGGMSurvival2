@@ -13,12 +13,7 @@ public class WeaponCompo : MonoBehaviour
     [SerializeField]
     List<ParticleSystem> _particles;
 
-    public WeaponCompo(WeaponSO weaponSO, int currentAmmo, bool isHave)//생성자밍
-    {
-        this.weaponSO = weaponSO;
-        this.currentAmmo = currentAmmo;
-        this.isHave = isHave;
-    }
+
 
     public virtual void Fire(int bulletIndex)
     {
