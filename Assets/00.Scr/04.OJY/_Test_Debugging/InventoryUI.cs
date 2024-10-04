@@ -57,6 +57,15 @@ public class InventoryUI : MonoSingleton<InventoryUI>
                 else Debug.LogError("ItemDoesntHave InventoryItem Comp" + hitInfo.transform.name);
             }
         }
+        void ObjEquip()
+        {
+            Ray mDir = _camInv.ScreenPointToRay(Input.mousePosition);
+            Debug.DrawRay(_camInv.transform.position, mDir.direction * 50, Color.red, 2);
+            if (Physics.Raycast(_camInv.transform.position, mDir.direction, out RaycastHit hitInfo, 50, _lm_item))
+            {
+                //PlayerInventory.GetWeaponManager.ChangeWeapon()
+            }
+        }
         void ObjFocus()
         {
             Ray mDir = _camInv.ScreenPointToRay(Input.mousePosition);
@@ -64,13 +73,12 @@ public class InventoryUI : MonoSingleton<InventoryUI>
             {
                 if (hitInfo.transform.TryGetComponent(out InventoryItemVisual c))
                 {
-                    c.SetItemInfoPanelOn(c.GetSO_Item, PlayerInventory.GetInventory[c.GetSO_Item], hitInfo.point, _camInv);
+                    //c.SetItemInfoPanelOn(c.GetSO_Item, PlayerInventory.GetInventory[c.GetSO_Item]);//, hitInfo.point, _camInv);
+                    ItemInfoPanel.Instance.SetItemInfoPanel(c.GetSO_Item.GetIcon, c.GetSO_Item.GetName, PlayerInventory.GetInventory[c.GetSO_Item]);
                 }
             }
-            else
-            {
-                ItemInfoPanel.Instance.DisableInfoPanel();
-            }
+            else ItemInfoPanel.Instance.DisableInfoPanel();
+
         }
         if (Input.GetKeyDown(KeyCode.J))
         {
@@ -82,6 +90,7 @@ public class InventoryUI : MonoSingleton<InventoryUI>
         KeyInput();
         DebugInput();
         if (Input.GetKeyDown(KeyCode.Mouse0)) ObjSelect();
+        if (Input.GetKeyDown(KeyCode.Mouse1)) ObjEquip();
     }
 
     /// <param name="amount">amount is how much item has changed</param>
