@@ -2427,6 +2427,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _questPanel: {fileID: 1289206157}
   _questText: {fileID: 424229716}
+  _dayText: {fileID: 0}
+  _nightText: {fileID: 0}
 --- !u!1 &1473564951
 GameObject:
   m_ObjectHideFlags: 0

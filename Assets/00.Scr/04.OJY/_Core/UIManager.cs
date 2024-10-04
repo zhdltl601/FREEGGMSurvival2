@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 
@@ -9,6 +10,11 @@ public class UIManager : MonoSingleton<UIManager>
     [SerializeField] private GameObject      _questPanel;
     [SerializeField] private TextMeshProUGUI _questText;
     private uint day;
+
+    [SerializeField] private TextMeshProUGUI _dayText;
+    [SerializeField] private TextMeshProUGUI _nightText;
+    
+    
     private void Start()
     {
         DayManager.OnChangeState += HandleOnStateChange;
@@ -30,14 +36,40 @@ public class UIManager : MonoSingleton<UIManager>
                 break;
         }
     }
+    
+    [ContextMenu("Test-day")]
     private void OnDayUI()
     {
         day++;
-        print("³·UI");
+        //print("³·UI");
+        _dayText.SetText($"{day}th morning.");
+        _dayText.gameObject.SetActive(true);
+        
+        _dayText.DOFade(1 , 1).OnComplete(() =>
+        {
+            _dayText.DOFade(0, 0.4f).OnComplete(() =>
+            {
+                _dayText.gameObject.SetActive(false);
+            });
+        });
     }
+    
+    [ContextMenu("Test-night")]
     private void OnNightUI()
     {
-        print("¹ãUI");
+        //print("¹ãUI");
+        _nightText.SetText($"{day}th night.");
+        _nightText.gameObject.SetActive(true);
+        
+        _nightText.DOFade(1 , 1).OnComplete(() =>
+        {
+            _nightText.DOFade(0, 0.4f).OnComplete(() =>
+            {
+                _nightText.gameObject.SetActive(false);
+            });
+        });
+        
+        
     }
     public void ToggleQuest()
     {
