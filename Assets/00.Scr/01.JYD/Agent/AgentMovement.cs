@@ -20,6 +20,8 @@ public class AgentMovement : MonoBehaviour,IAgentComponent
     public float stopOffset;
 
     public bool IsArrived => !NavMeshAgent.isPathStale && NavMeshAgent.remainingDistance < NavMeshAgent.stoppingDistance + stopOffset;
+
+    public bool IsManualRotation;
     
     public void Initialize(Agent agent)
     {
@@ -129,4 +131,10 @@ public class AgentMovement : MonoBehaviour,IAgentComponent
         Vector3 target = patrols[(currentPatrolIndex++ % patrols.Length)].position;
         return target;
     }
+
+    public void SetManualRotate(bool active)
+    {
+        IsManualRotation = active;
+    }
+    
 }
