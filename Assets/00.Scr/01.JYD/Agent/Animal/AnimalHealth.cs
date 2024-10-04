@@ -32,6 +32,8 @@ public class AnimalHealth : MonoBehaviour,IDamageAble,IAgentComponent
         Hit(hitPoint , normal);
         movement.GetKnockBack(damage * hitPoint);
         
+        
+        
         if (health - damage <= 0)
         {
             Dead();

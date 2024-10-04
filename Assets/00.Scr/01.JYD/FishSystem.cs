@@ -27,6 +27,9 @@ public class FishSystem : MonoBehaviour
 
     private bool isCatch;
     
+    public bool isFishing;
+    
+    
     private void OnEnable()
     {
         fish = Instantiate(fishData.fishObj,transform).GetComponent<RectTransform>();
@@ -115,14 +118,19 @@ public class FishSystem : MonoBehaviour
         });
     }
 
-    private void FishEnd()
+    public void FishEnd()
     {
         isCatch = false;
+        isFishing = false;
+        
         //fishData = null;
         _catchTimer = 0;
         _fishFlipTimer = 0;
         Time.timeScale = 1;
         _fishDir = 1;
+        
+        PlayerInput.Instance.canRotate = true;
+        
         gameObject.SetActive(false);
     }
     

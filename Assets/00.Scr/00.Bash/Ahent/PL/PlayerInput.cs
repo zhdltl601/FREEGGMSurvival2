@@ -14,6 +14,8 @@ public class PlayerInput :MonoSingleton<PlayerInput>, Input2.IActionsActions,Inp
 
     public Action Jump;
 
+    public bool canRotate;
+
     protected override void Awake()
     {
         _input = new Input2();
@@ -84,6 +86,8 @@ public class PlayerInput :MonoSingleton<PlayerInput>, Input2.IActionsActions,Inp
 
     public void OnMouseMove(InputAction.CallbackContext context)
     {
+        if(canRotate == false)return;
+        
         mouseMov = context.ReadValue<Vector2>();
     }
 }
