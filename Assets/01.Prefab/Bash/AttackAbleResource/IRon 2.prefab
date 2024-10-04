@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7127013287519305469}
   - component: {fileID: 3216901873105205044}
   - component: {fileID: 870541305581501341}
+  - component: {fileID: 1431333293171903051}
   m_Layer: 0
   m_Name: IRon 2
   m_TagString: Hitable
@@ -123,3 +124,17 @@ MonoBehaviour:
   _hitImpact: {fileID: 4793829279707664409, guid: 12b68543d5b7d144fb45d36cca6de341,
     type: 3}
   _resourceType: 1
+--- !u!114 &1431333293171903051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6213870989866624101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20ae6d47032a2d440aad0cd1be00393d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _drops:
+  - {fileID: 217353462451162548, guid: d606a7439aa03cb4a9d3e0defcd57986, type: 3}
