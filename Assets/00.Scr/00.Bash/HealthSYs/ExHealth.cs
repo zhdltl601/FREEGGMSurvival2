@@ -40,5 +40,6 @@ public class ExHealth : MonoBehaviour, IDamageAble, IAgentComponent // 사실 이렇
     public virtual void Dead()
     {
         OnDeadEvent?.Invoke();
+        Destroy(gameObject);
     }
 }
