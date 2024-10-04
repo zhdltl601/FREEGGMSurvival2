@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5870573689501893145}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: "\uC5E0\uD504\uD2F0"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3018202127715558259}
   - component: {fileID: 5485687831904748171}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -131,7 +131,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5406338532373102152}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: "\uBCF8.004"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -163,7 +163,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5875603078484323676}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: "\uBCF8.001"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -195,7 +195,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8238459840857247928}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: "\uBCF8.003"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -227,7 +227,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8552885184176657207}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: "\uBCF8.005_end"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -258,7 +258,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3016522589162508411}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: "\uBCF8"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -290,7 +290,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8560347827733308242}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: "\uBCF8.002_end"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -324,7 +324,7 @@ GameObject:
   - component: {fileID: 6195117188507942903}
   - component: {fileID: 5119522246365496616}
   - component: {fileID: 5505120898681671990}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: DropIns_Fish A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -419,7 +419,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7071752176314430352}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: "\uBCF8.005"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -451,7 +451,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8510776777460157681}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: "\uBCF8.002"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -483,7 +483,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2551736574274765273}
-  m_Layer: 0
+  m_Layer: 30
   m_Name: "\uC544\uB9C8\uD29C\uC5B4"
   m_TagString: Untagged
   m_Icon: {fileID: 0}

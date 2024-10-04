@@ -16,8 +16,12 @@ MonoBehaviour:
   _maxAmount: 3
   _name: Fish A
   _posVisInv:
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 1, z: 0}
-  - {x: 0, y: 2, z: 0}
+  - {x: -1, y: 0, z: 0}
+  - {x: -1, y: 1, z: 0}
+  - {x: -1, y: 2, z: 0}
+  _rotVisInv:
+  - {x: 45, y: 0, z: 0}
+  - {x: -45, y: 0, z: 0}
+  - {x: 0, y: 90, z: 0}
   _models:
   - {fileID: 2829256781991843903, guid: cfafc8461af60cc418babdd603c382e3, type: 3}

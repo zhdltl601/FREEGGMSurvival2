@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1146257606307704981}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: "\uBCF8.002"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2873312733984946748}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: "\uBCF8.005"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,7 +74,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3548049059870999867}
   - component: {fileID: 7560979435460312958}
-  m_Layer: 0
+  - component: {fileID: 7073110393242043932}
+  m_Layer: 31
   m_Name: InvVis_I_Fish A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -112,6 +113,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _soItem: {fileID: 11400000, guid: b09d2b9f81cfc964496fac8bc62582b5, type: 2}
+--- !u!65 &7073110393242043932
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2829256781991843903}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.3, y: 0.45, z: 1.5}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3353394107969812372
 GameObject:
   m_ObjectHideFlags: 0
@@ -121,7 +143,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3629784933095382215}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: "\uBCF8.005_end"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -152,7 +174,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1866067778323115038}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: "\uC5E0\uD504\uD2F0"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -183,7 +205,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1575826993423495270}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: "\uBCF8.003"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -216,7 +238,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4095624452979360278}
   - component: {fileID: 4049542961781250331}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -306,7 +328,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 928582997458469526}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: "\uC544\uB9C8\uD29C\uC5B4"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -339,7 +361,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4966719060628415952}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: "\uBCF8.004"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -371,7 +393,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2886932156094162895}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: "\uBCF8.002_end"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -402,7 +424,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8134858651305474015}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: "\uBCF8.001"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -434,7 +456,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4700105627215181289}
-  m_Layer: 0
+  m_Layer: 31
   m_Name: "\uBCF8"
   m_TagString: Untagged
   m_Icon: {fileID: 0}

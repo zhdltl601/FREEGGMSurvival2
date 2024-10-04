@@ -15,12 +15,12 @@ public class ItemInfoPanel : MonoSingleton<ItemInfoPanel>
         cG = GetComponent<CanvasGroup>();
     }
 
-    public void SetItemInfoPanel(Sprite icon, string itemName, string itemCnt, Vector3 canvasPos)
+    public void SetItemInfoPanel(Sprite icon, string itemName, int itemCnt)//, Vector3 canvasPos)
     {
         cG.alpha = 1;
         this.icon.sprite = icon;
         this.itemName.text = itemName;
-        this.count.text = itemCnt;
+        this.count.text = itemCnt.ToString();
         //transform.position = canvasPos;
     }
 

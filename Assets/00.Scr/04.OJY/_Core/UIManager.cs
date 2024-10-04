@@ -1,10 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class UIManager : MonoSingleton<UIManager>
 {
+    [SerializeField] private GameObject      _questPanel;
+    [SerializeField] private TextMeshProUGUI _questText;
     private void Start()
     {
         DayManager.OnChangeState += HandleOnStateChange;
@@ -33,5 +36,12 @@ public class UIManager : MonoSingleton<UIManager>
     private void OnNightUI()
     {
         print("π„UI");
+    }
+    public void ToggleQuest()
+    {
+        var curQueust = QuestManager.Instance.GetCurrentQuest;
+        bool val = !_questPanel.activeSelf;
+        _questPanel.SetActive(val);
+        _questText.text = curQueust.GetName;
     }
 }
