@@ -26,10 +26,13 @@ public class FishSystem : MonoBehaviour
     private float _fishOffset;
 
     private bool isCatch;
+
+    private bool isFishing;
     
     private void OnEnable()
     {
         fish = Instantiate(fishData.fishObj,transform).GetComponent<RectTransform>();
+        isFishing = true;
     }
 
     private void OnDisable()
@@ -39,6 +42,12 @@ public class FishSystem : MonoBehaviour
 
     private void Update()
     {
+        if (isFishing && PlayerInput.Instance.IsMoving())
+        {
+            FishEnd();
+            return;
+        }
+        
         FishFlipController();
         FishMove();
         CheckBarMove();
@@ -115,14 +124,18 @@ public class FishSystem : MonoBehaviour
         });
     }
 
-    private void FishEnd()
+    public void FishEnd()
     {
         isCatch = false;
+        isFishing = false;
         //fishData = null;
         _catchTimer = 0;
         _fishFlipTimer = 0;
         Time.timeScale = 1;
         _fishDir = 1;
+        
+        PlayerInput.Instance.canRotate = true;
+        
         gameObject.SetActive(false);
     }
     

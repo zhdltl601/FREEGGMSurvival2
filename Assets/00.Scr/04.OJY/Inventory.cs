@@ -5,11 +5,12 @@ using UnityEngine;
 public class Inventory : MonoBehaviour
 {
     private readonly Dictionary<SO_Item, int> _inventory = new();
+    [SerializeField] private WeaponManager _weaponManager;
     private static readonly List<SO_ItemBlueprint> _unlockedBlueprints = new();
-
+    public WeaponManager GetWeaponManager => _weaponManager;
     public IReadOnlyDictionary<SO_Item, int> GetInventory => _inventory;
     public IReadOnlyList<SO_ItemBlueprint> GetUnlockedBlueprints => _unlockedBlueprints;
-
+    
     #region Events
     public static event Action<SO_Item, int> OnItemChanged; // only call this function after calculation
     //public static event Action<SO_ItemBlueprint, int> OnBPChanged;
