@@ -25,5 +25,9 @@ public class EnemyManager : MonoSingleton<EnemyManager>
         {
 
         }
+        else
+        {
+
+        }
     }
 }

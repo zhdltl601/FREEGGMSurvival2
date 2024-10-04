@@ -641,9 +641,9 @@ GameObject:
   - component: {fileID: 4708153227765474535}
   - component: {fileID: 5011650208211369761}
   - component: {fileID: 5337352135889315332}
-  - component: {fileID: 7731791277385059687}
+  - component: {fileID: 2183365801449462182}
   m_Layer: 5
-  m_Name: ResultItemBP
+  m_Name: Blueprint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -711,7 +711,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &7731791277385059687
+--- !u!114 &2183365801449462182
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -720,14 +720,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 5952868913874656841}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36f6642a3bbe602429e545d2d9de7675, type: 3}
+  m_Script: {fileID: 11500000, guid: a3cf1d9436727da48b19dc100af4bae1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  images: []
-  ingredientAmount: []
+  images:
+  - {fileID: 5763254710064090103}
+  - {fileID: 2621657829574100228}
+  - {fileID: 2446348323876800458}
+  ingredientAmount:
+  - {fileID: 4739644291840832321}
+  - {fileID: 4444454388413235207}
+  - {fileID: 1204782843006306154}
   resultItemIcon: {fileID: 6593178528166646493}
   resultItemName: {fileID: 5909596388725408678}
   resultItemAmount: {fileID: 8069145584369076938}
+  canCraft: 0
 --- !u!1 &7192291839191495572
 GameObject:
   m_ObjectHideFlags: 0

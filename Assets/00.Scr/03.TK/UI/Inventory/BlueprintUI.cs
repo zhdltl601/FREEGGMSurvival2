@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class ResultItemBP : MonoBehaviour, IPointerDownHandler
+public class BlueprintUI : MonoBehaviour, IPointerDownHandler
 {
     public Image[] images;
     public TextMeshProUGUI[] ingredientAmount;
@@ -64,11 +64,11 @@ public class ResultItemBP : MonoBehaviour, IPointerDownHandler
         {
             sb.Clear();
             int currentAmount = 0;
-            if (BlueprintViewer.currentBPSetting
+            if (BlueprintViewer.currentItemSetting
                 .ContainsKey(itemInfo.GetElement[j].so_item.GetName))
             {
                 currentAmount =
-                    BlueprintViewer.currentBPSetting[itemInfo.GetElement[j].so_item.GetName];
+                    BlueprintViewer.currentItemSetting[itemInfo.GetElement[j].so_item.GetName];
             }
             sb.Append(currentAmount.ToString());
             sb.Append("/");

@@ -35,7 +35,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - Interactable
   - InventoryItem
   m_SortingLayers:
   - name: Default

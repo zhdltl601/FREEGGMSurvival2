@@ -77,10 +77,15 @@ public class AStartManager : MonoBehaviour
             mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             targetPos = new Vector2Int(Mathf.RoundToInt(mousePos.x), Mathf.RoundToInt(mousePos.y));
             startPos = new Vector2Int(Mathf.RoundToInt(target.transform.position.x), Mathf.RoundToInt(target.transform.position.y));
-            
+DayManager.CanProcess = true;
+StageUIManager.OnTimeToggle(true);
             StopAllCoroutines();
             PathFinding();
         }
+        int hour = (int)DayManager.Instance.GetTimeOfDay;
+        int min = (int)((DayManager.Instance.GetTimeOfDay - hour) * 10);
+        StageUIManager.UpdateTime(hour, min / 10f * 60);
+
     }
 
     private void PathFinding()
@@ -175,16 +180,18 @@ public class AStartManager : MonoBehaviour
             target.transform.position = targetPosition;
             line.RemoveList(new Vector2Int(node.x, node.y));
         }
-        
-        Collider2D[] closeNode = Physics2D.OverlapCircleAll(target.transform.position, 0.35f,~whatIsWall);
+
+        Collider2D[] closeNode = Physics2D.OverlapBoxAll(target.transform.position, new Vector3(1,1,1), 0f, ~whatIsWall);//Physics2D.OverlapCircleAll(target.transform.position, 0.35f,~whatIsWall);
         
         closeNode[0].TryGetComponent(out Stage stage);
         if (stage != null)
         {
             StageUIManager.SetActive(true);
             StageUIManager.SetScene(stage.sceneName);
-                        
-            
+
+DayManager.CanProcess = false;
+StageUIManager.OnTimeToggle(false);
+            print("end");
             //stage.SceneMove();   
         }
         

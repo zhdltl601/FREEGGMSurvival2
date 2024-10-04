@@ -18,7 +18,9 @@ public class DayManager : MonoSingleton<DayManager>
     [SerializeField] [Range(0, 24)] private float timeOfDay;
     [SerializeField] private float period;
     private float initialY;
+    public float GetTimeOfDay => timeOfDay;
     public static bool CanProcess { get; set; } = false;
+    public static bool Is2D { get; set; } = false;
     public static int Multiplier { get; set; } = 1;
 
     private static EDayState _currentState = EDayState.None;

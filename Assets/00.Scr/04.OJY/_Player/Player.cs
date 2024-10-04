@@ -27,7 +27,7 @@ public class Player : MonoBehaviour
 
     [Header("layerMasks")]
     [SerializeField] private LayerMask _lm_item;
-    [SerializeField] private LayerMask _lm_interactive;
+    [SerializeField] private LayerMask _lm_interactable;
 
     private float yRot;
     private float xRot;
@@ -127,7 +127,7 @@ float speed = _walkSpeed;// get current state and apply speed
         Transform _camera = this._camera.GetCameraRot;
         Ray r = new(_camera.position, _camera.forward);
         Debug.DrawRay(r.origin, r.direction, Color.red, interactDistance);
-        bool IsInteractable = Physics.Raycast(r, out RaycastHit raycastHit, interactDistance, _lm_interactive);
+        bool IsInteractable = Physics.Raycast(r, out RaycastHit raycastHit, interactDistance, _lm_interactable);
         if (IsInteractable) raycastHit.transform.GetComponent<IInteractable>().OnPlayerInteract(this);
     }
 }
