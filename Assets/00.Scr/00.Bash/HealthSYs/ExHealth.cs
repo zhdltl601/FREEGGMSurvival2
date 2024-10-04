@@ -13,12 +13,22 @@ public class ExHealth : MonoBehaviour, IDamageAble, IAgentComponent // 사실 이렇
     [SerializeField]
     protected ParticleSystem _hitImpact;
 
-    public virtual void Initialize(Agent agent)
+    void OnEnable()
     {
         _health = maxHealth;
     }
 
+    public virtual void Initialize(Agent agent)
+    {
+       
+    }
+
     public virtual void GetDamage(float damage, Vector3 hitPoint, Vector3 normal)
+    {
+        GetDamage(damage);
+        Hit(hitPoint,normal);
+    }
+    public virtual void GetDamage(float damage)
     {
         _health -= damage;
         if (_health <= 0)
@@ -26,7 +36,6 @@ public class ExHealth : MonoBehaviour, IDamageAble, IAgentComponent // 사실 이렇
             _health = 0;
             Dead();
         }
-        Hit(hitPoint,normal);
     }
 
     public virtual void Hit(Vector3 hitPoint, Vector3 normal)
@@ -34,7 +43,7 @@ public class ExHealth : MonoBehaviour, IDamageAble, IAgentComponent // 사실 이렇
         if (_hitImpact != null)
         {
             ParticleSystem effect = Instantiate(_hitImpact, transform.position, Quaternion.identity);
-            effect.transform.forward = normal;
+            effect.transform.forward = -normal;
         }
     }
     public virtual void Dead()

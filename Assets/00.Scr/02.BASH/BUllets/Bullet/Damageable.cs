@@ -6,14 +6,14 @@ public abstract class Damageable : MonoBehaviour
 {
     [SerializeField]
     protected float _damage = 1, _criticalMulti = 2;
-    protected virtual Health GetHealthCompo(Transform target)
+    protected virtual ExHealth GetHealthCompo(Transform target)
     {
         if (target.transform.gameObject.CompareTag("Hitable") || target.transform.gameObject.CompareTag("Critical")) //태그가 Hitable이거나 Critical일 떄.
         {
             Transform trmTmp = target.transform.gameObject.transform;
-            Health healthCompo;
+            ExHealth healthCompo;
 
-            while (!trmTmp.TryGetComponent<Health>(out healthCompo))
+            while (!trmTmp.TryGetComponent<ExHealth>(out healthCompo))
             {
                 if(trmTmp.parent == null)
                 {
@@ -40,12 +40,22 @@ public abstract class Damageable : MonoBehaviour
 
     protected virtual void ApplyDamage(Transform target)
     {
-        Health healthCompo = GetHealthCompo(target);
+        ExHealth healthCompo = GetHealthCompo(target);
         if (healthCompo)
         {
             float damageMulti = DamageMultifiler(target);
 
-            healthCompo.Damage(_damage * damageMulti);
+            healthCompo.GetDamage(_damage * damageMulti);
+        }
+    }
+    protected virtual void ApplyDamage(Transform target, Vector3 hitPoint, Vector3 normal)
+    {
+        ExHealth healthCompo = GetHealthCompo(target);
+        if (healthCompo)
+        {
+            float damageMulti = DamageMultifiler(target);
+
+            healthCompo.GetDamage(_damage * damageMulti,hitPoint,normal);
         }
     }
 }
