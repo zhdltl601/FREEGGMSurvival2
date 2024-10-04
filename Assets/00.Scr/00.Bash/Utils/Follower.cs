@@ -10,4 +10,15 @@ public class Follower : MonoBehaviour
     {
         _target.SetPositionAndRotation(transform.position, transform.rotation);
     }
+
+    private void OnAnimatorIK(int layerIndex)
+    {
+        _target.SetPositionAndRotation(transform.position, transform.rotation);
+    }
+    //#if UNITY_EDITOR
+
+    //    {
+    //        _target.SetPositionAndRotation(transform.position, transform.rotation);
+    //    }
+    //#endif
 }
