@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerInput :MonoSingleton<PlayerInput>, Input2.IActionsActions,Input2.IUtilsActions
+public class PlayerInput :MonoSingleton<PlayerInput>, InputAc.IActionsActions,InputAc.IUtilsActions
 {
-    Input2 _input;
+    InputAc _input;
     public Vector2 mouseMov,mousePos;
     public Vector2 movement;
 
@@ -18,7 +18,7 @@ public class PlayerInput :MonoSingleton<PlayerInput>, Input2.IActionsActions,Inp
 
     protected override void Awake()
     {
-        _input = new Input2();
+        _input = new InputAc();
         _input.Actions.SetCallbacks(this);
         _input.Enable();
         base.Awake();
@@ -77,11 +77,6 @@ public class PlayerInput :MonoSingleton<PlayerInput>, Input2.IActionsActions,Inp
     public void OnDash(InputAction.CallbackContext context)
     {
         
-    }
-
-    public void OnHotBar(InputAction.CallbackContext context)
-    {
-        print(context.ReadValue<int>());
     }
 
     public void OnMouseMove(InputAction.CallbackContext context)

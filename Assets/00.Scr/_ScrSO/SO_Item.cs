@@ -15,6 +15,7 @@ public class SO_Item : ScriptableObject
 
     [Header("InventoryVisual")]
     [SerializeField] private List<Vector3> _posVisInv;
+    [SerializeField] private List<Vector3> _rotVisInv;
     [SerializeField] private List<GameObject> _models;
     public IReadOnlyList<Vector3> GetVisPosInv => _posVisInv;
 
@@ -30,6 +31,7 @@ public class SO_Item : ScriptableObject
             return _models[0];
         }
     }
+    public IReadOnlyList<Vector3> GetRotation => _rotVisInv;
 #if DEBUG_SO
     private void OnEnable()
     {
