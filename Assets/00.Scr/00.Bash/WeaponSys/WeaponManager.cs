@@ -53,6 +53,7 @@ public class WeaponManager : MonoBehaviour
                 animator.runtimeAnimatorController = weaponList[index].weaponSO.controller;
 
                 animator.SetFloat(_fAmmoHash, (float)weaponList[currentWeapon].currentAmmo / (float)weaponList[currentWeapon].weaponSO.maxAmmo);
+                animator.SetTrigger("Reset");
             }
         }
 
@@ -71,7 +72,7 @@ public class WeaponManager : MonoBehaviour
 
     public void PlaySound(AudioClip clip)
     {
-        _audioSource.PlayOneShot(clip);
+        _audioSource.PlayOneShot(clip,0.5f);
     }
     void Update()
     {

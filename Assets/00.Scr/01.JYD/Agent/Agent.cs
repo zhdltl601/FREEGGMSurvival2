@@ -38,4 +38,9 @@ public class Agent : MonoBehaviour
             item.Initialize(this);
         }
     }
+
+    public virtual void DamageCast()
+    {
+        
+    }
 }
