@@ -10,11 +10,7 @@ public class TestWeaponCompo : WeaponCompo
     //
 
     private int currentBuildingIdx = 0;
-    
-    public TestWeaponCompo(WeaponSO weaponSO, int currentAmmo, bool isHave) : base(weaponSO, currentAmmo, isHave)
-    {
 
-    }
 
     public override void Fire(int bulletIndex)
     {

@@ -33,7 +33,7 @@ RectTransform:
   m_Father: {fileID: 3659459231479151605}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0.572, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -59,7 +59,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.1817053, g: 0.7169812, b: 0.08454966, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -279,7 +279,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.01214843, g: 0.82501024, b: 0.8584906, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -370,7 +370,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.31132078, g: 0.20848277, b: 0.15712889, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -417,7 +417,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8460979043932481861
 RectTransform:
   m_ObjectHideFlags: 0
@@ -452,10 +452,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6869378adb2d9bb4ba21b75543b943dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fishData: {fileID: 11400000, guid: ce82dd8c6c4563446b7dd0cc8613ee4d, type: 2}
-  checkbarSpeed: 600
+  fishData: {fileID: 11400000, guid: c3a4a091b21066647ad9bfd8752d8c81, type: 2}
+  checkbarSpeed: 505.6
   successSlider: {fileID: 2327399470653181734}
   fish: {fileID: 0}
   checkBar: {fileID: 3191318056099779135}
   xClampPos: 700
-  fishFlipInterval: 2.24

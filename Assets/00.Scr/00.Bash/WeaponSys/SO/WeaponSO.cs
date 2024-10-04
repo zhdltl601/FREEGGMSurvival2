@@ -10,7 +10,8 @@ public enum WeaponType
     Revolver,
     Shotgun,
     Pig,
-    Katana
+    Katana,
+    FishRod
 }
 
 [CreateAssetMenu(fileName = "SO/Weapon/WPData")]

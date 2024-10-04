@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -30,7 +31,12 @@ public class FishSystem : MonoBehaviour
     {
         fish = Instantiate(fishData.fishObj,transform).GetComponent<RectTransform>();
     }
-    
+
+    private void OnDisable()
+    {
+        Destroy(fish.gameObject);
+    }
+
     private void Update()
     {
         FishFlipController();
@@ -111,11 +117,13 @@ public class FishSystem : MonoBehaviour
 
     private void FishEnd()
     {
-        gameObject.SetActive(false);
         isCatch = false;
-        fishData = null;
-        Destroy(fish.gameObject);
+        //fishData = null;
+        _catchTimer = 0;
+        _fishFlipTimer = 0;
         Time.timeScale = 1;
+        _fishDir = 1;
+        gameObject.SetActive(false);
     }
     
     private bool CheckSuccess()

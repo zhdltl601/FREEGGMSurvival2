@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour,IDamageAble,IAgentComponent
@@ -16,15 +14,21 @@ public class EnemyHealth : MonoBehaviour,IDamageAble,IAgentComponent
     public void GetDamage(float damage, Vector3 hitPoint, Vector3 normal)
     {
         health -= damage;
+        if (health < 0)
+        {
+            Dead();            
+        }
+        
+        Hit(hitPoint , normal);
     }
 
     public void Hit(Vector3 hitPoint, Vector3 normal)
     {
-        
+        //effect 
     }
 
     public void Dead()
     {
-        
+        //dead
     }
 }
