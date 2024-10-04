@@ -20,7 +20,7 @@ public abstract class MonoSingleton<T> : MonoBehaviour where T : MonoSingleton<T
 
     protected virtual void Awake()
     {
-        print("-AwakeInit-" + typeof(T).Name);
+        print("-AwakeInit-" + typeof(T).Name + "_" + gameObject.name);
         if (_instance is not null)
         {
             Debug.LogError("twoSingletons_" + typeof(T).Name);

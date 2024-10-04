@@ -8,5 +8,6 @@ public class PlayerAnimator : MonoBehaviour
     public void PlayAnim(int hash, int layer = -1, float normalizedTime = 0)
     {
         _viewModel.Play(hash, layer, normalizedTime);
+        
     }
 }

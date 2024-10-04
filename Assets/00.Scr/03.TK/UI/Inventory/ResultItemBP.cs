@@ -75,18 +75,12 @@ public class ResultItemBP : MonoBehaviour, IPointerDownHandler
             int needAmount = itemInfo.GetElement[j].amount;
             sb.Append(needAmount);
             if (needAmount != 0)
-            {
                 ingredientAmount[j].text = sb.ToString();
-            }
             else
-            {
                 ingredientAmount[j].text = "";
-            }
 
             if(currentAmount < needAmount)
-            {
                 canComb = false;
-            }
         }
 
         canCraft = canComb;
@@ -101,8 +95,6 @@ public class ResultItemBP : MonoBehaviour, IPointerDownHandler
             Debug.Log($"item {resultItem} is add in inventory");
         }
         else
-        {
-            print("need more items");
-        }
+            Debug.Log("need more ingredient item");
     }
 }
