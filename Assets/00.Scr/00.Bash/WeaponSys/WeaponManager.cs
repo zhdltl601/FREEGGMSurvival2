@@ -72,7 +72,7 @@ public class WeaponManager : MonoBehaviour
 
     public void PlaySound(AudioClip clip)
     {
-        _audioSource.PlayOneShot(clip);
+        _audioSource.PlayOneShot(clip,0.5f);
     }
     void Update()
     {
