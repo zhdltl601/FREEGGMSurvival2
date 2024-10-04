@@ -5,4 +5,5 @@ using UnityEngine;
 public struct QuestCondition
 {
     [SerializeField] private ItemStruct[] _itemList;
+    public ItemStruct[] GetItemStructs => _itemList;
 }
