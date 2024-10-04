@@ -22,8 +22,10 @@ public class WeaponCompo : MonoBehaviour
             //Instantiate(weaponSO.bullet[bulletIndex],_shotPos.position,_shotPos.rotation);
         }
     }
-        public void EffectInvoke(int EffectIndex)
+    public void EffectInvoke(int EffectIndex)
     {
+        if(_particles.Count <= 0)return;
+        
         _particles[EffectIndex].Play();
     }
 
