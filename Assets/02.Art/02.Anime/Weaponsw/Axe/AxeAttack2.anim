@@ -29,8 +29,17 @@ AnimationClip:
       - serializedVersion: 3
         time: 0.38333333
         value: {x: -107.61, y: 0, z: -38.79}
-        inSlope: {x: 0, y: 0, z: -157.71428}
-        outSlope: {x: 0, y: 0, z: -157.71428}
+        inSlope: {x: 0, y: 0, z: -178.54385}
+        outSlope: {x: 0, y: 0, z: -178.54385}
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+      - serializedVersion: 3
+        time: 0.43333334
+        value: {x: -32.913, y: -86.958, z: -77.369}
+        inSlope: {x: 0, y: -1952.3998, z: 0}
+        outSlope: {x: 0, y: -1952.3998, z: 0}
         tangentMode: 0
         weightedMode: 0
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
@@ -38,8 +47,8 @@ AnimationClip:
       - serializedVersion: 3
         time: 0.46666667
         value: {x: -41.6, y: -162.7, z: -73.6}
-        inSlope: {x: 137.37448, y: 0, z: 0}
-        outSlope: {x: 137.37448, y: 0, z: 0}
+        inSlope: {x: 0, y: 0, z: 20.55821}
+        outSlope: {x: 0, y: 0, z: 20.55821}
         tangentMode: 0
         weightedMode: 0
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
@@ -142,6 +151,57 @@ AnimationClip:
     classID: 1
     script: {fileID: 0}
     flags: 0
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1.1666666
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_Enabled
+    path: WeaponRoot/Axe/Rig/Left/LTarget (1)
+    classID: 114
+    script: {fileID: 11500000, guid: 9e42f146d424b7f488c6c7a3b46d99f9, type: 3}
+    flags: 0
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: RIg/Arm_LF/Target/Lighter
+    classID: 1
+    script: {fileID: 0}
+    flags: 0
   m_PPtrCurves: []
   m_SampleRate: 60
   m_WrapMode: 0
@@ -170,6 +230,24 @@ AnimationClip:
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
       path: 1780193885
+      attribute: 2086281974
+      script: {fileID: 0}
+      typeID: 1
+      customType: 0
+      isPPtrCurve: 0
+      isIntCurve: 0
+      isSerializeReferenceCurve: 0
+    - serializedVersion: 2
+      path: 2440120628
+      attribute: 3305885265
+      script: {fileID: 11500000, guid: 9e42f146d424b7f488c6c7a3b46d99f9, type: 3}
+      typeID: 114
+      customType: 24
+      isPPtrCurve: 0
+      isIntCurve: 0
+      isSerializeReferenceCurve: 0
+    - serializedVersion: 2
+      path: 2582360662
       attribute: 2086281974
       script: {fileID: 0}
       typeID: 1
@@ -366,10 +444,19 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
+        time: 0.43333334
+        value: -32.913
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
         time: 0.46666667
         value: -41.6
-        inSlope: 137.37448
-        outSlope: 137.37448
+        inSlope: 0
+        outSlope: 0
         tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
@@ -409,6 +496,15 @@ AnimationClip:
         value: 0
         inSlope: 0
         outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.43333334
+        value: -86.958
+        inSlope: -1952.3998
+        outSlope: -1952.3998
         tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
@@ -455,8 +551,17 @@ AnimationClip:
       - serializedVersion: 3
         time: 0.38333333
         value: -38.79
-        inSlope: -157.71428
-        outSlope: -157.71428
+        inSlope: -178.54385
+        outSlope: -178.54385
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.43333334
+        value: -77.369
+        inSlope: 0
+        outSlope: 0
         tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
@@ -464,8 +569,8 @@ AnimationClip:
       - serializedVersion: 3
         time: 0.46666667
         value: -73.6
-        inSlope: 0
-        outSlope: 0
+        inSlope: 20.55821
+        outSlope: 20.55821
         tangentMode: 136
         weightedMode: 0
         inWeight: 0.33333334
@@ -523,6 +628,57 @@ AnimationClip:
       m_RotationOrder: 4
     attribute: m_IsActive
     path: WeaponRoot/Axe/HitBox
+    classID: 1
+    script: {fileID: 0}
+    flags: 0
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1.1666666
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_Enabled
+    path: WeaponRoot/Axe/Rig/Left/LTarget (1)
+    classID: 114
+    script: {fileID: 11500000, guid: 9e42f146d424b7f488c6c7a3b46d99f9, type: 3}
+    flags: 0
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: Infinity
+        outSlope: Infinity
+        tangentMode: 103
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_IsActive
+    path: RIg/Arm_LF/Target/Lighter
     classID: 1
     script: {fileID: 0}
     flags: 0
