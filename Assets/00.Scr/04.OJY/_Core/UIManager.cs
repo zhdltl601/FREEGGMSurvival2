@@ -8,6 +8,7 @@ public class UIManager : MonoSingleton<UIManager>
 {
     [SerializeField] private GameObject      _questPanel;
     [SerializeField] private TextMeshProUGUI _questText;
+    private uint day;
     private void Start()
     {
         DayManager.OnChangeState += HandleOnStateChange;
@@ -31,6 +32,7 @@ public class UIManager : MonoSingleton<UIManager>
     }
     private void OnDayUI()
     {
+        day++;
         print("³·UI");
     }
     private void OnNightUI()
