@@ -1019,7 +1019,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1931792222}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b2d8418b0b9634b1892b0268dd9c2743, type: 3}
   m_Name: 
@@ -2120,6 +2120,11 @@ PrefabInstance:
     - target: {fileID: 5530605887850906690, guid: b69ee45a9bda4df49abb02f540b77227,
         type: 3}
       propertyPath: _lm_interactive.m_Bits
+      value: 1073741824
+      objectReference: {fileID: 0}
+    - target: {fileID: 5530605887850906690, guid: b69ee45a9bda4df49abb02f540b77227,
+        type: 3}
+      propertyPath: _lm_interactable.m_Bits
       value: 1073741824
       objectReference: {fileID: 0}
     - target: {fileID: 6011212251993697768, guid: b69ee45a9bda4df49abb02f540b77227,

@@ -9,5 +9,4 @@ public class DroppedInstance : MonoBehaviour, IInteractable
     {
         InventoryUI.Instance.PlayerInventory.TryAddItemToInventory(soitem);
     }
-
 }
