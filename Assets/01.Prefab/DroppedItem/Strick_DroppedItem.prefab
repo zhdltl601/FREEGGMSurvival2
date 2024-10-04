@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &2866523107118410582
+--- !u!1001 &4533047824974219529
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -86,7 +86,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 959d0ff3d829e9d4faf79c239d997700,
         type: 3}
       propertyPath: m_Name
-      value: Stick_FIXED
+      value: Strick_DroppedItem
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -95,42 +95,42 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 959d0ff3d829e9d4faf79c239d997700,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8551261345154287566}
+      addedObject: {fileID: 6081556797517359553}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 959d0ff3d829e9d4faf79c239d997700,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8717088013092230623}
+      addedObject: {fileID: 7894546353268146647}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 959d0ff3d829e9d4faf79c239d997700,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8638295577575882762}
+      addedObject: {fileID: 3303526853678085168}
   m_SourcePrefab: {fileID: 100100000, guid: 959d0ff3d829e9d4faf79c239d997700, type: 3}
---- !u!1 &3100313028431762951 stripped
+--- !u!1 &3614691940693390424 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 959d0ff3d829e9d4faf79c239d997700,
     type: 3}
-  m_PrefabInstance: {fileID: 2866523107118410582}
+  m_PrefabInstance: {fileID: 4533047824974219529}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8551261345154287566
+--- !u!114 &6081556797517359553
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3100313028431762951}
+  m_GameObject: {fileID: 3614691940693390424}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bb6728c0f80440e43b2e141bd735d324, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   soitem: {fileID: 11400000, guid: 9e4c447fbbba78c40a080b7317352184, type: 2}
---- !u!136 &8717088013092230623
+--- !u!136 &7894546353268146647
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3100313028431762951}
+  m_GameObject: {fileID: 3614691940693390424}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -147,13 +147,13 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 2
   m_Center: {x: 0.004491076, y: 0.020481238, z: 0.090532094}
---- !u!54 &8638295577575882762
+--- !u!54 &3303526853678085168
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3100313028431762951}
+  m_GameObject: {fileID: 3614691940693390424}
   serializedVersion: 4
   m_Mass: 1
   m_Drag: 0
