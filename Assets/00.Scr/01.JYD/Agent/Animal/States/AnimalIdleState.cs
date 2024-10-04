@@ -19,13 +19,15 @@ public class AnimalIdleState : AnimalState
     {
         base.Update();
         timer += Time.deltaTime;
-        
-        if (stateTimer < timer)
+
+        if (Animal.isBattleMode && timer > Animal.attackCooldown)
+        {
+            StateMachine.ChangeState(AnimalStateEnum.Chase);
+        }
+        else if (stateTimer < timer)
         {
             StateMachine.ChangeState(AnimalStateEnum.Move);
-
         }
-        
     }
 
     public override void Exit()

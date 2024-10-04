@@ -51,6 +51,7 @@ public class Player : MonoBehaviour
         CurrentCrafter = defaultCrafter;
         InventoryUI.Instance.PlayerInventory = _inventory;
         InventoryUI.Instance.SetActive(false);
+        UIManager.Instance.ToggleQuest();
     }
     private void Update()
     {
@@ -70,6 +71,7 @@ public class Player : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))    _yVal = jumpHeight;
             if (Input.GetKeyDown(KeyCode.E))        RaycastInteract();
             if (Input.GetKeyDown(KeyCode.Tab))      ToggleInventory();
+            if (Input.GetKeyDown(KeyCode.C))        UIManager.Instance.ToggleQuest();
             yRot += Input.GetAxis("Mouse X") * ySens; 
             xRot -= Input.GetAxis("Mouse Y") * xSens; xRot = Mathf.Clamp(xRot, -85, 85);
             moveDirection = forwardDirection * Input.GetAxis("Vertical") + rightDirection * Input.GetAxis("Horizontal");
@@ -126,7 +128,7 @@ float speed = _walkSpeed;// get current state and apply speed
 
         Transform _camera = this._camera.GetCameraRot;
         Ray r = new(_camera.position, _camera.forward);
-        Debug.DrawRay(r.origin, r.direction, Color.red, interactDistance);
+        Debug.DrawRay(r.origin, r.direction * interactDistance, Color.red, 1);
         bool IsInteractable = Physics.Raycast(r, out RaycastHit raycastHit, interactDistance, _lm_interactable);
         if (IsInteractable) raycastHit.transform.GetComponent<IInteractable>().OnPlayerInteract(this);
     }

@@ -1,5 +1,3 @@
-using System;
-using UnityEditor;
 using UnityEngine;
 
 public class FishingRod : MonoBehaviour
@@ -8,10 +6,9 @@ public class FishingRod : MonoBehaviour
     [SerializeField] private LayerMask whatIsWater;
 
     [SerializeField] private Transform aim;
-    [SerializeField] private bool aimOnWater;
     
     private Camera mainCam;
-
+        
     private void Awake()
     {
         mainCam = Camera.main;;
@@ -19,9 +16,7 @@ public class FishingRod : MonoBehaviour
 
     private void Update()
     {
-        aimOnWater = CheckAimOnWater();
-        
-        if (Input.GetMouseButtonDown(0) && aimOnWater)
+        if (Input.GetMouseButtonDown(0) && CheckAimOnWater())
         {
             OnFishing();
         }
@@ -41,16 +36,17 @@ public class FishingRod : MonoBehaviour
     //≥¨Ω√ Ω√¿€
     private void OnFishing()
     {
+        PlayerInput.Instance.canRotate = false;
         FishSystem.gameObject.SetActive(true);
     }
 
     private void OffFishing()
     {
-        FishSystem.gameObject.SetActive(false);
+        FishSystem.FishEnd();
     }
 
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
-        Gizmos.DrawRay(mainCam.transform.position , mainCam.transform.forward * 25);
+        //Gizmos.DrawRay(mainCam.transform.position , mainCam.transform.forward * 25);
     }
 }

@@ -98,7 +98,7 @@ public class InventoryItemVisual : MonoBehaviour
     private static GameObject CreateVis(int index, SO_Item itemToCreate)
     {
         GameObject prefab = itemToCreate.GetPrefab;
-        Quaternion quaternion = Quaternion.identity;
+        Quaternion quaternion = Quaternion.Euler(itemToCreate.GetRotation[index]);//Quaternion.identity;
         Transform spawnParent = InventoryUI.Instance._piv;
         Vector3 pos = itemToCreate.GetVisPosInv[index] + spawnParent.position;
         GameObject newInstance = Instantiate(prefab, pos, quaternion, parent: spawnParent);
@@ -110,12 +110,10 @@ public class InventoryItemVisual : MonoBehaviour
         //BlueprintViewer.Instance.SetCurrentItemBlueprint(bp);
     }
 
-    public void SetItemInfoPanelOn(SO_Item soItem, int amount, Vector3 worldPos, Camera cam)
+    public void SetItemInfoPanelOn(SO_Item soItem, int amount)//, Vector3 worldPos, Camera cam)
     {
-        Vector3 canvasPos = RectTransformUtility.WorldToScreenPoint(cam, worldPos);
-        ItemInfoPanel.Instance.SetItemInfoPanel(soItem.GetIcon,
-        soItem.GetName, amount.ToString(), canvasPos);
-
+        //Vector3 canvasPos = RectTransformUtility.WorldToScreenPoint(cam, worldPos);
+        //ItemInfoPanel.Instance.SetItemInfoPanel(soItem.GetIcon, soItem.GetName, amount.ToString());//, canvasPos);
     }
 
     //public void DestroyThisObj()
