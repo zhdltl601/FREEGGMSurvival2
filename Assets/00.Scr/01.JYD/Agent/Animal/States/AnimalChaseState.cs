@@ -24,7 +24,7 @@ public class AnimalChaseState : AnimalState
         Animal.FactToTarget(agentMovement.GetNextPathPoint());
         
         float distance = Vector3.Distance(Animal.transform.position , target.position);
-        if (distance <= Animal.attackRadius)
+        if (distance < Animal.attackRadius)
         {
             StateMachine.ChangeState(AnimalStateEnum.Attack);
             return;
@@ -36,5 +36,6 @@ public class AnimalChaseState : AnimalState
     public override void Exit()
     {
         base.Exit();
+        
     }
 }
