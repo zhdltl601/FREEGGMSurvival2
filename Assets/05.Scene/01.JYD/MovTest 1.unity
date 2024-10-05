@@ -1205,6 +1205,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6881560105835155734, guid: 78eded2d42c2bec478d68791bfe3a472,
+        type: 3}
+      propertyPath: canRotate
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7094893186808218781, guid: 78eded2d42c2bec478d68791bfe3a472,
         type: 3}
       propertyPath: m_IsActive

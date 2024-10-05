@@ -16,7 +16,7 @@ public class PlayerInput :MonoSingleton<PlayerInput>, InputAc.IActionsActions,In
 
     public Action Jump;
 
-    public bool canRotate;
+    public bool canRotate=true;
 
     protected override void Awake()
     {

@@ -76,8 +76,7 @@ public class WeaponManager : MonoBehaviour
     void Update()
     {
         //나중에 인풋시스템 넣어야디
-
-        animator.SetBool(_bFireHash, Input.GetKey(KeyCode.Mouse0));
+        animator.SetBool(_bFireHash, Input.GetKey(KeyCode.Mouse0) && PlayerInput.Instance.canRotate);
 
         animator.SetBool(_bReloadHash, Input.GetKey(KeyCode.R));
 

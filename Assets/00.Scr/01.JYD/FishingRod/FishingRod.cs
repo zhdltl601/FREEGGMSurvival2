@@ -37,6 +37,7 @@ public class FishingRod : MonoBehaviour
     private void OnFishing()
     {
         PlayerInput.Instance.canRotate = false;
+
         FishSystem.gameObject.SetActive(true);
     }
 
