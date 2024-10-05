@@ -9,7 +9,7 @@ public class RaycastDamager : Damageable
     {
        if( Physics.Raycast(transform.position, transform.forward,out RaycastHit hit,distance,_whatIsTarget))
         {
-            ApplyDamage(hit.transform, hit.point, hit.normal);
+            ApplyDamage(hit.transform, hit.point, -hit.normal);
         return true; 
         }
        return false;
@@ -19,7 +19,7 @@ public class RaycastDamager : Damageable
         if (Physics.SphereCast(transform.position,radius, transform.forward, out RaycastHit hit, distance, _whatIsTarget))
         {
             print(hit.collider.gameObject.name);
-            ApplyDamage(hit.transform, hit.point, hit.normal);
+            ApplyDamage(hit.transform, hit.point, -hit.normal);
             return true;
         }
         return false;
