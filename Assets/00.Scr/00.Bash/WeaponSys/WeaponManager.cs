@@ -60,7 +60,6 @@ public class WeaponManager : MonoBehaviour
     }
     public void TryUseWeapon(int fireType)
     {
-        Debug.Log("À¸¾ÆÀÕÇª¸£¸£");
         weaponList[currentWeapon].Fire(fireType);
         animator.SetFloat(_fAmmoHash, (float)weaponList[currentWeapon].currentAmmo / (float)weaponList[currentWeapon].weaponSO.maxAmmo);
     }
