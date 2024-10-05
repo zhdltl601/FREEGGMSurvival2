@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 6304197909867337645}
   - component: {fileID: 869433112570756584}
   - component: {fileID: 678733392457165971}
-  - component: {fileID: 2902163894066574578}
-  m_Layer: 0
+  - component: {fileID: -854408355102588225}
+  - component: {fileID: 2695248182318669414}
+  m_Layer: 31
   m_Name: Stone_InventroyVisual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -84,7 +85,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &2902163894066574578
+--- !u!65 &-854408355102588225
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1441570983173100422}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2695248182318669414
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -93,7 +115,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1441570983173100422}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb6728c0f80440e43b2e141bd735d324, type: 3}
+  m_Script: {fileID: 11500000, guid: 2e27077718754a34286f4772dec93a89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soitem: {fileID: 11400000, guid: 076cbb05d09e6214da40e2e5d9670588, type: 2}
+  _soItem: {fileID: 11400000, guid: 076cbb05d09e6214da40e2e5d9670588, type: 2}

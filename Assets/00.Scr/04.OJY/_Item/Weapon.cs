@@ -6,7 +6,7 @@ namespace BshAmiKlr
 {
     public class Weapon : Item
     {
-        private PlayerAnimator _animator;
+        //private PlayerAnimator _animator;
 
 
     }
