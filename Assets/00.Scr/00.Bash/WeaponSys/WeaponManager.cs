@@ -60,7 +60,6 @@ public class WeaponManager : MonoBehaviour
     }
     public void TryUseWeapon(int fireType)
     {
-        Debug.Log("À¸¾ÆÀÕÇª¸£¸£");
         weaponList[currentWeapon].Fire(fireType);
         animator.SetFloat(_fAmmoHash, (float)weaponList[currentWeapon].currentAmmo / (float)weaponList[currentWeapon].weaponSO.maxAmmo);
     }
@@ -104,6 +103,22 @@ public class WeaponManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha5))
         {
             ChangeWeapon(4);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha6))
+        {
+            ChangeWeapon(5);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha7))
+        {
+            ChangeWeapon(6);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha8))
+        {
+            ChangeWeapon(7);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha9))
+        {
+            ChangeWeapon(8);
         }
     }
 }

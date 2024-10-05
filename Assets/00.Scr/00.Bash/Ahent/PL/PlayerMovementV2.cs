@@ -5,7 +5,7 @@ using UnityEngine;
 
 
 
-public class PlayerMovementV2 : MonoBehaviour
+public class PlayerMovementV2 : MonoSingleton<PlayerMovementV2>
 {
     
     public Rigidbody rb;

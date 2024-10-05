@@ -7,10 +7,10 @@ public class Bullet : RaycastDamager
     [SerializeField]
     protected float _speed = 0.1f,_radius=0.2f; // 속도,총알 반지름
     [SerializeField]
-    protected float _maxTime; //최대 LifeTime (생성 후 이 시간이 지나면 총알 사라짐)
+    protected float _maxTime=40; //최대 LifeTime (생성 후 이 시간이 지나면 총알 사라짐)
     protected float _time;
-    [SerializeField]
-    LayerMask _layerMask;
+    //[SerializeField]
+    //LayerMask _layerMask;
     protected RaycastHit _hit;
     private void Start()
     {
@@ -24,9 +24,16 @@ public class Bullet : RaycastDamager
 
     public virtual void FixedUpdate()
     {
-        if(Scan(transform.position,transform.forward,_radius,_speed*Time.fixedDeltaTime))
-            Destroy(gameObject);
+        if(Scan(transform.position,transform.forward,_speed*Time.fixedDeltaTime))
+        {
+            HitEvent();
+        }
         Move();
+    }
+    public virtual void HitEvent()
+    {
+        transform.position = _hit.point;
+        Destroy(gameObject);
     }
     protected virtual void Move()
     {
