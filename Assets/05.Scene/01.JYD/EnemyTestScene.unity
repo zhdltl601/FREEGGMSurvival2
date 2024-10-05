@@ -598,6 +598,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pig (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 9210566285373431913, guid: 4db494f84be6a7d4f9fc7ff2a88f8987,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1111,7 +1116,7 @@ PrefabInstance:
     - target: {fileID: 3827327152396448601, guid: 9f65d8adbdf5bec49a2b5ba0ac95284a,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8721650378232755005, guid: 9f65d8adbdf5bec49a2b5ba0ac95284a,
         type: 3}

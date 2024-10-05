@@ -73,7 +73,7 @@ public class Player : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))    _yVal = jumpHeight;
             if (Input.GetKeyDown(KeyCode.E))        RaycastInteract();
             if (Input.GetKeyDown(KeyCode.Tab))      ToggleInventory();
-            if (Input.GetKeyDown(KeyCode.C))        UIManager.Instance.ToggleQuest();
+            if (Input.GetKeyDown(KeyCode.B))        UIManager.Instance.ToggleQuest();
             yRot += Input.GetAxis("Mouse X") * ySens; 
             xRot -= Input.GetAxis("Mouse Y") * xSens; xRot = Mathf.Clamp(xRot, -85, 85);
             moveDirection = forwardDirection * Input.GetAxis("Vertical") + rightDirection * Input.GetAxis("Horizontal");

@@ -14,9 +14,12 @@ public class StageUIManager : MonoBehaviour
     [SerializeField] private Color startedColor;
     [SerializeField] private Color stoppedColor;
 
+    public static event Action<bool> OnSceneChange;
     private void Start()
     {
         OnTimeToggle(false);
+        //string curSceneName = "Map";// SceneManager.GetActiveScene().name;
+        OnSceneChange?.Invoke(false);
     }
     public void SetScene(string str)
     {
@@ -33,6 +36,7 @@ public class StageUIManager : MonoBehaviour
     }
     public void SuccessScene()
     {
+        OnSceneChange?.Invoke(true);
         SceneManager.LoadScene(currentScene);
     }
 

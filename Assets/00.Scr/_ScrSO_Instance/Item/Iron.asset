@@ -14,11 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _icon: {fileID: 0}
   _maxAmount: 3
-  _name: Apple
+  _name: Iron
   _posVisInv:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 1, z: 0}
   - {x: 0, y: 2, z: 0}
-  _rotVisInv: []
+  _rotVisInv:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
   _models:
-  - {fileID: 2829256781991843903, guid: cfafc8461af60cc418babdd603c382e3, type: 3}
+  - {fileID: 132953063566923260, guid: f90584b858d22cf4197279d066f5d8a1, type: 3}

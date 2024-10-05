@@ -21,6 +21,8 @@ public class Stage_Player : MonoBehaviour
         last2DmapPos = transform.position;
         DrawLine();
         LookAtTarget();
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
     private void LookAtTarget()
     {

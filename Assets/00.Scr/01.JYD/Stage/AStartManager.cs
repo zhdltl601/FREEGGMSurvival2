@@ -41,21 +41,22 @@ public class AStartManager : MonoBehaviour
     public Stage nodePrefab;
     private int index;
     
-    [SerializeField] private StageUIManager StageUIManager;
+    [SerializeField] private StageUIManager stageUIManager;
     
     private void Awake()
     {
         sizeX = topRight.x - bottomLeft.x + 1;
         sizeY = topRight.y - bottomLeft.y + 1;
         NodeArray = new Node[sizeX, sizeY];
+        StageUIManager.OnSceneChange += HandleOnSceneChange;
     }
-    
     private void Start()
     {
         float spacing = 3.0f;
 
         int aStartSizeX = Mathf.RoundToInt(sizeX/spacing);
         int aStartSizeY = Mathf.RoundToInt(sizeY/spacing);
+
         
         //for (int i = 0; i < aStartSizeX; i++)
         //{
@@ -69,6 +70,26 @@ public class AStartManager : MonoBehaviour
         //    }
         //}
     }
+    private void OnDestroy()
+    {
+        StageUIManager.OnSceneChange -= HandleOnSceneChange;
+    }
+
+    private void HandleOnSceneChange(bool obj)
+    {
+        void OnEnterScene()
+        {
+            print("onEnterScene");
+            //DayManager.Is2D
+        }
+        void OnMap()
+        {
+            print("onmap");
+            //load
+        }
+        if (obj) OnEnterScene();
+        else OnMap();
+    }
 
     private void Update()
     {
@@ -78,13 +99,13 @@ public class AStartManager : MonoBehaviour
             targetPos = new Vector2Int(Mathf.RoundToInt(mousePos.x), Mathf.RoundToInt(mousePos.y));
             startPos = new Vector2Int(Mathf.RoundToInt(target.transform.position.x), Mathf.RoundToInt(target.transform.position.y));
 DayManager.CanProcess = true;
-StageUIManager.OnTimeToggle(true);
+stageUIManager.OnTimeToggle(true);
             StopAllCoroutines();
             PathFinding();
         }
         int hour = (int)DayManager.Instance.GetTimeOfDay;
         int min = (int)((DayManager.Instance.GetTimeOfDay - hour) * 10);
-        StageUIManager.UpdateTime(hour, min / 10f * 60);
+        stageUIManager.UpdateTime(hour, min / 10f * 60);
 
     }
 
@@ -186,15 +207,14 @@ StageUIManager.OnTimeToggle(true);
         closeNode[0].TryGetComponent(out Stage stage);
         if (stage != null)
         {
-            StageUIManager.SetActive(true);
-            StageUIManager.SetScene(stage.sceneName);
+            stageUIManager.SetActive(true);
+            stageUIManager.SetScene(stage.sceneName);
+            DayManager.CanProcess = false;
+            stageUIManager.OnTimeToggle(false);
 
-DayManager.CanProcess = false;
-StageUIManager.OnTimeToggle(false);
-            print("end");
             //stage.SceneMove();   
         }
-        
+
         line.ActiveLine(false);
     }
 

@@ -13475,7 +13475,7 @@ MonoBehaviour:
   directionalLight: {fileID: 498144122}
   lightingPreset: {fileID: 11400000, guid: fbe0e59720fe3864590fe1ad2de7d2a0, type: 2}
   timeOfDay: 10
-  period: 60
+  period: 10
 --- !u!4 &1926190189
 Transform:
   m_ObjectHideFlags: 0
@@ -14179,7 +14179,7 @@ MonoBehaviour:
   moveSpeed: 2
   nodePrefab: {fileID: 2349421836872739148, guid: 8b25853c8825e27428c9075253815a8a,
     type: 3}
-  StageUIManager: {fileID: 837045723}
+  stageUIManager: {fileID: 837045723}
 --- !u!4 &1990505834
 Transform:
   m_ObjectHideFlags: 0
@@ -15020,12 +15020,12 @@ SceneRoots:
   - {fileID: 695093089}
   - {fileID: 1997761847}
   - {fileID: 873047570}
-  - {fileID: 1990505834}
   - {fileID: 1888003725}
   - {fileID: 1434524143}
-  - {fileID: 1752856824}
-  - {fileID: 1488894446}
   - {fileID: 200870487}
+  - {fileID: 1752856824}
+  - {fileID: 1990505834}
   - {fileID: 837045722}
-  - {fileID: 1926190189}
+  - {fileID: 1488894446}
   - {fileID: 2067264757}
+  - {fileID: 1926190189}
