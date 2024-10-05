@@ -1,10 +1,10 @@
+using System;
 using UnityEngine;
 
 public enum AnimalStateEnum
 {
     Idle,
     Move,
-    Eat,
     Chase,
     Attack,
     Sleep,
@@ -15,13 +15,13 @@ public class Animal : Agent
 {
     private AnimalStateMachine StateMachine;
     
-    public bool isEatingMode;
-    
-    public LayerMask whatIsEating,whatIsPlayer;
-    public float eatRadius;
-    public Transform eatingTarget,player;
+    public LayerMask whatIsEating;
+    public LayerMask whatIsPlayer;
+    public Transform player;
     private Collider[] cols;
 
+    public float walkSpeed;
+    
     [Header("Attack info")] 
     public bool isBattleMode;
     public float chaseSpeed = 8f;
@@ -37,7 +37,6 @@ public class Animal : Agent
         StateMachine = new AnimalStateMachine();
         StateMachine.AddState(AnimalStateEnum.Idle , new AnimalIdleState(this , StateMachine , "Idle"));
         StateMachine.AddState(AnimalStateEnum.Move , new AnimalMoveState(this , StateMachine , "Move"));
-        StateMachine.AddState(AnimalStateEnum.Eat , new AnimalEatState(this , StateMachine , "Eat"));
         StateMachine.AddState(AnimalStateEnum.Chase, new AnimalChaseState(this , StateMachine , "Move"));
         StateMachine.AddState(AnimalStateEnum.Attack , new AnimalAttackState(this , StateMachine , "Attack"));
         
@@ -54,7 +53,6 @@ public class Animal : Agent
     private void Update()
     {
         StateMachine.currentState.Update();
-        EnteringEatMode();
     }
     
     public void AnimationEnd()
@@ -62,18 +60,6 @@ public class Animal : Agent
         StateMachine.currentState.AnimationTrigger();
     }
 
-    private void EnteringEatMode()
-    {
-        if(isBattleMode)return;
-        
-        int cnt = Physics.OverlapSphereNonAlloc(transform.position ,eatRadius ,  cols , whatIsEating);
-        if (cnt > 0)
-        {
-            isEatingMode = true;
-            eatingTarget = cols[0].transform;
-            StateMachine.ChangeState(AnimalStateEnum.Eat);
-        }        
-    }
     
     [ContextMenu("Test")]
     private void EnteringBattleMode()
@@ -86,7 +72,9 @@ public class Animal : Agent
         {
             player = cols[0].transform;
             var nextState = Vector3.Distance(transform.position, player.position) < attackRadius ? 
-                AnimalStateEnum.Attack : AnimalStateEnum.Chase; 
+                AnimalStateEnum.Attack : AnimalStateEnum.Chase;
+
+            //GetCompo<AgentMovement>().GetKnockBack(-transform.forward);
             StateMachine.ChangeState(nextState);
         }
     }
@@ -95,5 +83,11 @@ public class Animal : Agent
     public override void DamageCast()
     {
         _damageCaster.DamageCast();
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position , attackRadius);
     }
 }

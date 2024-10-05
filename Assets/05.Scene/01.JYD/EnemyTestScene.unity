@@ -298,7 +298,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -530,11 +530,6 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 140617756067955542, guid: 4db494f84be6a7d4f9fc7ff2a88f8987,
         type: 3}
-      propertyPath: patrols.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 140617756067955542, guid: 4db494f84be6a7d4f9fc7ff2a88f8987,
-        type: 3}
       propertyPath: patrols.Array.data[0]
       value: 
       objectReference: {fileID: 944739524}
@@ -546,21 +541,6 @@ PrefabInstance:
     - target: {fileID: 140617756067955542, guid: 4db494f84be6a7d4f9fc7ff2a88f8987,
         type: 3}
       propertyPath: patrols.Array.data[2]
-      value: 
-      objectReference: {fileID: 1386615137}
-    - target: {fileID: 140617756067955542, guid: 4db494f84be6a7d4f9fc7ff2a88f8987,
-        type: 3}
-      propertyPath: patrols.Array.data[3]
-      value: 
-      objectReference: {fileID: 944739524}
-    - target: {fileID: 140617756067955542, guid: 4db494f84be6a7d4f9fc7ff2a88f8987,
-        type: 3}
-      propertyPath: patrols.Array.data[4]
-      value: 
-      objectReference: {fileID: 1511883996}
-    - target: {fileID: 140617756067955542, guid: 4db494f84be6a7d4f9fc7ff2a88f8987,
-        type: 3}
-      propertyPath: patrols.Array.data[5]
       value: 
       objectReference: {fileID: 1386615137}
     - target: {fileID: 524222213585108294, guid: 4db494f84be6a7d4f9fc7ff2a88f8987,
@@ -612,21 +592,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4894497401716803042, guid: 4db494f84be6a7d4f9fc7ff2a88f8987,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.636
-      objectReference: {fileID: 0}
-    - target: {fileID: 8004947040458078594, guid: 4db494f84be6a7d4f9fc7ff2a88f8987,
-        type: 3}
-      propertyPath: chaseRadius
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 8004947040458078594, guid: 4db494f84be6a7d4f9fc7ff2a88f8987,
-        type: 3}
-      propertyPath: whatIsPlayer.m_Bits
-      value: 1024
       objectReference: {fileID: 0}
     - target: {fileID: 9210566285373431913, guid: 4db494f84be6a7d4f9fc7ff2a88f8987,
         type: 3}

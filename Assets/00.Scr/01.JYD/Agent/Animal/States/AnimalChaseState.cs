@@ -21,12 +21,13 @@ public class AnimalChaseState : AnimalState
     public override void Update()
     {
         base.Update();
-
-        float distance = Vector3.Distance(Animal.transform.position , target.position);
+        Animal.FactToTarget(agentMovement.GetNextPathPoint());
         
-        if (distance < Animal.attackRadius)
+        float distance = Vector3.Distance(Animal.transform.position , target.position);
+        if (distance <= Animal.attackRadius)
         {
             StateMachine.ChangeState(AnimalStateEnum.Attack);
+            return;
         }
         
         agentMovement.SetDestination(target.position);

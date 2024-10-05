@@ -105,5 +105,21 @@ public class WeaponManager : MonoBehaviour
         {
             ChangeWeapon(4);
         }
+        if (Input.GetKeyDown(KeyCode.Alpha6))
+        {
+            ChangeWeapon(5);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha7))
+        {
+            ChangeWeapon(6);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha8))
+        {
+            ChangeWeapon(7);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha9))
+        {
+            ChangeWeapon(8);
+        }
     }
 }

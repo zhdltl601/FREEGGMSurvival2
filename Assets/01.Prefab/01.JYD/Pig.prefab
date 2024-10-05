@@ -362,6 +362,37 @@ Transform:
   - {fileID: 2386561002192132927}
   m_Father: {fileID: 3947268052366490302}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2485853506281070743
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2807001447182760488}
+  m_Layer: 0
+  m_Name: DamageCasterTrm
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2807001447182760488
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2485853506281070743}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.085, z: 1.551}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 524222213585108294}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2699602463700444911
 GameObject:
   m_ObjectHideFlags: 0
@@ -611,7 +642,7 @@ Transform:
   m_GameObject: {fileID: 4338797777687983348}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0.7, z: 0}
+  m_LocalPosition: {x: 0, y: 0.636, z: -0.291}
   m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -653,7 +684,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Animator: {fileID: 8022329997453487274}
-  _animal: {fileID: 8004947040458078594}
+  animal: {fileID: 0}
 --- !u!1 &4571468948301146625
 GameObject:
   m_ObjectHideFlags: 0
@@ -1080,9 +1111,11 @@ GameObject:
   m_Component:
   - component: {fileID: 524222213585108294}
   - component: {fileID: 228357676737736252}
+  - component: {fileID: 8543981637161367695}
   - component: {fileID: 8004947040458078594}
   - component: {fileID: 140617756067955542}
   - component: {fileID: 8218602423212617206}
+  - component: {fileID: 8464174027296601657}
   m_Layer: 0
   m_Name: Pig
   m_TagString: Untagged
@@ -1104,6 +1137,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4894497401716803042}
+  - {fileID: 2807001447182760488}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!195 &228357676737736252
@@ -1120,7 +1154,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 0.1
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -1128,6 +1162,33 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!54 &8543981637161367695
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9210566285373431913}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!114 &8004947040458078594
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1141,12 +1202,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDead: 0
-  isEatingMode: 0
   whatIsEating:
     serializedVersion: 2
     m_Bits: 4096
-  eatRadius: 4
-  eatingTarget: {fileID: 0}
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 1024
+  player: {fileID: 0}
+  walkSpeed: 3.51
+  isBattleMode: 0
+  chaseSpeed: 5
+  chaseRadius: 15
+  attackRadius: 2.23
+  attackCooldown: 0.8
 --- !u!114 &140617756067955542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1164,9 +1232,10 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   currentPatrolIndex: 0
-  _knockBackThreshold: 0
-  _maxKnockBackTime: 0
+  _knockBackThreshold: 0.2
+  _maxKnockBackTime: 0.1
   stopOffset: 0.25
+  IsManualRotation: 0
 --- !u!114 &8218602423212617206
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1183,3 +1252,20 @@ MonoBehaviour:
   hitImpact: {fileID: 2944396702758532163, guid: e190bf97c041e58448af6b043116cba0,
     type: 3}
   test: {fileID: 0}
+--- !u!114 &8464174027296601657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9210566285373431913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e888e3e37ac4f8a80b7187eb28fadc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageCasterTrm: {fileID: 2807001447182760488}
+  radius: 1.5
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 1024
