@@ -6,9 +6,11 @@ public class Stage_Player : MonoBehaviour
     private LineRenderer _lineRenderer;
 
     private List<Vector2Int> renderPosList;
-        
+    private static Vector3 last2DmapPos;
     private void Start()
     {
+        transform.position = last2DmapPos;
+
         _lineRenderer = GetComponent<LineRenderer>();
         renderPosList = new List<Vector2Int>();
     }
@@ -16,11 +18,10 @@ public class Stage_Player : MonoBehaviour
     private void Update()
     {
         if(_lineRenderer.positionCount <= 0)return;
-        
+        last2DmapPos = transform.position;
         DrawLine();
         LookAtTarget();
     }
-
     private void LookAtTarget()
     {
         //do something..

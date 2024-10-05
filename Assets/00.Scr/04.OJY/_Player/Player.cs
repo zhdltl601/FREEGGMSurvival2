@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 public class Player : MonoBehaviour
 {
     [Header("General")]
@@ -80,7 +82,7 @@ public class Player : MonoBehaviour
         void L_KeyDebug()
         {
             //InventoryUI.Instance.dbg_list[0].text = isCrafting.ToString();
-            if (Input.GetKeyDown(KeyCode.M)) DayManager.CanProcess = !DayManager.CanProcess;
+            if (Input.GetKeyDown(KeyCode.M)) SceneManager.LoadScene("Map"); //DayManager.CanProcess = !DayManager.CanProcess;
         }
         L_KeyInput();
         L_KeyDebug();

@@ -9,6 +9,11 @@ public class UIManager : MonoSingleton<UIManager>
     [SerializeField] private GameObject      _questPanel;
     [SerializeField] private TextMeshProUGUI _questText;
     private uint day;
+    protected override void Awake()
+    {
+        base.Awake();
+        DontDestroyOnLoad(gameObject);
+    }
     private void Start()
     {
         DayManager.OnChangeState += HandleOnStateChange;

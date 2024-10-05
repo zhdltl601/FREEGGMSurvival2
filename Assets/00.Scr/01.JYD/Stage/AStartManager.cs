@@ -57,17 +57,17 @@ public class AStartManager : MonoBehaviour
         int aStartSizeX = Mathf.RoundToInt(sizeX/spacing);
         int aStartSizeY = Mathf.RoundToInt(sizeY/spacing);
         
-        for (int i = 0; i < aStartSizeX; i++)
-        {
-            for (int j = 0; j < aStartSizeY; j++)
-            {
-                Vector3 nodePosition = new Vector3(bottomLeft.x + (spacing * j), bottomLeft.y + (spacing * i), 0);
-                Stage newStage =  Instantiate(nodePrefab,nodePosition , quaternion.identity);
-                
-                ++index;
-                newStage.sceneName = index.ToString();
-            }
-        }
+        //for (int i = 0; i < aStartSizeX; i++)
+        //{
+        //    for (int j = 0; j < aStartSizeY; j++)
+        //    {
+        //        Vector3 nodePosition = new Vector3(bottomLeft.x + (spacing * j), bottomLeft.y + (spacing * i), 0);
+        //        Stage newStage =  Instantiate(nodePrefab,nodePosition , quaternion.identity);
+        //        
+        //        ++index;
+        //        newStage.sceneName = index.ToString();
+        //    }
+        //}
     }
 
     private void Update()

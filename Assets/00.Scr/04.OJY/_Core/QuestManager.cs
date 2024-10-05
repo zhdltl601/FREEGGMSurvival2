@@ -12,6 +12,7 @@ public class QuestManager : MonoSingleton<QuestManager>
     {
         base.Awake();
         Inventory.OnItemChanged += HandleOnItemChanged;
+        DontDestroyOnLoad(gameObject);
     }
     protected override void OnDestroy()
     {
