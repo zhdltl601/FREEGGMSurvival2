@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
     [Header("General")]
     [SerializeField] private PlayerCamera   _camera;
     [SerializeField] private Inventory      _inventory;
-    [SerializeField] private PlayerAnimator _playerAnimator;
+    //[SerializeField] private PlayerAnimator _playerAnimator;
     private CharacterController _cc;
 
     private bool isCrafting = false;
@@ -80,28 +80,32 @@ public class Player : MonoBehaviour
         void L_KeyDebug()
         {
             //InventoryUI.Instance.dbg_list[0].text = isCrafting.ToString();
+            if (Input.GetKeyDown(KeyCode.M)) DayManager.CanProcess = !DayManager.CanProcess;
         }
         L_KeyInput();
         L_KeyDebug();
-        if (Input.GetKeyDown(KeyCode.M)) DayManager.CanProcess = !DayManager.CanProcess;
         this._camera.SetCameraRotation(Quaternion.Euler(xRot, yRot, 0));
         //_camera.rotation = Quaternion.Euler(xRot, yRot, 0);
     }
     private void FixedUpdate()
     {
+        void PlayerMovement()
+        {
 float speed = _walkSpeed;// get current state and apply speed
 
-        if(IsGround && _yVal <= 0)
-        {
-            _yVal = -1;
+            if(IsGround && _yVal <= 0)
+            {
+                _yVal = -1;
+            }
+            else
+            {
+                _yVal -= 9.81f * Time.fixedDeltaTime;
+            }
+            Vector3 velocitiy = _movementSens * speed * moveDirection;
+            velocitiy.y = _yVal;
+            _cc.Move(velocitiy * Time.fixedDeltaTime);
         }
-        else
-        {
-            _yVal -= 9.81f * Time.fixedDeltaTime;
-        }
-        Vector3 velocitiy = _movementSens * speed * moveDirection;
-        velocitiy.y = _yVal;
-        _cc.Move(velocitiy * Time.fixedDeltaTime);
+        PlayerMovement();
     }
     public void ToggleInventory()
     {
