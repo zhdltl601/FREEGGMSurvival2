@@ -19,7 +19,10 @@ public class WeaponCompo : MonoBehaviour
     {
         if(UseAmmo())
         {
-            //Instantiate(weaponSO.bullet[bulletIndex],_shotPos.position,_shotPos.rotation);
+            if (weaponSO.bullet[bulletIndex] != null)
+            {
+            Instantiate(weaponSO.bullet[bulletIndex],_shotPos.position,_shotPos.rotation);
+            }
         }
     }
     public void EffectInvoke(int EffectIndex)
