@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 
 public class AnimalAttackState : AnimalState
 {
@@ -12,9 +13,9 @@ public class AnimalAttackState : AnimalState
     public override void Enter()
     {
         base.Enter();
-        _agentMovement.SetSpeed(0);
-        _agentMovement.SetStopped(true);
         
+        _agentMovement.NavMeshAgent.velocity = Vector3.zero;
+        _agentMovement.SetStopped(true);
     }
 
     public override void Update()
@@ -28,13 +29,12 @@ public class AnimalAttackState : AnimalState
         
         if (animationTriggerdCalled)
         {
-            StateMachine.ChangeState(AnimalStateEnum.Idle);
+            StateMachine.ChangeState(AnimalStateEnum.Recovery);
         }
     }
 
     public override void Exit()
     {
         base.Exit();
-        _agentMovement.SetStopped(false);
     }
 }

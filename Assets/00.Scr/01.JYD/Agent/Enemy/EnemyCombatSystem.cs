@@ -3,6 +3,7 @@
 public class EnemyCombatSystem : MonoBehaviour , IAgentComponent
 {
     private Enemy enemy;
+    
   
     public void Initialize(Agent agent)
     {

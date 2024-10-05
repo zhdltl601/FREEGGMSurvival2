@@ -7,8 +7,7 @@ public enum AnimalStateEnum
     Move,
     Chase,
     Attack,
-    Sleep,
-    Hostile,
+    Recovery,
 }
 
 public class Animal : Agent
@@ -39,7 +38,7 @@ public class Animal : Agent
         StateMachine.AddState(AnimalStateEnum.Move , new AnimalMoveState(this , StateMachine , "Move"));
         StateMachine.AddState(AnimalStateEnum.Chase, new AnimalChaseState(this , StateMachine , "Move"));
         StateMachine.AddState(AnimalStateEnum.Attack , new AnimalAttackState(this , StateMachine , "Attack"));
-        
+        StateMachine.AddState(AnimalStateEnum.Recovery , new AnimalRecoveryState(this , StateMachine , "Idle"));
     }
 
     private void Start()
@@ -71,11 +70,8 @@ public class Animal : Agent
         if (cnt > 0)
         {
             player = cols[0].transform;
-            var nextState = Vector3.Distance(transform.position, player.position) < attackRadius ? 
-                AnimalStateEnum.Attack : AnimalStateEnum.Chase;
-
             //GetCompo<AgentMovement>().GetKnockBack(-transform.forward);
-            StateMachine.ChangeState(nextState);
+            StateMachine.ChangeState(AnimalStateEnum.Recovery);
         }
     }
     
