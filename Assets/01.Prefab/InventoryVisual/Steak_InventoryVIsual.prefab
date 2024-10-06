@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4906062962956257005}
   - component: {fileID: 2784821339341500908}
-  m_Layer: 0
+  - component: {fileID: 3990693329563489920}
+  m_Layer: 31
   m_Name: Steak_InventoryVIsual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,6 +47,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _soItem: {fileID: 11400000, guid: 170b58895874bfd43a3ed97410f0c0cd, type: 2}
+--- !u!65 &3990693329563489920
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5445603535781768436}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.8, y: 0.2, z: 0.8}
+  m_Center: {x: 0, y: 0.05, z: 0}
 --- !u!1001 &843655668995394887
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -58,6 +80,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Steak
+      objectReference: {fileID: 0}
+    - target: {fileID: 5896235072914649272, guid: 6639d76fb863d684a835abc38b856492,
+        type: 3}
+      propertyPath: m_Layer
+      value: 31
       objectReference: {fileID: 0}
     - target: {fileID: 8086389673012010708, guid: 6639d76fb863d684a835abc38b856492,
         type: 3}

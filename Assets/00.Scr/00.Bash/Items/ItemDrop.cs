@@ -13,7 +13,8 @@ public class ItemDrop : MonoBehaviour
     }
     void DropItems()
     {
+
         for(int i = 0; i < _drops.Count; i++)
-        Instantiate(_drops[0],transform.position+Vector3.up + Vector3.right*Random.Range(-0.5f,0.5f)+ Vector3.forward * Random.Range(-0.5f, 0.5f),Quaternion.identity);
+        Instantiate(_drops[i],transform.position+Vector3.up + Vector3.right*Random.Range(-0.5f,0.5f)+ Vector3.forward * Random.Range(-0.5f, 0.5f),Quaternion.identity);
     }
 }

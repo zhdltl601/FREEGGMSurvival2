@@ -39,7 +39,7 @@ public class InventoryUI : MonoSingleton<InventoryUI>
         {
             if (Input.GetKeyDown(KeyCode.A) && !Input.GetKey(KeyCode.LeftShift)) PlayerInventory.TryAddItemToInventory(itemTOADD);
             if (Input.GetKeyDown(KeyCode.A) && Input.GetKey(KeyCode.LeftShift)) PlayerInventory.TrySubtractFromInventory(itemTOADD);
-            if (Input.GetKeyDown(KeyCode.B)) Inventory.AddBluePrint(bpToAdd);
+            if (Input.GetKeyDown(KeyCode.Z)) Inventory.AddBluePrint(bpToAdd);
             if (Input.GetKeyDown(KeyCode.Backspace)) PlayerInventory.CancelCraft(Player.CurrentCrafter);
         }
         void ObjSelect()

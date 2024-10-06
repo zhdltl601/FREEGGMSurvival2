@@ -16,11 +16,6 @@ public class AnimalMoveState : AnimalState
 
         Vector3 target = movement.GetNextPatrolPoint();
         
-        if (Animal.isEatingMode)
-        {
-            target = Animal.eatingTarget.position;
-        }
-        
         movement.SetDestination(target);
     }
 
@@ -32,11 +27,6 @@ public class AnimalMoveState : AnimalState
         if (movement.IsArrived)
         {
             AnimalStateEnum nextState = AnimalStateEnum.Idle;
-            if (Animal.isEatingMode)
-            {
-                nextState = AnimalStateEnum.Eat;
-            }
-
             StateMachine.ChangeState(nextState);
         }
     }

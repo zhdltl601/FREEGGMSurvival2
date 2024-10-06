@@ -26,7 +26,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 6d5a3bab86619c640bac6c31a9822a64,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.042
+      value: 0.86
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6d5a3bab86619c640bac6c31a9822a64,
         type: 3}
@@ -36,7 +36,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 6d5a3bab86619c640bac6c31a9822a64,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5.5109997
+      value: -4.52
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6d5a3bab86619c640bac6c31a9822a64,
         type: 3}
@@ -148,7 +148,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _health: 0
   maxHealth: 8
-  _hitImpact: {fileID: 9099646209548782377, guid: bceb5ae3b11caff4f8d3af84614a3275,
+  _hitImpact: {fileID: 8856459860437075487, guid: 3c3f1e13dc332be4ebc0c5b4454ee83e,
     type: 3}
   _resourceType: 1
 --- !u!114 &-4633498667289101032
@@ -165,3 +165,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _drops:
   - {fileID: 4680154366743644290, guid: df0ca84b03071b34099b9635e9153a52, type: 3}
+  - {fileID: 3258984140686769582, guid: bceb5ae3b11caff4f8d3af84614a3275, type: 3}

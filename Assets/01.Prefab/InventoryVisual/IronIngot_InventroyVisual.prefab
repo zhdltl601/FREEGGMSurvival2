@@ -88,6 +88,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: IronIngot_InventroyVisual
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2f2df18a542bb784ab24a7529140a371,
+        type: 3}
+      propertyPath: m_Layer
+      value: 31
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -96,6 +101,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 4518541127761724600}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2f2df18a542bb784ab24a7529140a371,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3755588537701189397}
   m_SourcePrefab: {fileID: 100100000, guid: 2f2df18a542bb784ab24a7529140a371, type: 3}
 --- !u!1 &132953063566923260 stripped
 GameObject:
@@ -116,3 +125,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _soItem: {fileID: 11400000, guid: 1a14de223f1f8a94a8cc18e488657e52, type: 2}
+--- !u!65 &3755588537701189397
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 132953063566923260}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.0702908, y: 0.43015826, z: 0.24450123}
+  m_Center: {x: 0, y: 0, z: 0.000000011175869}

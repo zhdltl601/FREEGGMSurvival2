@@ -298,7 +298,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -530,11 +530,6 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 140617756067955542, guid: 4db494f84be6a7d4f9fc7ff2a88f8987,
         type: 3}
-      propertyPath: patrols.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 140617756067955542, guid: 4db494f84be6a7d4f9fc7ff2a88f8987,
-        type: 3}
       propertyPath: patrols.Array.data[0]
       value: 
       objectReference: {fileID: 944739524}
@@ -548,21 +543,11 @@ PrefabInstance:
       propertyPath: patrols.Array.data[2]
       value: 
       objectReference: {fileID: 1386615137}
-    - target: {fileID: 140617756067955542, guid: 4db494f84be6a7d4f9fc7ff2a88f8987,
+    - target: {fileID: 228357676737736252, guid: 4db494f84be6a7d4f9fc7ff2a88f8987,
         type: 3}
-      propertyPath: patrols.Array.data[3]
-      value: 
-      objectReference: {fileID: 944739524}
-    - target: {fileID: 140617756067955542, guid: 4db494f84be6a7d4f9fc7ff2a88f8987,
-        type: 3}
-      propertyPath: patrols.Array.data[4]
-      value: 
-      objectReference: {fileID: 1511883996}
-    - target: {fileID: 140617756067955542, guid: 4db494f84be6a7d4f9fc7ff2a88f8987,
-        type: 3}
-      propertyPath: patrols.Array.data[5]
-      value: 
-      objectReference: {fileID: 1386615137}
+      propertyPath: m_StoppingDistance
+      value: 0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 524222213585108294, guid: 4db494f84be6a7d4f9fc7ff2a88f8987,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -613,25 +598,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4894497401716803042, guid: 4db494f84be6a7d4f9fc7ff2a88f8987,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.636
-      objectReference: {fileID: 0}
     - target: {fileID: 8004947040458078594, guid: 4db494f84be6a7d4f9fc7ff2a88f8987,
         type: 3}
-      propertyPath: chaseRadius
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 8004947040458078594, guid: 4db494f84be6a7d4f9fc7ff2a88f8987,
-        type: 3}
-      propertyPath: whatIsPlayer.m_Bits
-      value: 1024
+      propertyPath: attackRadius
+      value: 3.63
       objectReference: {fileID: 0}
     - target: {fileID: 9210566285373431913, guid: 4db494f84be6a7d4f9fc7ff2a88f8987,
         type: 3}
       propertyPath: m_Name
       value: Pig (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9210566285373431913, guid: 4db494f84be6a7d4f9fc7ff2a88f8987,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1137,7 +1117,12 @@ PrefabInstance:
         type: 3}
       propertyPath: targetTrm
       value: 
-      objectReference: {fileID: 1629504089}
+      objectReference: {fileID: 907551238}
+    - target: {fileID: 3143001533437947557, guid: 9f65d8adbdf5bec49a2b5ba0ac95284a,
+        type: 3}
+      propertyPath: aggressiveRange
+      value: 10.79
+      objectReference: {fileID: 0}
     - target: {fileID: 3827327152396448601, guid: 9f65d8adbdf5bec49a2b5ba0ac95284a,
         type: 3}
       propertyPath: m_Name
@@ -1197,11 +1182,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8948338666863893454, guid: 9f65d8adbdf5bec49a2b5ba0ac95284a,
-        type: 3}
-      propertyPath: health
-      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

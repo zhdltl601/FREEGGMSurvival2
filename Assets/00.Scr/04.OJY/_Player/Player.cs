@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 public class Player : MonoBehaviour
 {
     [Header("General")]
@@ -51,7 +53,7 @@ public class Player : MonoBehaviour
         CurrentCrafter = defaultCrafter;
         InventoryUI.Instance.PlayerInventory = _inventory;
         InventoryUI.Instance.SetActive(false);
-        UIManager.Instance.ToggleQuest();
+        //UIManager.Instance.ToggleQuest();
     }
     private void Update()
     {
@@ -71,7 +73,7 @@ public class Player : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))    _yVal = jumpHeight;
             if (Input.GetKeyDown(KeyCode.E))        RaycastInteract();
             if (Input.GetKeyDown(KeyCode.Tab))      ToggleInventory();
-            if (Input.GetKeyDown(KeyCode.C))        UIManager.Instance.ToggleQuest();
+            if (Input.GetKeyDown(KeyCode.B))        UIManager.Instance.ToggleQuest();
             yRot += Input.GetAxis("Mouse X") * ySens; 
             xRot -= Input.GetAxis("Mouse Y") * xSens; xRot = Mathf.Clamp(xRot, -85, 85);
             moveDirection = forwardDirection * Input.GetAxis("Vertical") + rightDirection * Input.GetAxis("Horizontal");
@@ -80,7 +82,7 @@ public class Player : MonoBehaviour
         void L_KeyDebug()
         {
             //InventoryUI.Instance.dbg_list[0].text = isCrafting.ToString();
-            if (Input.GetKeyDown(KeyCode.M)) DayManager.CanProcess = !DayManager.CanProcess;
+            if (Input.GetKeyDown(KeyCode.M)) SceneManager.LoadScene("Map"); //DayManager.CanProcess = !DayManager.CanProcess;
         }
         L_KeyInput();
         L_KeyDebug();

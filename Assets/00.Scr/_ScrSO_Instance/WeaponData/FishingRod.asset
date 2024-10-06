@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: FishingRod
   m_EditorClassIdentifier: 
   controller: {fileID: 22100000, guid: 70689776ceae36b4aaec0d53d43ebf11, type: 2}
-  bullet: []
+  bullet:
+  - {fileID: 0}
+  - {fileID: 0}
   maxAmmo: 0

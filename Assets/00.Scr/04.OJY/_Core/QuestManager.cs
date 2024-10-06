@@ -8,10 +8,12 @@ public class QuestManager : MonoSingleton<QuestManager>
     [SerializeField] private Quest[] _mainQuest;
     private int _currentIndex = 0;
     public Quest GetCurrentQuest => _mainQuest[_currentIndex];
+    public static bool QuestCompleted { get; private set; } = false;
     protected override void Awake()
     {
         base.Awake();
         Inventory.OnItemChanged += HandleOnItemChanged;
+        DontDestroyOnLoad(gameObject);
     }
     protected override void OnDestroy()
     {
@@ -27,6 +29,7 @@ public class QuestManager : MonoSingleton<QuestManager>
             if(_currentIndex == _mainQuest.Length)
             {
                 print("completed all quest");
+                QuestCompleted = true;
                 Inventory.OnItemChanged -= HandleOnItemChanged;
             }
         }
