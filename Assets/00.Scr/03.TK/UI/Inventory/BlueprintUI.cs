@@ -39,7 +39,7 @@ public class BlueprintUI : MonoBehaviour, IPointerDownHandler
 
     private void IngrediantSetting(SO_ItemBlueprint itemInfo)
     {
-        #region Item count setting
+        #region Ingredient ui default mode setting
         for (int i = 0; i < 3; i++)
         {
             images[i].sprite = default;
@@ -89,9 +89,9 @@ public class BlueprintUI : MonoBehaviour, IPointerDownHandler
         {
             inventory.TryAddItemToInventory(resultItem);
             BlueprintViewer.Instance.RemoveAllByCrafting();
-            Debug.Log($"item {resultItem} is add in inventory");
+            Debug.Log($"Success! item {resultItem} is add in inventory");
         }
         else
-            Debug.Log("need more ingredient item");
+            Debug.LogWarning("need more ingredient item");
     }
 }

@@ -38,20 +38,12 @@ public class BlueprintViewer : MonoSingleton<BlueprintViewer>
         {
             RemoveAllByCrafting();
         }
-        if(currentItemSetting.Count != 0)
-        {
-            foreach(var item in currentItemSetting)
-            {
-                Debug.Log(item.Key);
-            }
-        }
     }
 
     public void OnCraftTable(SO_Item newItem)
     {
         if (currentItem == null) //current ingredient is null
         {
-            Debug.Log("First item in");
             currentItem = newItem;
 
             currentItemSetting.Add(newItem.GetName, 1);
@@ -72,7 +64,6 @@ public class BlueprintViewer : MonoSingleton<BlueprintViewer>
         //currentItem is different newitem
         else
         {
-            Debug.Log("Different item in");
             currentItem = newItem;
 
             if (currentItemSetting.ContainsKey(newItem.GetName))
@@ -91,7 +82,7 @@ public class BlueprintViewer : MonoSingleton<BlueprintViewer>
     {
         if(currentItemSetting.Count == 0)
         {
-            Debug.Log("Doesn't set any item on crafting panel");
+            return;
         }
 
         StringBuilder sb = new StringBuilder();
@@ -101,7 +92,6 @@ public class BlueprintViewer : MonoSingleton<BlueprintViewer>
         foreach(var item in currentItemSetting.Keys)
         {
             sb.Clear();
-            Debug.Log("Craft bar instantiate");
             CraftItemBar itemBar = Instantiate(craftItemPrefab, craftItemUILayout);
             sb.Append("x").Append(currentItemSetting[item]);
 
@@ -127,7 +117,7 @@ public class BlueprintViewer : MonoSingleton<BlueprintViewer>
 
         if(inventory.GetUnlockedBlueprints.Count == 0)
         {
-            Debug.LogWarning("Any Blueprint doesn't unlocked!!");
+            Debug.LogWarning("Any blueprint doesn't unlocked!!");
             return;
         }
 
