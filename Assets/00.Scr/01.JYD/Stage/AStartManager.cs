@@ -34,6 +34,7 @@ public class AStartManager : MonoBehaviour
     List<Node> OpenList, ClosedList;
 
     public LayerMask whatIsWall;
+    public LayerMask whatIsTrigger;
     public GameObject target;
     public Vector3 mousePos;
     public float moveSpeed;
@@ -41,33 +42,56 @@ public class AStartManager : MonoBehaviour
     public Stage nodePrefab;
     private int index;
     
-    [SerializeField] private StageUIManager StageUIManager;
+    [SerializeField] private StageUIManager stageUIManager;
     
     private void Awake()
     {
         sizeX = topRight.x - bottomLeft.x + 1;
         sizeY = topRight.y - bottomLeft.y + 1;
         NodeArray = new Node[sizeX, sizeY];
+        StageUIManager.OnSceneChange += HandleOnSceneChange;
     }
-    
-    private void Start()
+    //private void Start()
+    //{
+    //    //float spacing = 3.0f;
+    //
+    //    //int aStartSizeX = Mathf.RoundToInt(sizeX/spacing);
+    //    //int aStartSizeY = Mathf.RoundToInt(sizeY/spacing);
+    //
+    //    
+    //    //for (int i = 0; i < aStartSizeX; i++)
+    //    //{
+    //    //    for (int j = 0; j < aStartSizeY; j++)
+    //    //    {
+    //    //        Vector3 nodePosition = new Vector3(bottomLeft.x + (spacing * j), bottomLeft.y + (spacing * i), 0);
+    //    //        Stage newStage =  Instantiate(nodePrefab,nodePosition , quaternion.identity);
+    //    //        
+    //    //        ++index;
+    //    //        newStage.sceneName = index.ToString();
+    //    //    }
+    //    //}
+    //}
+    private void OnDestroy()
     {
-        float spacing = 3.0f;
+        StageUIManager.OnSceneChange -= HandleOnSceneChange;
+    }
 
-        int aStartSizeX = Mathf.RoundToInt(sizeX/spacing);
-        int aStartSizeY = Mathf.RoundToInt(sizeY/spacing);
-        
-        for (int i = 0; i < aStartSizeX; i++)
+    private void HandleOnSceneChange(bool obj)
+    {
+        void OnEnterScene()
         {
-            for (int j = 0; j < aStartSizeY; j++)
-            {
-                Vector3 nodePosition = new Vector3(bottomLeft.x + (spacing * j), bottomLeft.y + (spacing * i), 0);
-                Stage newStage =  Instantiate(nodePrefab,nodePosition , quaternion.identity);
-                
-                ++index;
-                newStage.sceneName = index.ToString();
-            }
+            print("onEnterScene");
+            //DayManager.Is2D
+            DayManager.CanProcess = true;
         }
+        void OnMap()
+        {
+            print("onmap");
+            DayManager.CanProcess = false;
+            //load
+        }
+        if (obj) OnEnterScene();
+        else OnMap();
     }
 
     private void Update()
@@ -78,16 +102,15 @@ public class AStartManager : MonoBehaviour
             targetPos = new Vector2Int(Mathf.RoundToInt(mousePos.x), Mathf.RoundToInt(mousePos.y));
             startPos = new Vector2Int(Mathf.RoundToInt(target.transform.position.x), Mathf.RoundToInt(target.transform.position.y));
 DayManager.CanProcess = true;
-StageUIManager.OnTimeToggle(true);
+stageUIManager.OnTimeToggle(true);
             StopAllCoroutines();
             PathFinding();
         }
         int hour = (int)DayManager.Instance.GetTimeOfDay;
         int min = (int)((DayManager.Instance.GetTimeOfDay - hour) * 10);
-        StageUIManager.UpdateTime(hour, min / 10f * 60);
+        stageUIManager.UpdateTime(hour, min / 10f * 60);
 
     }
-
     private void PathFinding()
     {
         for (int i = 0; i < sizeX; i++)
@@ -186,15 +209,15 @@ StageUIManager.OnTimeToggle(true);
         closeNode[0].TryGetComponent(out Stage stage);
         if (stage != null)
         {
-            StageUIManager.SetActive(true);
-            StageUIManager.SetScene(stage.sceneName);
+            stageUIManager.SetActive(true);
+            stageUIManager.SetScene(stage.sceneName);
 
 DayManager.CanProcess = false;
-StageUIManager.OnTimeToggle(false);
-            print("end");
+stageUIManager.OnTimeToggle(false);
+
             //stage.SceneMove();   
         }
-        
+
         line.ActiveLine(false);
     }
 

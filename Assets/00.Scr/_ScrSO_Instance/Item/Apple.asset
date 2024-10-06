@@ -19,6 +19,9 @@ MonoBehaviour:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 1, z: 0}
   - {x: 0, y: 2, z: 0}
-  _rotVisInv: []
+  _rotVisInv:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
   _models:
-  - {fileID: 2829256781991843903, guid: cfafc8461af60cc418babdd603c382e3, type: 3}
+  - {fileID: 1315665115079859355, guid: b270194c20016ea4da58f13b697bfddb, type: 3}

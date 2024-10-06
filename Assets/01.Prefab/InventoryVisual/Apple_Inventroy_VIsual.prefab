@@ -83,6 +83,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Apple_Inventroy_VIsual
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: df37b557b081d9d4fab17e7fa6816c6c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 31
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -91,6 +96,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 8259933720707195603}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: df37b557b081d9d4fab17e7fa6816c6c,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7858262376468560966}
   m_SourcePrefab: {fileID: 100100000, guid: df37b557b081d9d4fab17e7fa6816c6c, type: 3}
 --- !u!1 &1315665115079859355 stripped
 GameObject:
@@ -111,3 +120,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _soItem: {fileID: 11400000, guid: 9e4c447fbbba78c40a080b7317352184, type: 2}
+--- !u!135 &7858262376468560966
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1315665115079859355}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.01
+  m_Center: {x: 0, y: -3.95391e-18, z: 0.0005564633}

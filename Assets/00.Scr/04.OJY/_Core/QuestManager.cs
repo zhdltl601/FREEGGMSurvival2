@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +8,33 @@ public class QuestManager : MonoSingleton<QuestManager>
     [SerializeField] private Quest[] _mainQuest;
     private int _currentIndex = 0;
     public Quest GetCurrentQuest => _mainQuest[_currentIndex];
-    
+    public static bool QuestCompleted { get; private set; } = false;
+    protected override void Awake()
+    {
+        base.Awake();
+        Inventory.OnItemChanged += HandleOnItemChanged;
+        DontDestroyOnLoad(gameObject);
+    }
+    protected override void OnDestroy()
+    {
+        base.OnDestroy();
+        Inventory.OnItemChanged -= HandleOnItemChanged;
+    }
+    private void HandleOnItemChanged(SO_Item arg1, int arg2)
+    {
+        bool r = IsCurrentQuestCompleted(InventoryUI.Instance.PlayerInventory.GetInventory);
+        if(r)
+        {
+            _currentIndex++;
+            if(_currentIndex == _mainQuest.Length)
+            {
+                print("completed all quest");
+                QuestCompleted = true;
+                Inventory.OnItemChanged -= HandleOnItemChanged;
+            }
+        }
+    }
+
     public bool IsCurrentQuestCompleted(IReadOnlyDictionary<SO_Item, int> _inv)
     {
         bool result = false;

@@ -39,7 +39,7 @@ public class InventoryUI : MonoSingleton<InventoryUI>
         {
             if (Input.GetKeyDown(KeyCode.A) && !Input.GetKey(KeyCode.LeftShift)) PlayerInventory.TryAddItemToInventory(itemTOADD);
             if (Input.GetKeyDown(KeyCode.A) && Input.GetKey(KeyCode.LeftShift)) PlayerInventory.TrySubtractFromInventory(itemTOADD);
-            if (Input.GetKeyDown(KeyCode.B)) Inventory.AddBluePrint(bpToAdd);
+            if (Input.GetKeyDown(KeyCode.Z)) Inventory.AddBluePrint(bpToAdd);
             if (Input.GetKeyDown(KeyCode.Backspace)) PlayerInventory.CancelCraft(Player.CurrentCrafter);
         }
         void ObjSelect()
@@ -50,8 +50,8 @@ public class InventoryUI : MonoSingleton<InventoryUI>
             {
                 if (hitInfo.transform.TryGetComponent(out InventoryItemVisual c))
                 {
+                    c.SelectObj();
                     PlayerInventory.TryAddItemToCraft(c.GetSO_Item, Player.CurrentCrafter);
-                    //c.SelectObj(c.GetSO_ItemBlueprint);
                     //c.DestroyThisObj();
                 }
                 else Debug.LogError("ItemDoesntHave InventoryItem Comp" + hitInfo.transform.name);
