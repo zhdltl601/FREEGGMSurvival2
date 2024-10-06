@@ -81,10 +81,12 @@ public class AStartManager : MonoBehaviour
         {
             print("onEnterScene");
             //DayManager.Is2D
+            DayManager.CanProcess = true;
         }
         void OnMap()
         {
             print("onmap");
+            DayManager.CanProcess = false;
             //load
         }
         if (obj) OnEnterScene();
@@ -209,8 +211,9 @@ stageUIManager.OnTimeToggle(true);
         {
             stageUIManager.SetActive(true);
             stageUIManager.SetScene(stage.sceneName);
-            DayManager.CanProcess = false;
-            stageUIManager.OnTimeToggle(false);
+
+DayManager.CanProcess = false;
+stageUIManager.OnTimeToggle(false);
 
             //stage.SceneMove();   
         }
