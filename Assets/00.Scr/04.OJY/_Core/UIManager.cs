@@ -23,6 +23,7 @@ public class UIManager : MonoSingleton<UIManager>
     private void Start()
     {
         DayManager.OnChangeState += HandleOnStateChange;
+        ToggleQuest();
     }
     protected override void OnDestroy()
     {

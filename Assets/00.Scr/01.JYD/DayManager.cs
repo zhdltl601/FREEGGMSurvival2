@@ -23,7 +23,7 @@ public class DayManager : MonoSingleton<DayManager>
     public static bool Is2D { get; set; } = false;
     public static int Multiplier { get; set; } = 1;
 
-    private static EDayState _currentState = EDayState.None;
+    private static EDayState _currentState = EDayState.Morning;
     public static event Action<EDayState> OnChangeState;
     protected override void Awake()
     {

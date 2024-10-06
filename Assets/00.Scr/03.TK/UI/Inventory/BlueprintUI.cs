@@ -25,11 +25,6 @@ public class BlueprintUI : MonoBehaviour, IPointerDownHandler
 
     public void SetUI(SO_ItemBlueprint itemInfo)
     {
-        images = transform
-            .Find("ResultIcons").GetComponentsInChildren<Image>();
-        ingredientAmount = transform
-            .Find("ResultAmounts").GetComponentsInChildren<TextMeshProUGUI>();
-
         IngrediantSetting(itemInfo);
 
         resultItem = itemInfo.GetResult[0].so_item;
@@ -64,11 +59,11 @@ public class BlueprintUI : MonoBehaviour, IPointerDownHandler
         {
             sb.Clear();
             int currentAmount = 0;
-            if (BlueprintViewer.currentItemSetting
+            if (BlueprintViewer.Instance.currentItemSetting
                 .ContainsKey(itemInfo.GetElement[j].so_item.GetName))
             {
                 currentAmount =
-                    BlueprintViewer.currentItemSetting[itemInfo.GetElement[j].so_item.GetName];
+                    BlueprintViewer.Instance.currentItemSetting[itemInfo.GetElement[j].so_item.GetName];
             }
             sb.Append(currentAmount.ToString());
             sb.Append("/");
@@ -87,11 +82,11 @@ public class BlueprintUI : MonoBehaviour, IPointerDownHandler
     }
 
     public void OnPointerDown(PointerEventData eventData)
-    {
+    { 
         if (canCraft)
         {
             inventory.TryAddItemToInventory(resultItem);
-            BlueprintViewer.Instance.RemoveBPOnCraftTable();
+            BlueprintViewer.Instance.RemoveAllByCrafting();
             Debug.Log($"item {resultItem} is add in inventory");
         }
         else

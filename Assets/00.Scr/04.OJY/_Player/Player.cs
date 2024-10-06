@@ -53,7 +53,7 @@ public class Player : MonoBehaviour
         CurrentCrafter = defaultCrafter;
         InventoryUI.Instance.PlayerInventory = _inventory;
         InventoryUI.Instance.SetActive(false);
-        UIManager.Instance.ToggleQuest();
+        //UIManager.Instance.ToggleQuest();
     }
     private void Update()
     {

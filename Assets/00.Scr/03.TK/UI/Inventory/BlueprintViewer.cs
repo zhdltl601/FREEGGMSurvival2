@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class BlueprintViewer : MonoSingleton<BlueprintViewer>
 {
-    #region 현재까지 한 코드들
     [SerializeField] private Inventory inventory;
 
     [Header("Blueprint prefab")]
@@ -13,46 +12,35 @@ public class BlueprintViewer : MonoSingleton<BlueprintViewer>
     public BlueprintUI blueprintPrefab;
 
     [Header("Panels")]
-    public CanvasGroup craftPanel;
-    private RectTransform craftPanelTrm;
-    private List<BlueprintUI> resultBlueprintList = new();
+    public CanvasGroup blueprintsPanel;
+    [SerializeField] private RectTransform craftItemUILayout;
+    [SerializeField] private RectTransform bpUILayout;
+    private List<BlueprintUI> bpUIList = new();
+    private List<CraftItemBar> craftItemList = new();
 
-    [Tooltip("current BP && ItemVis Info")]
-    ///<summary>
-    ///currentBlueprint 나중에 List로 가져와서 다 띄우기
-    ///아이템이 blueprint리스트를 가지고 있어야 함.
-    ///</summary>
-    private SO_Item currentItem;
+    private SO_Item currentItem = null;
 
     [Tooltip("Blueprints List")]
     private Dictionary<string, CraftItemBar> bpTable = new();
-    public static Dictionary<string, int> currentItemSetting = new();
+    public Dictionary<string, int> currentItemSetting = new();
     public Dictionary<string, SO_Item> itemTable = new();
-
-    [Tooltip("Child of parentOfBlueprints is set position autometicly by layout group")]
-    private RectTransform parentOfBlueprints;
 
     private void Start()
     {
-        parentOfBlueprints = GetComponent<RectTransform>()
-                                .Find("BlueprintListLayout")
-                                .GetComponent<RectTransform>();
-
-        craftPanelTrm = craftPanel.transform
-                            .Find("Layout").GetComponent<RectTransform>();
+        currentItem = null;
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.C))
         {
-            RemoveBPOnCraftTable();
+            RemoveAllByCrafting();
         }
     }
 
     public void SetCurrentItemBlueprint(SO_Item newItem)
     {
-        if (currentItem == null) //현재 블루프린트가 없을경우 걍 넣어주기
+        if (currentItem == null) //current ingredient is null
         {
             Debug.Log("First item in");
             currentItem = newItem;
@@ -61,7 +49,7 @@ public class BlueprintViewer : MonoSingleton<BlueprintViewer>
             itemTable.Add(newItem.GetName, newItem);
             SetCraftTable();
         }
-        //들어온 블루프린트가 현재 블루프린트랑 같은 블루프린트
+        //In ingredient is same new ingredient
         else if (currentItem.GetName == newItem.GetName)
         {
             if (currentItemSetting.ContainsKey(newItem.GetName))
@@ -73,7 +61,7 @@ public class BlueprintViewer : MonoSingleton<BlueprintViewer>
             else
                 currentItemSetting.Add(newItem.GetName, 1);
         }
-        // 현재의 블루프린트가 들어온 블루프린트와 다른 경우
+        //currentItem is different newitem
         else
         {
             Debug.Log("Different item in");
@@ -93,44 +81,68 @@ public class BlueprintViewer : MonoSingleton<BlueprintViewer>
     }
     public void SetCraftTable()
     {
+        if(currentItemSetting.Count == 0)
+        {
+            Debug.Log("Doesn't set any item on crafting panel");
+        }
+
         StringBuilder sb = new StringBuilder();
 
-        foreach(var item in currentItemSetting)
-        {
-            CraftItemBar itemBar = Instantiate(craftItemPrefab, craftPanelTrm);
-            sb.Append("x").Append(currentItemSetting[item.Key]);
+        RemoveCraftItemUI();
 
-            itemBar.SetUI(
-                itemTable[item.Key].GetIcon,
-                itemTable[item.Key].GetName,
-                sb.ToString()
-                );
+        foreach(var item in currentItemSetting.Keys)
+        {
+            sb.Clear();
+            Debug.Log("Craft bar instantiate");
+            CraftItemBar itemBar = Instantiate(craftItemPrefab, craftItemUILayout);
+            sb.Append("x").Append(currentItemSetting[item]);
+
+            itemBar.SetUI(itemTable[item].GetIcon, itemTable[item].GetName, sb.ToString());
+            craftItemList.Add(itemBar);
         }
+    }
+    private void RemoveCraftItemUI()
+    {
+        if (craftItemList.Count == 0) return;
+
+        for (int i = 0; i < craftItemList.Count; i++)
+        {
+            Destroy(craftItemList[i].gameObject);
+        }
+        craftItemList.Clear();
     }
 
     // 현재 크래프트 테이블 위에 올라간 블루프린트를 업데이트 시켜준다.
     public void CreateBPOnCraftTable()
     {
+        blueprintsPanel.DOFade(1, 0.2f);
+
+        if(inventory.GetUnlockedBlueprints.Count == 0)
+        {
+            Debug.LogWarning("Any Blueprint doesn't unlocked!!");
+            return;
+        }
+
         foreach (var unlockedBP in inventory.GetUnlockedBlueprints) //언록된 BP들 순회
         {
             foreach (var ingredient in unlockedBP.GetElement) //언록된 BP의 재료들 순회
             {
                 if (itemTable.ContainsKey(ingredient.so_item.GetName))
                 {
-                    CraftItemBar bp = Instantiate(craftItemPrefab, parentOfBlueprints);
+                    BlueprintUI bp = Instantiate(blueprintPrefab, bpUILayout);
                     SO_Item item = unlockedBP.GetResult[0].so_item;
-                    bp.SetUI(item.GetIcon, item.GetName, item.GetMaxAmount.ToString());
+                    bp.SetUI(unlockedBP);
                 }
             }
         }
     } 
-    #endregion
 
-    //현재 크래프트 테이블에 올라간 블루프린트를 지워준다.
-    public void RemoveBPOnCraftTable()
+    //크래프팅 하고있는 모든 것을 다 지워줌
+    public void RemoveAllByCrafting()
     {
         currentItem = null;
 
+        RemoveCraftItemUI();
         foreach(var item in bpTable)
         {
             Destroy(item.Value.gameObject);
@@ -139,24 +151,20 @@ public class BlueprintViewer : MonoSingleton<BlueprintViewer>
         currentItemSetting.Clear();
         itemTable.Clear();
 
-        foreach(var item in resultBlueprintList)
-        {
-            Destroy(item.gameObject);
-        }
-        resultBlueprintList.Clear();
+        UnShowBPListUI();
+        bpUIList.Clear();
     }
 
-
-    public void UnShowResultBPList()
+    //BP들만 지워줌
+    public void UnShowBPListUI()
     {
-        foreach (var result in resultBlueprintList)
+        blueprintsPanel.DOFade(0, 0.2f).OnComplete(() =>
         {
-            Destroy(result.gameObject);
-        }
-
-        craftPanel.DOFade(0, 0.5f).OnComplete(() =>
-        {
-            resultBlueprintList.Clear();
+            foreach (var result in bpUIList)
+            {
+                Destroy(result.gameObject);
+            }
+            bpUIList.Clear();
         });
     }
 }

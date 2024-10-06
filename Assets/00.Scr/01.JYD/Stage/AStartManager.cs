@@ -34,6 +34,7 @@ public class AStartManager : MonoBehaviour
     List<Node> OpenList, ClosedList;
 
     public LayerMask whatIsWall;
+    public LayerMask whatIsTrigger;
     public GameObject target;
     public Vector3 mousePos;
     public float moveSpeed;
@@ -50,26 +51,26 @@ public class AStartManager : MonoBehaviour
         NodeArray = new Node[sizeX, sizeY];
         StageUIManager.OnSceneChange += HandleOnSceneChange;
     }
-    private void Start()
-    {
-        float spacing = 3.0f;
-
-        int aStartSizeX = Mathf.RoundToInt(sizeX/spacing);
-        int aStartSizeY = Mathf.RoundToInt(sizeY/spacing);
-
-        
-        //for (int i = 0; i < aStartSizeX; i++)
-        //{
-        //    for (int j = 0; j < aStartSizeY; j++)
-        //    {
-        //        Vector3 nodePosition = new Vector3(bottomLeft.x + (spacing * j), bottomLeft.y + (spacing * i), 0);
-        //        Stage newStage =  Instantiate(nodePrefab,nodePosition , quaternion.identity);
-        //        
-        //        ++index;
-        //        newStage.sceneName = index.ToString();
-        //    }
-        //}
-    }
+    //private void Start()
+    //{
+    //    //float spacing = 3.0f;
+    //
+    //    //int aStartSizeX = Mathf.RoundToInt(sizeX/spacing);
+    //    //int aStartSizeY = Mathf.RoundToInt(sizeY/spacing);
+    //
+    //    
+    //    //for (int i = 0; i < aStartSizeX; i++)
+    //    //{
+    //    //    for (int j = 0; j < aStartSizeY; j++)
+    //    //    {
+    //    //        Vector3 nodePosition = new Vector3(bottomLeft.x + (spacing * j), bottomLeft.y + (spacing * i), 0);
+    //    //        Stage newStage =  Instantiate(nodePrefab,nodePosition , quaternion.identity);
+    //    //        
+    //    //        ++index;
+    //    //        newStage.sceneName = index.ToString();
+    //    //    }
+    //    //}
+    //}
     private void OnDestroy()
     {
         StageUIManager.OnSceneChange -= HandleOnSceneChange;
@@ -81,10 +82,12 @@ public class AStartManager : MonoBehaviour
         {
             print("onEnterScene");
             //DayManager.Is2D
+            DayManager.CanProcess = true;
         }
         void OnMap()
         {
             print("onmap");
+            DayManager.CanProcess = false;
             //load
         }
         if (obj) OnEnterScene();
@@ -108,7 +111,6 @@ stageUIManager.OnTimeToggle(true);
         stageUIManager.UpdateTime(hour, min / 10f * 60);
 
     }
-
     private void PathFinding()
     {
         for (int i = 0; i < sizeX; i++)
@@ -209,8 +211,9 @@ stageUIManager.OnTimeToggle(true);
         {
             stageUIManager.SetActive(true);
             stageUIManager.SetScene(stage.sceneName);
-            DayManager.CanProcess = false;
-            stageUIManager.OnTimeToggle(false);
+
+DayManager.CanProcess = false;
+stageUIManager.OnTimeToggle(false);
 
             //stage.SceneMove();   
         }
