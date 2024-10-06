@@ -108,12 +108,11 @@ public class InventoryItemVisual : MonoBehaviour
     public void SelectObj()
     {
         BlueprintViewer bpViewer = BlueprintViewer.Instance;
+        bpViewer.OnCraftTable(_soItem);
         if(bpViewer.onCrafting)
         {
-            bpViewer.UnShowBPListUI();
             bpViewer.CreateBPOnCraftTable();
         }
-        bpViewer.SetCurrentItemBlueprint(_soItem);
         ItemInfoPanel.Instance.DisableInfoPanel();
     }
 
