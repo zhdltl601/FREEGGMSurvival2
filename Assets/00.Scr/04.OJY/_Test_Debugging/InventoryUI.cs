@@ -50,8 +50,8 @@ public class InventoryUI : MonoSingleton<InventoryUI>
             {
                 if (hitInfo.transform.TryGetComponent(out InventoryItemVisual c))
                 {
+                    c.SelectObj();
                     PlayerInventory.TryAddItemToCraft(c.GetSO_Item, Player.CurrentCrafter);
-                    //c.SelectObj(c.GetSO_ItemBlueprint);
                     //c.DestroyThisObj();
                 }
                 else Debug.LogError("ItemDoesntHave InventoryItem Comp" + hitInfo.transform.name);
