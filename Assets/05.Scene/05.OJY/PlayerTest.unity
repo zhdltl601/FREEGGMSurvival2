@@ -1630,7 +1630,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mainQuest:
-  - _name: Get Items1
+  - _name: Get Fish A 2
     _questCondition:
       _itemList:
       - so_item: {fileID: 11400000, guid: b09d2b9f81cfc964496fac8bc62582b5, type: 2}
@@ -2021,7 +2021,7 @@ PrefabInstance:
         type: 3}
       propertyPath: itemTOADD
       value: 
-      objectReference: {fileID: 11400000, guid: ab06225582c78284888a905711070f7e,
+      objectReference: {fileID: 11400000, guid: b09d2b9f81cfc964496fac8bc62582b5,
         type: 2}
     - target: {fileID: 3853702343111063691, guid: 0f3028d60d7f6644384e1e0810d21cc3,
         type: 3}

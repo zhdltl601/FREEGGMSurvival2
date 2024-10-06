@@ -53,9 +53,9 @@ public class ViewmodelAnim : MonoBehaviour
 
         Vector3 localspeed = transform.InverseTransformVector(PlayerMovementV2.Instance.rb.velocity);
 
-        viewModel.SetFloat(wpAnimHashF[(int)WeaponParamsF.X], Mathf.Clamp(0.5f+localspeed.x / 15 * _xSpeedMulti, 0, 1), 0.5f, Time.deltaTime * 2);
+        viewModel.SetFloat(wpAnimHashF[(int)WeaponParamsF.X], Mathf.Clamp(0.5f+localspeed.x / 30 * _xSpeedMulti, 0, 1), 0.5f, Time.deltaTime * 2);
         viewModel.SetFloat(wpAnimHashF[(int)WeaponParamsF.Y], Mathf.Clamp01(localspeed.y / 30 * _ySpeedMulti + 0.5f), 0.25f, Time.deltaTime * 5);
-        viewModel.SetFloat(wpAnimHashF[(int)WeaponParamsF.Z], Mathf.Clamp(0.5f+localspeed.z / 15 * _zSpeedMulti, 0, 1), 0.5f, Time.deltaTime * 2);
+        viewModel.SetFloat(wpAnimHashF[(int)WeaponParamsF.Z], Mathf.Clamp(0.5f+localspeed.z / 30 * _zSpeedMulti, 0, 1), 0.5f, Time.deltaTime * 2);
        // viewModel.SetFloat(wpAnimHashF[(int)WeaponParamsF.MX], Mathf.Clamp(Input.GetAxis("Mouse X") * _xRotMulti, -1, 1), 0.8f, Time.deltaTime * 2);
         //viewModel.SetFloat(wpAnimHashF[(int)WeaponParamsF.MY], Mathf.Clamp01(Input.GetAxis("Mouse Y") / 2 + 0.5f), 0.8f, Time.deltaTime * 2);
 
