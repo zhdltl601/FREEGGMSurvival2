@@ -25,6 +25,8 @@ public class BlueprintViewer : MonoSingleton<BlueprintViewer>
     public Dictionary<string, int> currentItemSetting = new();
     public Dictionary<string, SO_Item> itemTable = new();
 
+    public bool onCrafting = false;
+
     private void Start()
     {
         currentItem = null;
@@ -116,6 +118,7 @@ public class BlueprintViewer : MonoSingleton<BlueprintViewer>
     public void CreateBPOnCraftTable()
     {
         blueprintsPanel.DOFade(1, 0.2f);
+        onCrafting = true;
 
         if(inventory.GetUnlockedBlueprints.Count == 0)
         {
@@ -130,8 +133,8 @@ public class BlueprintViewer : MonoSingleton<BlueprintViewer>
                 if (itemTable.ContainsKey(ingredient.so_item.GetName))
                 {
                     BlueprintUI bp = Instantiate(blueprintPrefab, bpUILayout);
-                    SO_Item item = unlockedBP.GetResult[0].so_item;
                     bp.SetUI(unlockedBP);
+                    bpUIList.Add(bp);
                 }
             }
         }
@@ -158,13 +161,19 @@ public class BlueprintViewer : MonoSingleton<BlueprintViewer>
     //BPµé¸¸ Áö¿öÁÜ
     public void UnShowBPListUI()
     {
-        blueprintsPanel.DOFade(0, 0.2f).OnComplete(() =>
+        onCrafting = false;
+        blueprintsPanel.DOFade(0, 0f).OnComplete(() =>
         {
-            foreach (var result in bpUIList)
-            {
-                Destroy(result.gameObject);
-            }
-            bpUIList.Clear();
+            DeleteBPList();
         });
+    }
+
+    public void DeleteBPList()
+    {
+        for(int i = 0; i < bpUIList.Count; i++)
+        {
+            Destroy(bpUIList[i].gameObject);
+        }
+        bpUIList.Clear();
     }
 }
