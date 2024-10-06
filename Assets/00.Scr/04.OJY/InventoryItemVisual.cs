@@ -104,17 +104,19 @@ public class InventoryItemVisual : MonoBehaviour
         GameObject newInstance = Instantiate(prefab, pos, quaternion, parent: spawnParent);
         return newInstance;
     }
-    public void SelectObj(SO_ItemBlueprint bp)
+
+    public void SelectObj()
     {
-        //ItemInfoPanel.Instance.DisableInfoPanel();
-        //BlueprintViewer.Instance.SetCurrentItemBlueprint(bp);
+        Debug.Log($"{_soItem.GetName} is Selected");
+        BlueprintViewer.Instance.SetCurrentItemBlueprint(_soItem);
+        ItemInfoPanel.Instance.DisableInfoPanel();
     }
 
-    public void SetItemInfoPanelOn(SO_Item soItem, int amount)//, Vector3 worldPos, Camera cam)
-    {
-        //Vector3 canvasPos = RectTransformUtility.WorldToScreenPoint(cam, worldPos);
-        //ItemInfoPanel.Instance.SetItemInfoPanel(soItem.GetIcon, soItem.GetName, amount.ToString());//, canvasPos);
-    }
+    //public void SetItemInfoPanelOn(SO_Item soItem, int amount)//, Vector3 worldPos, Camera cam)
+    //{
+    //    Vector3 canvasPos = RectTransformUtility.WorldToScreenPoint(cam, worldPos);
+    //    ItemInfoPanel.Instance.SetItemInfoPanel(soItem.GetIcon, soItem.GetName, amount);//, canvasPos);
+    //}
 
     //public void DestroyThisObj()
     //{
