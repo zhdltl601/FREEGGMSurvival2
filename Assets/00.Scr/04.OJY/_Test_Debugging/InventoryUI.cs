@@ -83,8 +83,8 @@ public class InventoryUI : MonoSingleton<InventoryUI>
         if (Input.GetKeyDown(KeyCode.J))
         {
 
-            dbg_list[0].text = "fuck : " + Player.CurrentCrafter.GetItemsOnTable[itemTOADD];
-            dbg_list[1].text = "fuc2 : " + PlayerInventory.GetInventory[itemTOADD];
+            dbg_list[0].text = "test : " + Player.CurrentCrafter.GetItemsOnTable[itemTOADD];
+            dbg_list[1].text = "test2 : " + PlayerInventory.GetInventory[itemTOADD];
         }
         ObjFocus();
         KeyInput();

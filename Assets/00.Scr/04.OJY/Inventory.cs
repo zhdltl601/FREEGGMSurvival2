@@ -95,7 +95,7 @@ public class Inventory : MonoBehaviour
             {
                 int val = _inventory[itemToSubtract];
                 _inventory[itemToSubtract] = 0;
-                print("fuck" + (itemToSubtract.GetMaxAmount - val));
+                print("test" + (itemToSubtract.GetMaxAmount - val));
                 OnItemChanged?.Invoke(itemToSubtract, -val);
                 result = true;
             }

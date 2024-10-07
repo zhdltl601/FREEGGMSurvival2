@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class FishingRod : MonoBehaviour
 {
-    [SerializeField] private FishSystem FishSystem;
     [SerializeField] private LayerMask whatIsWater;
 
     [SerializeField] private Transform aim;
@@ -38,12 +37,12 @@ public class FishingRod : MonoBehaviour
     {
         PlayerInput.Instance.canRotate = false;
 
-        FishSystem.gameObject.SetActive(true);
+        FishSystem.Instance.gameObject.SetActive(true);
     }
 
     private void OffFishing()
     {
-        FishSystem.FishEnd();
+        FishSystem.Instance.FishEnd();
     }
 
     private void OnDrawGizmosSelected()

@@ -5,9 +5,10 @@ using Random = UnityEngine.Random;
 using DG.Tweening;
 using TMPro;
 
-public class FishSystem : MonoBehaviour
+public class FishSystem : MonoSingleton<FishSystem>
 {
     [SerializeField] private FishData fishData;
+    [SerializeField] private GameObject _droppedFishIns;
     
     private float _catchTimer;
     public float checkbarSpeed;
@@ -107,7 +108,7 @@ public class FishSystem : MonoBehaviour
         
         GameObject textObj = new GameObject("SuccessText");
         TextMeshProUGUI text = textObj.AddComponent<TextMeshProUGUI>();
-        text.text = "<color=#FFD700> SEX! </color>";
+        text.text = "<color=#FFD700> SUCCESS! </color>";
         text.alignment = TextAlignmentOptions.Center;
         text.transform.SetParent(transform, false);
         
@@ -121,7 +122,14 @@ public class FishSystem : MonoBehaviour
         {
             Destroy(textObj.gameObject);
             FishEnd();
+            SpawnFish();
+            void SpawnFish()
+            {
+                print("spawn fish");
+                Instantiate(_droppedFishIns, PlayerMovementV2.Instance.transform.position + Vector3.up, Quaternion.identity, null);
+            }
         });
+
     }
 
     public void FishEnd()
