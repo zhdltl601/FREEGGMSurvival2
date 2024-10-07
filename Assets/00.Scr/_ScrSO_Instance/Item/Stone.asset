@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95347b3b237e44c43823945617f69821, type: 3}
   m_Name: Stone
   m_EditorClassIdentifier: 
-  _icon: {fileID: 0}
+  _icon: {fileID: 21300000, guid: 7e082cc2cf2a4433d85e388c6bf94234, type: 3}
   _maxAmount: 3
   _name: Stone
   _posVisInv:

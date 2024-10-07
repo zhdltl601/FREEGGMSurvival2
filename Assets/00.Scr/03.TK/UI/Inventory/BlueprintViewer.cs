@@ -25,6 +25,8 @@ public class BlueprintViewer : MonoSingleton<BlueprintViewer>
     public Dictionary<string, int> currentItemSetting = new();
     public Dictionary<string, SO_Item> itemTable = new();
 
+    public bool onCrafting = false;
+
     private void Start()
     {
         currentItem = null;
@@ -38,11 +40,10 @@ public class BlueprintViewer : MonoSingleton<BlueprintViewer>
         }
     }
 
-    public void SetCurrentItemBlueprint(SO_Item newItem)
+    public void OnCraftTable(SO_Item newItem)
     {
         if (currentItem == null) //current ingredient is null
         {
-            Debug.Log("First item in");
             currentItem = newItem;
 
             currentItemSetting.Add(newItem.GetName, 1);
@@ -54,17 +55,15 @@ public class BlueprintViewer : MonoSingleton<BlueprintViewer>
         {
             if (currentItemSetting.ContainsKey(newItem.GetName))
             {
-                Debug.Log("Same item in");
                 currentItemSetting[newItem.GetName]++;
-                SetCraftTable();
             }
             else
                 currentItemSetting.Add(newItem.GetName, 1);
+            SetCraftTable();
         }
         //currentItem is different newitem
         else
         {
-            Debug.Log("Different item in");
             currentItem = newItem;
 
             if (currentItemSetting.ContainsKey(newItem.GetName))
@@ -83,7 +82,7 @@ public class BlueprintViewer : MonoSingleton<BlueprintViewer>
     {
         if(currentItemSetting.Count == 0)
         {
-            Debug.Log("Doesn't set any item on crafting panel");
+            return;
         }
 
         StringBuilder sb = new StringBuilder();
@@ -93,7 +92,6 @@ public class BlueprintViewer : MonoSingleton<BlueprintViewer>
         foreach(var item in currentItemSetting.Keys)
         {
             sb.Clear();
-            Debug.Log("Craft bar instantiate");
             CraftItemBar itemBar = Instantiate(craftItemPrefab, craftItemUILayout);
             sb.Append("x").Append(currentItemSetting[item]);
 
@@ -115,26 +113,29 @@ public class BlueprintViewer : MonoSingleton<BlueprintViewer>
     // 현재 크래프트 테이블 위에 올라간 블루프린트를 업데이트 시켜준다.
     public void CreateBPOnCraftTable()
     {
-        blueprintsPanel.DOFade(1, 0.2f);
+        blueprintsPanel.DOFade(1, 0f);
 
         if(inventory.GetUnlockedBlueprints.Count == 0)
         {
-            Debug.LogWarning("Any Blueprint doesn't unlocked!!");
+            Debug.LogWarning("Any blueprint doesn't unlocked!!");
             return;
         }
+
+        DeleteBPList();
 
         foreach (var unlockedBP in inventory.GetUnlockedBlueprints) //언록된 BP들 순회
         {
             foreach (var ingredient in unlockedBP.GetElement) //언록된 BP의 재료들 순회
             {
-                if (itemTable.ContainsKey(ingredient.so_item.GetName))
+                if (currentItemSetting.ContainsKey(ingredient.so_item.GetName))
                 {
                     BlueprintUI bp = Instantiate(blueprintPrefab, bpUILayout);
-                    SO_Item item = unlockedBP.GetResult[0].so_item;
                     bp.SetUI(unlockedBP);
+                    bpUIList.Add(bp);
                 }
             }
         }
+        onCrafting = true;
     } 
 
     //크래프팅 하고있는 모든 것을 다 지워줌
@@ -152,19 +153,26 @@ public class BlueprintViewer : MonoSingleton<BlueprintViewer>
         itemTable.Clear();
 
         UnShowBPListUI();
-        bpUIList.Clear();
     }
 
     //BP들만 지워줌
     public void UnShowBPListUI()
     {
-        blueprintsPanel.DOFade(0, 0.2f).OnComplete(() =>
+        blueprintsPanel.DOFade(0, 0f).OnComplete(() =>
         {
-            foreach (var result in bpUIList)
-            {
-                Destroy(result.gameObject);
-            }
-            bpUIList.Clear();
+            DeleteBPList();
         });
+        onCrafting = false;
+    }
+
+    public void DeleteBPList()
+    {
+        if(bpUIList.Count == 0) return;
+
+        for(int i = 0; i < bpUIList.Count; i++)
+        {
+            Destroy(bpUIList[i].gameObject);
+        }
+        bpUIList.Clear();
     }
 }

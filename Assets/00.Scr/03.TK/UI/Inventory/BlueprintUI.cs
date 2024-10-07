@@ -15,8 +15,11 @@ public class BlueprintUI : MonoBehaviour, IPointerDownHandler
     [SerializeField] private TextMeshProUGUI resultItemAmount;
     private SO_Item resultItem;
     private Inventory inventory;
+    private BlueprintViewer bpViewer;
 
     public bool canCraft = false;
+
+    private int idx = 0;
 
     private void Start()
     {
@@ -29,53 +32,52 @@ public class BlueprintUI : MonoBehaviour, IPointerDownHandler
 
         resultItem = itemInfo.GetResult[0].so_item;
 
-        resultItemIcon.sprite = itemInfo.GetResult[0].so_item.GetIcon;
-        resultItemName.text = itemInfo.GetResult[0].so_item.GetName;
-        resultItemAmount.text = itemInfo.GetResult[0].so_item.GetMaxAmount.ToString();
+        resultItemIcon.sprite = resultItem.GetIcon;
+        resultItemName.text = resultItem.GetName;
+        resultItemAmount.text = itemInfo.GetResult[0].amount.ToString();
     }
 
     private void IngrediantSetting(SO_ItemBlueprint itemInfo)
     {
-        for (int i = 0; i < itemInfo.GetElement.Count; i++)
+        #region Ingredient ui default mode setting
+        for (int i = 0; i < 3; i++)
         {
-            Sprite icon = itemInfo.GetElement[i].so_item.GetIcon;
-            if (icon != null)
-            {
-                images[i].sprite = icon;
-                images[i].DOFade(1, 0.1f);
-            }
-            else
-            {
-                images[i].sprite = null;
-                images[i].DOFade(0, 0.1f);
-            }
+            images[i].sprite = default;
+            images[i].DOFade(0, 0f);
+
+            ingredientAmount[i].text = "";
         }
+        #endregion
 
         StringBuilder sb = new StringBuilder();
 
         bool canComb = true;
+        idx = 0;
 
-        for (int j = 0; j < itemInfo.GetElement.Count; j++)
+        foreach(var item in itemInfo.GetElement)
         {
+            BlueprintViewer bpViewer = BlueprintViewer.Instance;
             sb.Clear();
             int currentAmount = 0;
-            if (BlueprintViewer.Instance.currentItemSetting
-                .ContainsKey(itemInfo.GetElement[j].so_item.GetName))
-            {
-                currentAmount =
-                    BlueprintViewer.Instance.currentItemSetting[itemInfo.GetElement[j].so_item.GetName];
-            }
+            if (bpViewer.currentItemSetting.ContainsKey(item.so_item.GetName))
+                currentAmount = bpViewer.currentItemSetting[item.so_item.GetName];
+            else
+                currentAmount = 0;
+
             sb.Append(currentAmount.ToString());
             sb.Append("/");
-            int needAmount = itemInfo.GetElement[j].amount;
+            int needAmount = item.amount;
             sb.Append(needAmount);
-            if (needAmount != 0)
-                ingredientAmount[j].text = sb.ToString();
-            else
-                ingredientAmount[j].text = "";
 
-            if(currentAmount < needAmount)
+            if (needAmount != 0)
+                ingredientAmount[idx].text = sb.ToString();
+            else
+                ingredientAmount[idx].text = "";
+
+            if (currentAmount < needAmount)
                 canComb = false;
+
+            idx++;
         }
 
         canCraft = canComb;
@@ -87,9 +89,9 @@ public class BlueprintUI : MonoBehaviour, IPointerDownHandler
         {
             inventory.TryAddItemToInventory(resultItem);
             BlueprintViewer.Instance.RemoveAllByCrafting();
-            Debug.Log($"item {resultItem} is add in inventory");
+            Debug.Log($"Success! item {resultItem} is add in inventory");
         }
         else
-            Debug.Log("need more ingredient item");
+            Debug.LogWarning("need more ingredient item");
     }
 }
