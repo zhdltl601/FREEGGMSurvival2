@@ -3,10 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
-using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.Serialization;
+
 
 [Serializable]
 public class Node
@@ -33,6 +32,7 @@ public class AStartManager : MonoBehaviour
     Node StartNode, TargetNode, CurNode;
     List<Node> OpenList, ClosedList;
 
+    public LayerMask whatIsBlock;
     public LayerMask whatIsWall;
     public LayerMask whatIsTrigger;
     public GameObject target;
@@ -43,6 +43,9 @@ public class AStartManager : MonoBehaviour
     private int index;
     
     [SerializeField] private StageUIManager stageUIManager;
+
+    [SerializeField] private Stage[] stages;
+    [SerializeField] private SaveAlphaDataSO saveAlphasData;
     
     private void Awake()
     {
@@ -50,7 +53,18 @@ public class AStartManager : MonoBehaviour
         sizeY = topRight.y - bottomLeft.y + 1;
         NodeArray = new Node[sizeX, sizeY];
         StageUIManager.OnSceneChange += HandleOnSceneChange;
+
+        
     }
+
+    private void Start()
+    {
+        for (int i = 0; i < stages.Length; i++)
+        {
+            stages[i].SetAlpha(saveAlphasData.Alphas[i]);
+        }
+    }
+
     //private void Start()
     //{
     //    //float spacing = 3.0f;
@@ -99,17 +113,21 @@ public class AStartManager : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())  
         {
             mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+            Collider2D collider = Physics2D.OverlapCircle(new Vector2(mousePos.x , mousePos.y) , 0.8f , whatIsBlock);
+            if(collider != null)return;
+                        
             targetPos = new Vector2Int(Mathf.RoundToInt(mousePos.x), Mathf.RoundToInt(mousePos.y));
             startPos = new Vector2Int(Mathf.RoundToInt(target.transform.position.x), Mathf.RoundToInt(target.transform.position.y));
-DayManager.CanProcess = true;
-stageUIManager.OnTimeToggle(true);
+            DayManager.CanProcess = true;
+            stageUIManager.OnTimeToggle(true);
             StopAllCoroutines();
             PathFinding();
         }
         int hour = (int)DayManager.Instance.GetTimeOfDay;
         int min = (int)((DayManager.Instance.GetTimeOfDay - hour) * 10);
         stageUIManager.UpdateTime(hour, min / 10f * 60);
-
+        
     }
     private void PathFinding()
     {
@@ -209,12 +227,22 @@ stageUIManager.OnTimeToggle(true);
         closeNode[0].TryGetComponent(out Stage stage);
         if (stage != null)
         {
+            if (stage.highwayType == Highway.None)
+            {
+                DayManager.CanProcess = false;
+                stageUIManager.OnTimeToggle(false);
+            }
+            else
+            {
+                StopAllCoroutines();
+                Stage nextStage = stage.highwayType == Highway.Enter ? stage.GetExitStage() : stage.GetEnterStage();
+                stageUIManager.SetNextStage(nextStage);
+                stageUIManager.SetScene("Highway");
+            }
+            
             stageUIManager.SetActive(true);
             stageUIManager.SetScene(stage.sceneName);
-
-DayManager.CanProcess = false;
-stageUIManager.OnTimeToggle(false);
-
+            
             //stage.SceneMove();   
         }
 
@@ -232,6 +260,14 @@ stageUIManager.OnTimeToggle(false);
         {
             float targetFade = 0.1f;
             item.GetComponent<SpriteRenderer>().DOFade(targetFade, 0.4f);
+
+
+            if (item.TryGetComponent(out Stage currentNode))
+            {
+                int idx = Array.IndexOf(stages,currentNode);
+                saveAlphasData.Alphas[idx] = currentNode.GetAlpha();
+            }
+
         }
         
         foreach (var item in closeNode)
@@ -281,5 +317,8 @@ stageUIManager.OnTimeToggle(false);
                 Gizmos.DrawWireCube(nodePosition, new Vector3(0.9f, 0.9f, 0.9f)); // Adjust size if needed
             }
         }*/
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(mousePos , 0.8f);
+
     }
 }

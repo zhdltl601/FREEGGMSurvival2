@@ -14,7 +14,6 @@ public class Animal : Agent
 {
     private AnimalStateMachine StateMachine;
     
-    public LayerMask whatIsEating;
     public LayerMask whatIsPlayer;
     public Transform player;
     private Collider[] cols;
@@ -52,6 +51,9 @@ public class Animal : Agent
     private void Update()
     {
         StateMachine.currentState.Update();
+        
+        print(StateMachine.currentState);
+        
     }
     
     public void AnimationEnd()
