@@ -1287,6 +1287,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Square (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 3350475086739233891, guid: 8b25853c8825e27428c9075253815a8a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5009810524806803233, guid: 8b25853c8825e27428c9075253815a8a,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -1517,6 +1522,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Square (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3350475086739233891, guid: 8b25853c8825e27428c9075253815a8a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 5009810524806803233, guid: 8b25853c8825e27428c9075253815a8a,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -1586,6 +1596,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5120275995117064997, guid: 8b25853c8825e27428c9075253815a8a,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5120275995117064997, guid: 8b25853c8825e27428c9075253815a8a,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5120275995117064997, guid: 8b25853c8825e27428c9075253815a8a,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.9811321
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2365,6 +2390,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Square (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 3350475086739233891, guid: 8b25853c8825e27428c9075253815a8a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5009810524806803233, guid: 8b25853c8825e27428c9075253815a8a,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -2459,6 +2489,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Square (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 3350475086739233891, guid: 8b25853c8825e27428c9075253815a8a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 5009810524806803233, guid: 8b25853c8825e27428c9075253815a8a,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -2528,6 +2563,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5120275995117064997, guid: 8b25853c8825e27428c9075253815a8a,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5120275995117064997, guid: 8b25853c8825e27428c9075253815a8a,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5120275995117064997, guid: 8b25853c8825e27428c9075253815a8a,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.9811321
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4409,6 +4459,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Square
       objectReference: {fileID: 0}
+    - target: {fileID: 3350475086739233891, guid: 8b25853c8825e27428c9075253815a8a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 5009810524806803233, guid: 8b25853c8825e27428c9075253815a8a,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -4478,6 +4533,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5120275995117064997, guid: 8b25853c8825e27428c9075253815a8a,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5120275995117064997, guid: 8b25853c8825e27428c9075253815a8a,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5120275995117064997, guid: 8b25853c8825e27428c9075253815a8a,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.8867924
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5085,6 +5155,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Square (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3350475086739233891, guid: 8b25853c8825e27428c9075253815a8a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5009810524806803233, guid: 8b25853c8825e27428c9075253815a8a,
         type: 3}
@@ -6235,6 +6310,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Square (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3350475086739233891, guid: 8b25853c8825e27428c9075253815a8a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5009810524806803233, guid: 8b25853c8825e27428c9075253815a8a,
         type: 3}
@@ -7971,6 +8051,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Square (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 3350475086739233891, guid: 8b25853c8825e27428c9075253815a8a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5009810524806803233, guid: 8b25853c8825e27428c9075253815a8a,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -8934,6 +9019,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Square (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 3350475086739233891, guid: 8b25853c8825e27428c9075253815a8a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 5009810524806803233, guid: 8b25853c8825e27428c9075253815a8a,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -9003,6 +9093,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5120275995117064997, guid: 8b25853c8825e27428c9075253815a8a,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5120275995117064997, guid: 8b25853c8825e27428c9075253815a8a,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5120275995117064997, guid: 8b25853c8825e27428c9075253815a8a,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.9811321
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11473,6 +11578,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Square (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3350475086739233891, guid: 8b25853c8825e27428c9075253815a8a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5009810524806803233, guid: 8b25853c8825e27428c9075253815a8a,
         type: 3}
@@ -15451,6 +15561,9 @@ MonoBehaviour:
   FinalNodeList: []
   allowDiagonal: 1
   dontCrossCorner: 1
+  whatIsBlock:
+    serializedVersion: 2
+    m_Bits: 512
   whatIsWall:
     serializedVersion: 2
     m_Bits: 64
@@ -16473,6 +16586,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Square (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3350475086739233891, guid: 8b25853c8825e27428c9075253815a8a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5009810524806803233, guid: 8b25853c8825e27428c9075253815a8a,
         type: 3}

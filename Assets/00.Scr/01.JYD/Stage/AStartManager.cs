@@ -3,13 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
-using Game;
-using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.Rendering;
-using UnityEngine.Serialization;
-using SceneManager = UnityEngine.SceneManagement.SceneManager;
+
 
 [Serializable]
 public class Node
@@ -36,6 +32,7 @@ public class AStartManager : MonoBehaviour
     Node StartNode, TargetNode, CurNode;
     List<Node> OpenList, ClosedList;
 
+    public LayerMask whatIsBlock;
     public LayerMask whatIsWall;
     public LayerMask whatIsTrigger;
     public GameObject target;
@@ -116,17 +113,21 @@ public class AStartManager : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())  
         {
             mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+            Collider2D collider = Physics2D.OverlapCircle(new Vector2(mousePos.x , mousePos.y) , 0.8f , whatIsBlock);
+            if(collider != null)return;
+                        
             targetPos = new Vector2Int(Mathf.RoundToInt(mousePos.x), Mathf.RoundToInt(mousePos.y));
             startPos = new Vector2Int(Mathf.RoundToInt(target.transform.position.x), Mathf.RoundToInt(target.transform.position.y));
-DayManager.CanProcess = true;
-stageUIManager.OnTimeToggle(true);
+            DayManager.CanProcess = true;
+            stageUIManager.OnTimeToggle(true);
             StopAllCoroutines();
             PathFinding();
         }
         int hour = (int)DayManager.Instance.GetTimeOfDay;
         int min = (int)((DayManager.Instance.GetTimeOfDay - hour) * 10);
         stageUIManager.UpdateTime(hour, min / 10f * 60);
-
+        
     }
     private void PathFinding()
     {
@@ -316,5 +317,8 @@ stageUIManager.OnTimeToggle(true);
                 Gizmos.DrawWireCube(nodePosition, new Vector3(0.9f, 0.9f, 0.9f)); // Adjust size if needed
             }
         }*/
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(mousePos , 0.8f);
+
     }
 }

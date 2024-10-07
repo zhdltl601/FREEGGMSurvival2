@@ -32,10 +32,13 @@ public class StageUIManager : MonoBehaviour
     {
         if (str == "Highway")
         {
+            mainText.SetText("Enter Highway");
+            print(mainText.text);
             currentScene = string.Empty;
             return;
         }
         
+        mainText.SetText("Entering");
         currentScene = str;
     }
     public void UpdateTime(int hour, float minute)
@@ -51,12 +54,10 @@ public class StageUIManager : MonoBehaviour
     {
         if (currentScene == String.Empty && nextStage != null)
         {
-            mainText.SetText("Enter Highway");
             player.transform.position = nextStage.transform.position;
             SetActive(false);
             return;
         }
-        mainText.SetText("Entering");
         
         OnSceneChange?.Invoke(true);
         SceneManager.LoadScene(currentScene);
