@@ -3,10 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
+using Game;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Rendering;
 using UnityEngine.Serialization;
+using SceneManager = UnityEngine.SceneManagement.SceneManager;
 
 [Serializable]
 public class Node
@@ -43,6 +46,9 @@ public class AStartManager : MonoBehaviour
     private int index;
     
     [SerializeField] private StageUIManager stageUIManager;
+
+    [SerializeField] private Stage[] stages;
+    [SerializeField] private SaveAlphaDataSO saveAlphasData;
     
     private void Awake()
     {
@@ -50,7 +56,18 @@ public class AStartManager : MonoBehaviour
         sizeY = topRight.y - bottomLeft.y + 1;
         NodeArray = new Node[sizeX, sizeY];
         StageUIManager.OnSceneChange += HandleOnSceneChange;
+
+        
     }
+
+    private void Start()
+    {
+        for (int i = 0; i < stages.Length; i++)
+        {
+            stages[i].SetAlpha(saveAlphasData.Alphas[i]);
+        }
+    }
+
     //private void Start()
     //{
     //    //float spacing = 3.0f;
@@ -209,12 +226,22 @@ stageUIManager.OnTimeToggle(true);
         closeNode[0].TryGetComponent(out Stage stage);
         if (stage != null)
         {
+            if (stage.highwayType == Highway.None)
+            {
+                DayManager.CanProcess = false;
+                stageUIManager.OnTimeToggle(false);
+            }
+            else
+            {
+                StopAllCoroutines();
+                Stage nextStage = stage.highwayType == Highway.Enter ? stage.GetExitStage() : stage.GetEnterStage();
+                stageUIManager.SetNextStage(nextStage);
+                stageUIManager.SetScene("Highway");
+            }
+            
             stageUIManager.SetActive(true);
             stageUIManager.SetScene(stage.sceneName);
-
-DayManager.CanProcess = false;
-stageUIManager.OnTimeToggle(false);
-
+            
             //stage.SceneMove();   
         }
 
@@ -232,6 +259,14 @@ stageUIManager.OnTimeToggle(false);
         {
             float targetFade = 0.1f;
             item.GetComponent<SpriteRenderer>().DOFade(targetFade, 0.4f);
+
+
+            if (item.TryGetComponent(out Stage currentNode))
+            {
+                int idx = Array.IndexOf(stages,currentNode);
+                saveAlphasData.Alphas[idx] = currentNode.GetAlpha();
+            }
+
         }
         
         foreach (var item in closeNode)
