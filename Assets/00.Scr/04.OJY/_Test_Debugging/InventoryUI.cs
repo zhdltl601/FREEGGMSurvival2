@@ -151,6 +151,7 @@ public class InventoryUI : MonoSingleton<InventoryUI>
     {
         bool isInactive = !gameObject.activeSelf;
         BlueprintViewer.Instance.RemoveAllByCrafting();
+        PlayerInventory.CancelCraft(Player.CurrentCrafter);
         SetActive(isInactive);
         return isInactive;
     }
