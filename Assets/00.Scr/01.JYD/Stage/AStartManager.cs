@@ -227,15 +227,18 @@ public class AStartManager : MonoBehaviour
         closeNode[0].TryGetComponent(out Stage stage);
         if (stage != null)
         {
+            Stage nextStage = null;
             if (stage.highwayType == Highway.None)
             {
                 DayManager.CanProcess = false;
                 stageUIManager.OnTimeToggle(false);
+                nextStage = stage;
+                print(nextStage.sceneName);
             }
             else
             {
                 StopAllCoroutines();
-                Stage nextStage = stage.highwayType == Highway.Enter ? stage.GetExitStage() : stage.GetEnterStage();
+                nextStage = stage.highwayType == Highway.Enter ? stage.GetExitStage() : stage.GetEnterStage();
                 stageUIManager.SetNextStage(nextStage);
                 stageUIManager.SetScene("Highway");
             }

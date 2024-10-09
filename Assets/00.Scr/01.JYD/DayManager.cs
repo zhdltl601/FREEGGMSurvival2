@@ -23,6 +23,7 @@ public class DayManager : MonoSingleton<DayManager>
 
     private static EDayState _currentState = EDayState.Morning;
     public static event Action<EDayState> OnChangeState;
+    public static EDayState GetCurrentState => _currentState;
     protected override void Awake()
     {
         base.Awake();
