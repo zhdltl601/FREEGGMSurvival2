@@ -150,6 +150,7 @@ public class InventoryUI : MonoSingleton<InventoryUI>
     public bool ToggleInventory()
     {
         bool isInactive = !gameObject.activeSelf;
+        BlueprintViewer.Instance.RemoveAllByCrafting();
         SetActive(isInactive);
         return isInactive;
     }
