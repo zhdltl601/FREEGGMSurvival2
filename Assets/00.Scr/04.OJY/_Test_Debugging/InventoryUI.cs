@@ -22,7 +22,6 @@ public class InventoryUI : MonoSingleton<InventoryUI>
     {
         base.Awake();
         //_camInv = Camera.main;//
-        SetActive(false);
         Inventory.OnItemChanged += HandleOnItemChanged;
     }
     protected override void OnDestroy()
@@ -33,6 +32,8 @@ public class InventoryUI : MonoSingleton<InventoryUI>
     private void Start()
     {
         UIManager.Instance.ToggleQuest();
+        SetActive(false);
+
     }
     private void Update()
     {
@@ -42,9 +43,9 @@ public class InventoryUI : MonoSingleton<InventoryUI>
         }
         void DebugInput()
         {
-            if (Input.GetKeyDown(KeyCode.A) && !Input.GetKey(KeyCode.LeftShift)) PlayerInventory.TryAddItemToInventory(itemTOADD);
-            if (Input.GetKeyDown(KeyCode.A) && Input.GetKey(KeyCode.LeftShift)) PlayerInventory.TrySubtractFromInventory(itemTOADD);
-            if (Input.GetKeyDown(KeyCode.Z)) Inventory.AddBluePrint(bpToAdd);
+            //if (Input.GetKeyDown(KeyCode.A) && !Input.GetKey(KeyCode.LeftShift)) PlayerInventory.TryAddItemToInventory(itemTOADD);
+            //if (Input.GetKeyDown(KeyCode.A) && Input.GetKey(KeyCode.LeftShift)) PlayerInventory.TrySubtractFromInventory(itemTOADD);
+            //if (Input.GetKeyDown(KeyCode.Z)) Inventory.AddBluePrint(bpToAdd);
             if (Input.GetKeyDown(KeyCode.Backspace)) PlayerInventory.CancelCraft(Player.CurrentCrafter);
         }
         void ObjSelect()
