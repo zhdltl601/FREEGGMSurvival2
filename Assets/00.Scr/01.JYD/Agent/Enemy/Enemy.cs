@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 public enum EnemyStateEnum
 {
     Idle,
@@ -32,7 +33,7 @@ public class Enemy : Agent
 
     private readonly Collider[] _enemyCheckCollider = new Collider[1];
 
-    private EnemyHealth _enemyHealth;
+    private ExHealth _enemyHealth;
     
     protected override void Awake()
     {
@@ -56,7 +57,12 @@ public class Enemy : Agent
         
         GetCompo<AgentMovement>().SetSpeed(walkSpeed);
 
-        _enemyHealth = GetCompo<EnemyHealth>();
+        _enemyHealth = GetCompo<ExHealth>();
+    }
+
+    private void OnDestroy()
+    {
+        
     }
 
     private void Update()
