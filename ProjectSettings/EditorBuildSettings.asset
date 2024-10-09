@@ -6,6 +6,75 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/05.Scene/03.TK/TTTTTTT.unity
+    guid: 6cfa403fe730c9a4bb9e1337f8853bb2
+  - enabled: 1
+    path: Assets/05.Scene/04_MHsBeutifulMap/Map_Tongyeong.unity
+    guid: 4dfa6f7a3e257eb4ca174e22c8494845
+  - enabled: 1
+    path: Assets/05.Scene/04_MHsBeutifulMap/Map_Tongyeong2.unity
+    guid: c9bbd99bede5ea44f945c612df36c0b9
+  - enabled: 1
+    path: Assets/05.Scene/04_MHsBeutifulMap/Map_Tongyeong3.unity
+    guid: b34937515fa8a0e458e011915651b463
+  - enabled: 1
+    path: Assets/05.Scene/04_MHsBeutifulMap/Map_Tongyeong4.unity
+    guid: 6b473939dfdf09e4e8f0232f23a43214
+  - enabled: 1
+    path: Assets/05.Scene/04_MHsBeutifulMap/MyMaps/Map_KemaHighland.unity
+    guid: e2467424130c3ad48b8c19deedf147e3
+  - enabled: 1
+    path: Assets/05.Scene/04_MHsBeutifulMap/Map_Lab_1.unity
+    guid: 58255dadc943090499153c7288e359ac
+  - enabled: 1
+    path: Assets/05.Scene/04_MHsBeutifulMap/Map_Tongyeong5.unity
+    guid: b8335128bf44cc849ac08498f861d6c5
+  - enabled: 1
+    path: Assets/05.Scene/04_MHsBeutifulMap/Map_Prairie_1.unity
+    guid: ef4f3ae621924cc47a151ffdc6efd93e
+  - enabled: 1
+    path: Assets/05.Scene/04_MHsBeutifulMap/Map_Prairie_2.unity
+    guid: 764541238be3f7a4fb6e852be43fa3a7
+  - enabled: 1
+    path: Assets/05.Scene/04_MHsBeutifulMap/Map_Prairie_3_Path.unity
+    guid: f58ca2ca51611964b8cbd2d148f28656
+  - enabled: 1
+    path: Assets/05.Scene/04_MHsBeutifulMap/Map_Prairie_4_Path.unity
+    guid: 318138144d2940e4bb5d629ee45434cf
+  - enabled: 1
+    path: Assets/05.Scene/04_MHsBeutifulMap/Map_Prairie_5_Path.unity
+    guid: 9e13e060f9c42e64ab749075c3bd90e9
+  - enabled: 1
+    path: Assets/05.Scene/04_MHsBeutifulMap/Map_Prairie_6_Path.unity
+    guid: 2f64d41a51dcf9049af27b9ac1b12dba
+  - enabled: 1
+    path: Assets/05.Scene/04_MHsBeutifulMap/Map_Prairie_7_Path.unity
+    guid: 630d940d618338f4aa4dd5dff2973f10
+  - enabled: 1
+    path: Assets/05.Scene/04_MHsBeutifulMap/Map_Prairie_8_Path.unity
+    guid: 143ac1e6e3c14864c87390e409db4861
+  - enabled: 1
+    path: Assets/05.Scene/04_MHsBeutifulMap/Map_Prairie_9.unity
+    guid: e1297a7309040b14cb78fe5336c77ee6
+  - enabled: 1
+    path: Assets/05.Scene/04_MHsBeutifulMap/Map_Sokcho_1.unity
+    guid: d91b44a4fab1c7d44bfaf87e62bc38a9
+  - enabled: 1
+    path: Assets/05.Scene/04_MHsBeutifulMap/Map_Sokcho_2.unity
+    guid: acf9e868ad4978a4c961ac000e393174
+  - enabled: 1
+    path: Assets/05.Scene/04_MHsBeutifulMap/Map_Sokcho_3.unity
+    guid: e59c15109fdb0c1469cb115a647825d8
+  - enabled: 1
+    path: Assets/05.Scene/04_MHsBeutifulMap/Map_Sokcho_4.unity
+    guid: 705afeae0b2375d46b6339a4217dae4c
+  - enabled: 1
+    path: Assets/05.Scene/04_MHsBeutifulMap/Map_Sokcho_5.unity
+    guid: 58cd0adc0ac9205459efc6b0a35d72e3
+  - enabled: 1
+    path: Assets/05.Scene/04_MHsBeutifulMap/Map_Sokcho_6.unity
+    guid: 3dee5039347aa774997a11446b4267d9
+  - enabled: 1
     path: Assets/05.Scene/01.JYD/Map.unity
     guid: 8df39fac910aedc4083b2aa00dc18296
   - enabled: 1
