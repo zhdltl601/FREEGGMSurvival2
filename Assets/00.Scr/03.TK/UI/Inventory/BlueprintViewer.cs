@@ -103,6 +103,7 @@ public class BlueprintViewer : MonoSingleton<BlueprintViewer>
     {
         if (craftItemList.Count == 0) return;
 
+        BlueprintUI.SubtractIngredient();
         for (int i = 0; i < craftItemList.Count; i++)
         {
             Destroy(craftItemList[i].gameObject);

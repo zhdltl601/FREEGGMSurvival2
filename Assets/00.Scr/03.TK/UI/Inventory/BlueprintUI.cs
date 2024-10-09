@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System.Collections.Generic;
 using System.Text;
 using TMPro;
 using UnityEngine;
@@ -14,8 +15,11 @@ public class BlueprintUI : MonoBehaviour, IPointerDownHandler
     [SerializeField] private TextMeshProUGUI resultItemName;
     [SerializeField] private TextMeshProUGUI resultItemAmount;
     private SO_Item resultItem;
-    private Inventory inventory;
+    private static Inventory inventory;
     private BlueprintViewer bpViewer;
+
+    private static Dictionary<string, SO_Item> subtractItems = new();
+    private static Dictionary<string, int> subtractItemAmount = new();
 
     public bool canCraft = false;
 
@@ -59,14 +63,21 @@ public class BlueprintUI : MonoBehaviour, IPointerDownHandler
             BlueprintViewer bpViewer = BlueprintViewer.Instance;
             sb.Clear();
             int currentAmount = 0;
+            int needAmount = item.amount;
             if (bpViewer.currentItemSetting.ContainsKey(item.so_item.GetName))
+            {
                 currentAmount = bpViewer.currentItemSetting[item.so_item.GetName];
+                subtractItems.Add(item.so_item.GetName, item.so_item);
+                if(currentAmount >= needAmount)
+                {
+                    subtractItemAmount.Add(item.so_item.GetName, needAmount);
+                }
+            }
             else
                 currentAmount = 0;
 
             sb.Append(currentAmount.ToString());
             sb.Append("/");
-            int needAmount = item.amount;
             sb.Append(needAmount);
 
             if (needAmount != 0)
@@ -88,10 +99,30 @@ public class BlueprintUI : MonoBehaviour, IPointerDownHandler
         if (canCraft)
         {
             inventory.TryAddItemToInventory(resultItem);
+
+            #region Subtract ingredient items
+
+            SubtractIngredient();
+
+            #endregion
+
             BlueprintViewer.Instance.RemoveAllByCrafting();
             Debug.Log($"Success! item {resultItem} is add in inventory");
         }
         else
             Debug.LogWarning("need more ingredient item");
+    }
+
+    public static void SubtractIngredient()
+    {
+        if (subtractItems.Count == 0) return;
+
+        foreach (var item in subtractItems)
+        {
+            inventory.TrySubtractFromInventory(item.Value, subtractItemAmount[item.Key]);
+            Debug.Log($"Subtract {item.Value.GetName} item amount {subtractItemAmount[item.Key]} from inventory");
+        }
+        subtractItems.Clear();
+        subtractItemAmount.Clear();
     }
 }

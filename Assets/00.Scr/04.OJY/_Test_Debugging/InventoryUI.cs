@@ -79,7 +79,11 @@ public class InventoryUI : MonoSingleton<InventoryUI>
                 if (hitInfo.transform.TryGetComponent(out InventoryItemVisual c))
                 {
                     //c.SetItemInfoPanelOn(c.GetSO_Item, PlayerInventory.GetInventory[c.GetSO_Item]);//, hitInfo.point, _camInv);
-                    ItemInfoPanel.Instance.SetItemInfoPanel(c.GetSO_Item.GetIcon, c.GetSO_Item.GetName, PlayerInventory.GetInventory[c.GetSO_Item]);
+                    Vector2 canvasPoint = RectTransformUtility.WorldToScreenPoint(_camInv, hitInfo.point);
+                    ItemInfoPanel.Instance.SetItemInfoPanel(
+                        c.GetSO_Item.GetIcon, c.GetSO_Item.GetName,
+                        PlayerInventory.GetInventory[c.GetSO_Item],
+                        canvasPoint, _camInv);
                 }
             }
             else ItemInfoPanel.Instance.DisableInfoPanel();
@@ -146,6 +150,7 @@ public class InventoryUI : MonoSingleton<InventoryUI>
     public bool ToggleInventory()
     {
         bool isInactive = !gameObject.activeSelf;
+        BlueprintViewer.Instance.RemoveAllByCrafting();
         SetActive(isInactive);
         return isInactive;
     }
