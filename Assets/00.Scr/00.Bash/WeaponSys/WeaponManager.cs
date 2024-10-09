@@ -71,7 +71,7 @@ public class WeaponManager : MonoBehaviour
 
     public void PlaySound(AudioClip clip)
     {
-        _audioSource.PlayOneShot(clip,0.5f);
+        _audioSource.PlayOneShot(clip,0.4f);
     }
     void Update()
     {
