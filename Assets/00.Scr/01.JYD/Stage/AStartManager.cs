@@ -230,10 +230,14 @@ public class AStartManager : MonoBehaviour
             Stage nextStage = null;
             if (stage.highwayType == Highway.None)
             {
-                DayManager.CanProcess = false;
-                stageUIManager.OnTimeToggle(false);
-                nextStage = stage;
-                stageUIManager.SetScene(stage.sceneName);
+                if (stage.sceneName != "")
+                {
+                    DayManager.CanProcess = false;
+                    stageUIManager.OnTimeToggle(false);
+                    nextStage = stage;
+                    stageUIManager.SetScene(stage.sceneName);
+
+                }
             }
             else
             {
