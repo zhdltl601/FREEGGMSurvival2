@@ -15,11 +15,11 @@ public class BlueprintUI : MonoBehaviour, IPointerDownHandler
     [SerializeField] private TextMeshProUGUI resultItemName;
     [SerializeField] private TextMeshProUGUI resultItemAmount;
     private SO_Item resultItem;
-    private Inventory inventory;
+    private static Inventory inventory;
     private BlueprintViewer bpViewer;
 
-    private Dictionary<string, SO_Item> subtractItems = new();
-    private Dictionary<string, int> subtractItemAmount = new();
+    private static Dictionary<string, SO_Item> subtractItems = new();
+    private static Dictionary<string, int> subtractItemAmount = new();
 
     public bool canCraft = false;
 
@@ -102,13 +102,7 @@ public class BlueprintUI : MonoBehaviour, IPointerDownHandler
 
             #region Subtract ingredient items
 
-            foreach(var item in subtractItems)
-            {
-                inventory.TrySubtractFromInventory(item.Value, subtractItemAmount[item.Key]);
-                Debug.Log($"Subtract {item.Value.GetName} item amount {subtractItemAmount[item.Key]} from inventory");
-            }
-            subtractItems.Clear();
-            subtractItemAmount.Clear();
+            SubtractIngredient();
 
             #endregion
 
@@ -117,5 +111,18 @@ public class BlueprintUI : MonoBehaviour, IPointerDownHandler
         }
         else
             Debug.LogWarning("need more ingredient item");
+    }
+
+    public static void SubtractIngredient()
+    {
+        if (subtractItems.Count == 0) return;
+
+        foreach (var item in subtractItems)
+        {
+            inventory.TrySubtractFromInventory(item.Value, subtractItemAmount[item.Key]);
+            Debug.Log($"Subtract {item.Value.GetName} item amount {subtractItemAmount[item.Key]} from inventory");
+        }
+        subtractItems.Clear();
+        subtractItemAmount.Clear();
     }
 }
