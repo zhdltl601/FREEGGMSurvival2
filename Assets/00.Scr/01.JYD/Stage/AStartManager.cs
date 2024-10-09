@@ -95,12 +95,16 @@ public class AStartManager : MonoBehaviour
         void OnEnterScene()
         {
             print("onEnterScene");
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
             //DayManager.Is2D
             DayManager.CanProcess = true;
         }
         void OnMap()
         {
             print("onmap");
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
             DayManager.CanProcess = false;
             //load
         }

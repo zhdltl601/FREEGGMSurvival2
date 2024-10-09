@@ -31,12 +31,16 @@ public class PlayerMovementV2 : MonoSingleton<PlayerMovementV2>
     RaycastHit _groundCheck;
 
     Collider[] _groundCheckCols = new Collider[1];
-
+    protected override void Awake()
+    {
+        base.Awake();
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+    }
     private void Start()
     {
         PlayerInput.Instance.Jump += Jump;
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+
     }
 
     // Update is called once per frame

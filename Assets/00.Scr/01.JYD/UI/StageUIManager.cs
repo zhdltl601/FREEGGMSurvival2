@@ -28,6 +28,7 @@ public class StageUIManager : MonoBehaviour
         //string curSceneName = "Map";// SceneManager.GetActiveScene().name;
         BshAmiKlr.GameManager.Set(false);
         OnSceneChange?.Invoke(false);
+        BshAmiKlr.GameManager.Instance.f.gameObject.SetActive(false);
     }
     public void SetScene(string str)
     {
@@ -64,6 +65,7 @@ public class StageUIManager : MonoBehaviour
 
         OnSceneChange?.Invoke(true);
         BshAmiKlr.GameManager.Set(true);
+        BshAmiKlr.GameManager.Instance.f.gameObject.SetActive(true);
         SceneManager.LoadScene(currentScene);
     }
 
