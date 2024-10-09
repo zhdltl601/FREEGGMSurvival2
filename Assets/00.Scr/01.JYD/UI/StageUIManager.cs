@@ -34,13 +34,15 @@ public class StageUIManager : MonoBehaviour
         if (str == "Highway")
         {
             mainText.SetText("Enter Highway");
-            print(mainText.text);
+            
             currentScene = string.Empty;
-            return;
+        }
+        else
+        {
+            mainText.SetText("Entering");
+            currentScene = str;
         }
         
-        mainText.SetText("Entering");
-        currentScene = str;
     }
     public void UpdateTime(int hour, float minute)
     {

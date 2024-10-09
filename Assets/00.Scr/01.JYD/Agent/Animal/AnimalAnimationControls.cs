@@ -28,10 +28,16 @@ public class AnimalAnimationControls : MonoBehaviour,IAgentComponent
     {
         agentMovement.SetManualRotate(false);
     }
-
+    
     public void DamageCast()
     {
         animal.DamageCast();
     }
 
+    public void PlayAttackSFX()
+    {
+        animal.AttackSFXPlay();
+        
+    }
+    
 }

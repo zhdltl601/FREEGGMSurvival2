@@ -1,5 +1,6 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
+using Random = UnityEngine.Random;
+
 public enum EnemyStateEnum
 {
     Idle,
@@ -25,7 +26,8 @@ public class Enemy : Agent
     public float aggressiveRange;
     public float attackAbleRange;
     public bool isBattleMode;
-    
+    public AudioClip[] attackClips;
+    private AudioSource _audioSource;
     
     public LayerMask whatIsPlayer;
     public LayerMask whatIsObstacle;
@@ -56,14 +58,10 @@ public class Enemy : Agent
         stateMachine.Initialize(EnemyStateEnum.Idle);
         
         GetCompo<AgentMovement>().SetSpeed(walkSpeed);
-
+        _audioSource = GetComponent<AudioSource>();
         _enemyHealth = GetCompo<ExHealth>();
     }
-
-    private void OnDestroy()
-    {
-        
-    }
+    
 
     private void Update()
     {
@@ -107,6 +105,13 @@ public class Enemy : Agent
     public void AnimationEnd()
     {
         stateMachine.currentState.AnimationTriggerCalled();
+    }
+    
+    public void AttackSFXPlay()
+    {
+        int randomIdx = Random.Range(0, attackClips.Length);
+        AudioClip audioClip = attackClips[randomIdx];
+        _audioSource.PlayOneShot(audioClip);
     }
     
 }

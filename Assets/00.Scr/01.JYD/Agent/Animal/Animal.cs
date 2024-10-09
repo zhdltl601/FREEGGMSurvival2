@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public enum AnimalStateEnum
 {
@@ -28,8 +29,10 @@ public class Animal : Agent
     public float attackCooldown = 0.8f;
     private DamageCaster _damageCaster;
 
-    private ExHealth _damageable;
+    public AudioClip[] attackAudioClip;
+    private AudioSource _audioSource;
     
+    private ExHealth _damageable;
     protected override void Awake()
     {
         base.Awake();
@@ -41,12 +44,15 @@ public class Animal : Agent
         StateMachine.AddState(AnimalStateEnum.Attack , new AnimalAttackState(this , StateMachine , "Attack"));
         StateMachine.AddState(AnimalStateEnum.Recovery , new AnimalRecoveryState(this , StateMachine , "Idle"));
     }
-
+    
+    
+    
     private void Start()
     {
         StateMachine.Initialize(AnimalStateEnum.Idle);
         _damageCaster = GetCompo<DamageCaster>();
         _damageable = GetComponent<ExHealth>();
+        _audioSource = GetComponent<AudioSource>();
         _damageable.OnHitEvent += EnteringBattleMode;
         
         cols = new Collider[1];
@@ -68,7 +74,7 @@ public class Animal : Agent
         StateMachine.currentState.AnimationTrigger();
     }
 
-    
+    [ContextMenu("Test")]
     private void EnteringBattleMode()
     {
         if(isBattleMode)return;
@@ -95,5 +101,12 @@ public class Animal : Agent
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position , attackRadius);
+    }
+
+    public void AttackSFXPlay()
+    {
+        int randomIdx = Random.Range(0, attackAudioClip.Length);
+        AudioClip audioClip = attackAudioClip[randomIdx];
+        _audioSource.PlayOneShot(audioClip);
     }
 }
