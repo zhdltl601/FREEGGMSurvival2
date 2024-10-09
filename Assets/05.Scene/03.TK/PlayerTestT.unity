@@ -249,6 +249,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2206316630373353182, guid: 0f3028d60d7f6644384e1e0810d21cc3,
+        type: 3}
+      propertyPath: canvasRtrm
+      value: 
+      objectReference: {fileID: 1635180334}
     - target: {fileID: 3853702343111063691, guid: 0f3028d60d7f6644384e1e0810d21cc3,
         type: 3}
       propertyPath: _piv
@@ -1853,6 +1858,12 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!224 &1635180334 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7918135993669744692, guid: 0f3028d60d7f6644384e1e0810d21cc3,
+    type: 3}
+  m_PrefabInstance: {fileID: 62950839}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1921056701
 GameObject:
   m_ObjectHideFlags: 0
