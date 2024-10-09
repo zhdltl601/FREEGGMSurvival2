@@ -35,6 +35,8 @@ public class PlayerMovementV2 : MonoSingleton<PlayerMovementV2>
     private void Start()
     {
         PlayerInput.Instance.Jump += Jump;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame

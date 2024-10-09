@@ -233,7 +233,7 @@ public class AStartManager : MonoBehaviour
                 DayManager.CanProcess = false;
                 stageUIManager.OnTimeToggle(false);
                 nextStage = stage;
-                print(nextStage.sceneName);
+                stageUIManager.SetScene(stage.sceneName);
             }
             else
             {
@@ -242,10 +242,7 @@ public class AStartManager : MonoBehaviour
                 stageUIManager.SetNextStage(nextStage);
                 stageUIManager.SetScene("Highway");
             }
-            
             stageUIManager.SetActive(true);
-            stageUIManager.SetScene(stage.sceneName);
-            
             //stage.SceneMove();   
         }
 
