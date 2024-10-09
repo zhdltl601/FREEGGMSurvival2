@@ -684,7 +684,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Animator: {fileID: 8022329997453487274}
-  animal: {fileID: 0}
+  animal: {fileID: 8004947040458078594}
 --- !u!1 &4571468948301146625
 GameObject:
   m_ObjectHideFlags: 0
@@ -1114,8 +1114,8 @@ GameObject:
   - component: {fileID: 8543981637161367695}
   - component: {fileID: 8004947040458078594}
   - component: {fileID: 140617756067955542}
-  - component: {fileID: 8218602423212617206}
   - component: {fileID: 8464174027296601657}
+  - component: {fileID: 614177310245779000}
   m_Layer: 0
   m_Name: Pig
   m_TagString: Untagged
@@ -1154,7 +1154,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0.1
+  m_StoppingDistance: 0.25
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -1202,9 +1202,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsDead: 0
-  whatIsEating:
-    serializedVersion: 2
-    m_Bits: 4096
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 1024
@@ -1213,7 +1210,7 @@ MonoBehaviour:
   isBattleMode: 0
   chaseSpeed: 5
   chaseRadius: 15
-  attackRadius: 2.23
+  attackRadius: 2.07
   attackCooldown: 0.8
 --- !u!114 &140617756067955542
 MonoBehaviour:
@@ -1236,22 +1233,6 @@ MonoBehaviour:
   _maxKnockBackTime: 0.1
   stopOffset: 0.25
   IsManualRotation: 0
---- !u!114 &8218602423212617206
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9210566285373431913}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5da51437a8c335643964bcacf122f5fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 0
-  hitImpact: {fileID: 2944396702758532163, guid: e190bf97c041e58448af6b043116cba0,
-    type: 3}
-  test: {fileID: 0}
 --- !u!114 &8464174027296601657
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1269,3 +1250,18 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 1024
+--- !u!114 &614177310245779000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9210566285373431913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ade35a47708fb0c41b51b5bbd26d884e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _health: 0
+  maxHealth: 100
+  _hitImpact: {fileID: 0}
