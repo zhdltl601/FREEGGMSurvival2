@@ -27,6 +27,8 @@ public class Animal : Agent
     public float attackRadius = 1.2f;
     public float attackCooldown = 0.8f;
     private DamageCaster _damageCaster;
+
+    private ExHealth _damageable;
     
     protected override void Awake()
     {
@@ -44,6 +46,8 @@ public class Animal : Agent
     {
         StateMachine.Initialize(AnimalStateEnum.Idle);
         _damageCaster = GetCompo<DamageCaster>();
+        _damageable = GetComponent<ExHealth>();
+        _damageable.OnHitEvent += EnteringBattleMode;
         
         cols = new Collider[1];
     }
@@ -52,7 +56,7 @@ public class Animal : Agent
     {
         StateMachine.currentState.Update();
         
-        print(StateMachine.currentState);
+        //print(StateMachine.currentState);
         
     }
     
@@ -62,9 +66,10 @@ public class Animal : Agent
     }
 
     
-    [ContextMenu("Test")]
     private void EnteringBattleMode()
     {
+        if(isBattleMode)return;
+        
         isBattleMode = true;
         
         int cnt = Physics.OverlapSphereNonAlloc(transform.position ,chaseRadius ,  cols , whatIsPlayer);

@@ -6,13 +6,15 @@ using UnityEngine;
 public class ExHealth : MonoBehaviour, IDamageAble, IAgentComponent // 사실 이렇게 하면 인터페이SU가 의미가 없어져 밍..
 {
     public Action OnDeadEvent;
-
+    public event Action OnHitEvent;
+    
+    
     [SerializeField]
     protected float _health,maxHealth;
 
     [SerializeField]
     protected ParticleSystem _hitImpact;
-
+    
     void OnEnable()
     {
         _health = maxHealth;
@@ -25,6 +27,7 @@ public class ExHealth : MonoBehaviour, IDamageAble, IAgentComponent // 사실 이렇
 
     public virtual void GetDamage(float damage, Vector3 hitPoint, Vector3 normal)
     {
+        OnHitEvent?.Invoke();
         GetDamage(damage);
         Hit(hitPoint,normal);
     }

@@ -35,7 +35,7 @@ public abstract class Damageable : MonoBehaviour
             damageMulti = _criticalMulti;
         }
 
-            return damageMulti;
+        return damageMulti;
     }
 
     protected virtual void ApplyDamage(Transform target)
