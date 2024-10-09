@@ -544,11 +544,12 @@ GameObject:
   - component: {fileID: 4234605824093527291}
   - component: {fileID: 4026783989916508157}
   - component: {fileID: 2509717870512610686}
-  - component: {fileID: 651559196396609672}
   - component: {fileID: 1438857680654173954}
+  - component: {fileID: 7517898691869604560}
+  - component: {fileID: 3808859424081628722}
   m_Layer: 0
   m_Name: Tiger
-  m_TagString: Untagged
+  m_TagString: Hitable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -663,21 +664,6 @@ MonoBehaviour:
   chaseRadius: 40
   attackRadius: 4
   attackCooldown: 0.9
---- !u!114 &651559196396609672
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3432651406667107938}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5da51437a8c335643964bcacf122f5fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 200
-  hitImpact: {fileID: 0}
-  test: {fileID: 0}
 --- !u!114 &1438857680654173954
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -695,6 +681,42 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 1024
+--- !u!65 &7517898691869604560
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3432651406667107938}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.43, y: 2, z: 4}
+  m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &3808859424081628722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3432651406667107938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ade35a47708fb0c41b51b5bbd26d884e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _health: 0
+  maxHealth: 0
+  _hitImpact: {fileID: 0}
 --- !u!1 &3892420987875447211
 GameObject:
   m_ObjectHideFlags: 0
