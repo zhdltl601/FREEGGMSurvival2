@@ -24,5 +24,14 @@ public class EnemyAnimator : MonoBehaviour,IAgentComponent
         animator.SetInteger(RecoveryIndex,index);
     }
 
+    public void DamageCaster()
+    {
+        enemy.DamageCast();
+    }
+
+    public void PlayAttackSFX()
+    {
+        enemy.AttackSFXPlay();
+    }
    
 }

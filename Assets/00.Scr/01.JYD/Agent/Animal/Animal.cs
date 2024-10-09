@@ -1,25 +1,38 @@
+using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public enum AnimalStateEnum
 {
     Idle,
     Move,
-    Eat,
-    Sleep,
-    Hostile,
+    Chase,
+    Attack,
+    Recovery,
 }
 
 public class Animal : Agent
 {
     private AnimalStateMachine StateMachine;
-
-    public bool isEatingMode;
-    public LayerMask whatIsEating;
-    public float eatRadius;
-    public Transform eatingTarget;
+    
+    public LayerMask whatIsPlayer;
+    public Transform player;
     private Collider[] cols;
+
+    public float walkSpeed;
     
+    [Header("Attack info")] 
+    public bool isBattleMode;
+    public float chaseSpeed = 8f;
+    public float chaseRadius;
+    public float attackRadius = 1.2f;
+    public float attackCooldown = 0.8f;
+    private DamageCaster _damageCaster;
+
+    public AudioClip[] attackAudioClip;
+    private AudioSource _audioSource;
     
+    private ExHealth _damageable;
     protected override void Awake()
     {
         base.Awake();
@@ -27,21 +40,33 @@ public class Animal : Agent
         StateMachine = new AnimalStateMachine();
         StateMachine.AddState(AnimalStateEnum.Idle , new AnimalIdleState(this , StateMachine , "Idle"));
         StateMachine.AddState(AnimalStateEnum.Move , new AnimalMoveState(this , StateMachine , "Move"));
-        StateMachine.AddState(AnimalStateEnum.Eat , new AnimalEatState(this , StateMachine , "Eat"));
-        
+        StateMachine.AddState(AnimalStateEnum.Chase, new AnimalChaseState(this , StateMachine , "Move"));
+        StateMachine.AddState(AnimalStateEnum.Attack , new AnimalAttackState(this , StateMachine , "Attack"));
+        StateMachine.AddState(AnimalStateEnum.Recovery , new AnimalRecoveryState(this , StateMachine , "Idle"));
     }
-
+    
+    
+    
     private void Start()
     {
         StateMachine.Initialize(AnimalStateEnum.Idle);
-
+        _damageCaster = GetCompo<DamageCaster>();
+        _damageable = GetComponent<ExHealth>();
+        _audioSource = GetComponent<AudioSource>();
+        _damageable.OnHitEvent += EnteringBattleMode;
+        
         cols = new Collider[1];
     }
-
+    private void OnDestroy()
+    {
+        _damageable.OnHitEvent -= EnteringBattleMode;
+    }
     private void Update()
     {
         StateMachine.currentState.Update();
-        EnteringAppetiteMode();
+        
+        //print(StateMachine.currentState);
+        
     }
     
     public void AnimationEnd()
@@ -49,14 +74,39 @@ public class Animal : Agent
         StateMachine.currentState.AnimationTrigger();
     }
 
-    private void EnteringAppetiteMode()
+    [ContextMenu("Test")]
+    private void EnteringBattleMode()
     {
-        int cnt = Physics.OverlapSphereNonAlloc(transform.position ,eatRadius ,  cols , whatIsEating);
+        if(isBattleMode)return;
+        
+        isBattleMode = true;
+        
+        int cnt = Physics.OverlapSphereNonAlloc(transform.position ,chaseRadius ,  cols , whatIsPlayer);
+
         if (cnt > 0)
         {
-            isEatingMode = true;
-            eatingTarget = cols[0].transform;
-            StateMachine.ChangeState(AnimalStateEnum.Eat);
-        }        
+            player = cols[0].transform;
+            //GetCompo<AgentMovement>().GetKnockBack(-transform.forward);
+            StateMachine.ChangeState(AnimalStateEnum.Recovery);
+        }
+    }
+    
+    //animationEvent
+    public override void DamageCast()
+    {
+        _damageCaster.DamageCast();
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position , attackRadius);
+    }
+
+    public void AttackSFXPlay()
+    {
+        int randomIdx = Random.Range(0, attackAudioClip.Length);
+        AudioClip audioClip = attackAudioClip[randomIdx];
+        _audioSource.PlayOneShot(audioClip);
     }
 }

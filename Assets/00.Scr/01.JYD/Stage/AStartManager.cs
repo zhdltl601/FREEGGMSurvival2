@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
 using UnityEngine;
-using UnityEngine.Serialization;
+using UnityEngine.EventSystems;
+
 
 [Serializable]
 public class Node
@@ -31,50 +32,103 @@ public class AStartManager : MonoBehaviour
     Node StartNode, TargetNode, CurNode;
     List<Node> OpenList, ClosedList;
 
+    public LayerMask whatIsBlock;
     public LayerMask whatIsWall;
+    public LayerMask whatIsTrigger;
     public GameObject target;
     public Vector3 mousePos;
     public float moveSpeed;
     
-    public GameObject nodePrefab;
+    public Stage nodePrefab;
+    private int index;
+    
+    [SerializeField] private StageUIManager stageUIManager;
+
+    [SerializeField] private Stage[] stages;
+    [SerializeField] private SaveAlphaDataSO saveAlphasData;
     
     private void Awake()
     {
         sizeX = topRight.x - bottomLeft.x + 1;
         sizeY = topRight.y - bottomLeft.y + 1;
         NodeArray = new Node[sizeX, sizeY];
+        StageUIManager.OnSceneChange += HandleOnSceneChange;
+
+        
     }
-    
+
     private void Start()
     {
-        float spacing = 3.0f;
-
-        int aStartSizeX = Mathf.RoundToInt(sizeX/spacing);
-        int aStartSizeY = Mathf.RoundToInt(sizeY/spacing);
-        
-        for (int i = 0; i < aStartSizeX; i++)
+        for (int i = 0; i < stages.Length; i++)
         {
-            for (int j = 0; j < aStartSizeY; j++)
-            {
-                Vector3 nodePosition = new Vector3(bottomLeft.x + (spacing * j), bottomLeft.y + (spacing * i), 0);
-                Instantiate(nodePrefab, nodePosition, Quaternion.identity);
-            }
+            stages[i].SetAlpha(saveAlphasData.Alphas[i]);
         }
+    }
+
+    //private void Start()
+    //{
+    //    //float spacing = 3.0f;
+    //
+    //    //int aStartSizeX = Mathf.RoundToInt(sizeX/spacing);
+    //    //int aStartSizeY = Mathf.RoundToInt(sizeY/spacing);
+    //
+    //    
+    //    //for (int i = 0; i < aStartSizeX; i++)
+    //    //{
+    //    //    for (int j = 0; j < aStartSizeY; j++)
+    //    //    {
+    //    //        Vector3 nodePosition = new Vector3(bottomLeft.x + (spacing * j), bottomLeft.y + (spacing * i), 0);
+    //    //        Stage newStage =  Instantiate(nodePrefab,nodePosition , quaternion.identity);
+    //    //        
+    //    //        ++index;
+    //    //        newStage.sceneName = index.ToString();
+    //    //    }
+    //    //}
+    //}
+    private void OnDestroy()
+    {
+        StageUIManager.OnSceneChange -= HandleOnSceneChange;
+    }
+
+    private void HandleOnSceneChange(bool obj)
+    {
+        void OnEnterScene()
+        {
+            print("onEnterScene");
+            //DayManager.Is2D
+            DayManager.CanProcess = true;
+        }
+        void OnMap()
+        {
+            print("onmap");
+            DayManager.CanProcess = false;
+            //load
+        }
+        if (obj) OnEnterScene();
+        else OnMap();
     }
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))  
+        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())  
         {
             mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+            Collider2D collider = Physics2D.OverlapCircle(new Vector2(mousePos.x , mousePos.y) , 0.8f , whatIsBlock);
+            if(collider != null)return;
+                        
             targetPos = new Vector2Int(Mathf.RoundToInt(mousePos.x), Mathf.RoundToInt(mousePos.y));
             startPos = new Vector2Int(Mathf.RoundToInt(target.transform.position.x), Mathf.RoundToInt(target.transform.position.y));
-            
+            DayManager.CanProcess = true;
+            stageUIManager.OnTimeToggle(true);
             StopAllCoroutines();
             PathFinding();
         }
+        int hour = (int)DayManager.Instance.GetTimeOfDay;
+        int min = (int)((DayManager.Instance.GetTimeOfDay - hour) * 10);
+        stageUIManager.UpdateTime(hour, min / 10f * 60);
+        
     }
-
     private void PathFinding()
     {
         for (int i = 0; i < sizeX; i++)
@@ -167,15 +221,31 @@ public class AStartManager : MonoBehaviour
             target.transform.position = targetPosition;
             line.RemoveList(new Vector2Int(node.x, node.y));
         }
-        
-        Collider2D[] closeNode = Physics2D.OverlapCircleAll(target.transform.position, 0.35f,~whatIsWall);
+
+        Collider2D[] closeNode = Physics2D.OverlapBoxAll(target.transform.position, new Vector3(1,1,1), 0f, ~whatIsWall);//Physics2D.OverlapCircleAll(target.transform.position, 0.35f,~whatIsWall);
         
         closeNode[0].TryGetComponent(out Stage stage);
         if (stage != null)
         {
-            stage.SceneMove();   
+            Stage nextStage = null;
+            if (stage.highwayType == Highway.None)
+            {
+                DayManager.CanProcess = false;
+                stageUIManager.OnTimeToggle(false);
+                nextStage = stage;
+                stageUIManager.SetScene(stage.sceneName);
+            }
+            else
+            {
+                StopAllCoroutines();
+                nextStage = stage.highwayType == Highway.Enter ? stage.GetExitStage() : stage.GetEnterStage();
+                stageUIManager.SetNextStage(nextStage);
+                stageUIManager.SetScene("Highway");
+            }
+            stageUIManager.SetActive(true);
+            //stage.SceneMove();   
         }
-        
+
         line.ActiveLine(false);
     }
 
@@ -188,8 +258,16 @@ public class AStartManager : MonoBehaviour
             
         foreach (var item in farNode)
         {
-            float targetFade = 0.4f;
+            float targetFade = 0.1f;
             item.GetComponent<SpriteRenderer>().DOFade(targetFade, 0.4f);
+
+
+            if (item.TryGetComponent(out Stage currentNode))
+            {
+                int idx = Array.IndexOf(stages,currentNode);
+                saveAlphasData.Alphas[idx] = currentNode.GetAlpha();
+            }
+
         }
         
         foreach (var item in closeNode)
@@ -239,5 +317,8 @@ public class AStartManager : MonoBehaviour
                 Gizmos.DrawWireCube(nodePosition, new Vector3(0.9f, 0.9f, 0.9f)); // Adjust size if needed
             }
         }*/
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(mousePos , 0.8f);
+
     }
 }

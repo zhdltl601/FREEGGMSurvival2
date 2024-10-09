@@ -4,18 +4,40 @@ using UnityEngine.Serialization;
 public class AnimalAnimationControls : MonoBehaviour,IAgentComponent
 {
     public Animator Animator;
-    public Animal _animal;
+    public Animal animal;
+
+    private AgentMovement agentMovement;
     
     public void Initialize(Agent agent)
     {
-        _animal = agent as Animal;
+        animal = agent as Animal;
         Animator = GetComponent<Animator>();
-
+        agentMovement = animal.GetCompo<AgentMovement>();
     }
     public void AnimationEnd()
     {
-        _animal.AnimationEnd();
+        animal.AnimationEnd();
     }
 
+    public void StartManualRotation()
+    {
+        agentMovement.SetManualRotate(true);
+    }
+
+    public void StopManualRotation()
+    {
+        agentMovement.SetManualRotate(false);
+    }
+    
+    public void DamageCast()
+    {
+        animal.DamageCast();
+    }
+
+    public void PlayAttackSFX()
+    {
+        animal.AttackSFXPlay();
+        
+    }
     
 }

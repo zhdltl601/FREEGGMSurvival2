@@ -2,32 +2,33 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ItemInfoPanel : MonoBehaviour
+public class ItemInfoPanel : MonoSingleton<ItemInfoPanel>
 {
-    public static ItemInfoPanel Instance;
     private CanvasGroup cG;
+    private RectTransform rtrm;
+    [SerializeField] private RectTransform canvasRtrm;
     [SerializeField] private Image icon;
     [SerializeField] private TextMeshProUGUI itemName;
     [SerializeField] private TextMeshProUGUI count;
 
-    private void Awake()
+    protected override void Awake()
     {
-        if (Instance != null)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        Instance ??= this;
+        base.Awake();
+        rtrm = GetComponent<RectTransform>();
         cG = GetComponent<CanvasGroup>();
     }
 
-    public void SetItemInfoPanel(Sprite icon, string itemName, string itemCnt)
+    public void SetItemInfoPanel(Sprite icon, string itemName, int itemCnt, Vector2 screenPosition, Camera camInv)//, Vector3 canvasPos)
     {
         cG.alpha = 1;
+
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasRtrm, screenPosition,camInv, out Vector2 localPos);
+
         this.icon.sprite = icon;
         this.itemName.text = itemName;
-        this.count.text = itemCnt;
+        this.count.text = itemCnt.ToString();
+        rtrm.localPosition = localPos;
+        //transform.position = canvasPos;
     }
 
     public void DisableInfoPanel()

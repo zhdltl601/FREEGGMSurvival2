@@ -4,14 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 public class Inventory : MonoBehaviour
 {
-    [Header("Items")]
-    [SerializeField] private List<Item> items;
-
     private readonly Dictionary<SO_Item, int> _inventory = new();
     private static readonly List<SO_ItemBlueprint> _unlockedBlueprints = new();
-
     public IReadOnlyDictionary<SO_Item, int> GetInventory => _inventory;
-
+    public IReadOnlyList<SO_ItemBlueprint> GetUnlockedBlueprints => _unlockedBlueprints;
+    
     #region Events
     public static event Action<SO_Item, int> OnItemChanged; // only call this function after calculation
     //public static event Action<SO_ItemBlueprint, int> OnBPChanged;
@@ -96,7 +93,7 @@ public class Inventory : MonoBehaviour
             {
                 int val = _inventory[itemToSubtract];
                 _inventory[itemToSubtract] = 0;
-                print("fuck" + (itemToSubtract.GetMaxAmount - val));
+                print("test" + (itemToSubtract.GetMaxAmount - val));
                 OnItemChanged?.Invoke(itemToSubtract, -val);
                 result = true;
             }
@@ -117,6 +114,7 @@ public class Inventory : MonoBehaviour
             {
                 TrySubtractFromInventory(itemToAdd, 1);
                 crafter.OnCraftTable(itemToAdd, unlockedBlueprints);
+                print("crafADDDt");
             }
             AddItemToCraft();
         }

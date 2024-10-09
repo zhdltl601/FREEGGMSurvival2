@@ -3,7 +3,9 @@ using UnityEngine;
 public class InventoryItemVisual : MonoBehaviour
 {
     [SerializeField] private SO_Item _soItem;
-    public SO_Item GetSO_Item => _soItem;//
+    //[SerializeField] private SO_ItemBlueprint _soItemBlueprint;
+    //public SO_ItemBlueprint GetSO_ItemBlueprint => _soItemBlueprint;
+    public SO_Item GetSO_Item => _soItem;
     private static readonly Dictionary<SO_Item, List<GameObject>> _visualDictionary = new();
     public static void UpdateItemVisAdd(SO_Item itemToAdd, int amount)
     {
@@ -83,6 +85,7 @@ public class InventoryItemVisual : MonoBehaviour
             }
         }
     }
+
     private static int GetFirstNullIndex(List<GameObject> list)
     {
         int count = list.Count;
@@ -95,10 +98,33 @@ public class InventoryItemVisual : MonoBehaviour
     private static GameObject CreateVis(int index, SO_Item itemToCreate)
     {
         GameObject prefab = itemToCreate.GetPrefab;
-        Quaternion quaternion = Quaternion.identity;
+        Quaternion quaternion = Quaternion.Euler(itemToCreate.GetRotation[index]);//Quaternion.identity;
         Transform spawnParent = InventoryUI.Instance._piv;
         Vector3 pos = itemToCreate.GetVisPosInv[index] + spawnParent.position;
         GameObject newInstance = Instantiate(prefab, pos, quaternion, parent: spawnParent);
         return newInstance;
     }
+
+    public void SelectObj()
+    {
+        BlueprintViewer bpViewer = BlueprintViewer.Instance;
+        bpViewer.OnCraftTable(_soItem);
+        if(bpViewer.onCrafting)
+        {
+            bpViewer.CreateBPOnCraftTable();
+        }
+        ItemInfoPanel.Instance.DisableInfoPanel();
+    }
+
+    //public void SetItemInfoPanelOn(SO_Item soItem, int amount)//, Vector3 worldPos, Camera cam)
+    //{
+    //    Vector3 canvasPos = RectTransformUtility.WorldToScreenPoint(cam, worldPos);
+    //    ItemInfoPanel.Instance.SetItemInfoPanel(soItem.GetIcon, soItem.GetName, amount);//, canvasPos);
+    //}
+
+    //public void DestroyThisObj()
+    //{
+    //    Destroy(this.gameObject);
+    //}
+
 }

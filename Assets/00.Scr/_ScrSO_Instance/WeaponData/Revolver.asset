@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 22100000, guid: e68eb6cce63fe7e408fffc5afc830694, type: 2}
   bullet:
-  - {fileID: 0}
+  - {fileID: 8342157669876113438, guid: 201137ba606eb764ba4458b491f8e747, type: 3}
   - {fileID: 0}
   maxAmmo: 3

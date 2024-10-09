@@ -33,7 +33,6 @@ public class EnemyRecoveryState : EnemyState
         {
             var nextState = combatSystem.IsAttackAble() ? EnemyStateEnum.Attack : EnemyStateEnum.Chase;
             stateMachine.ChangeState(nextState);
-            Debug.Log(nextState);
         }
     }
 } 

@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Animations;
 using UnityEngine;
 public enum WeaponType
 {
@@ -10,7 +7,8 @@ public enum WeaponType
     Revolver,
     Shotgun,
     Pig,
-    Katana
+    Katana,
+    FishRod
 }
 
 [CreateAssetMenu(fileName = "SO/Weapon/WPData")]

@@ -53,13 +53,13 @@ public class WeaponManager : MonoBehaviour
                 animator.runtimeAnimatorController = weaponList[index].weaponSO.controller;
 
                 animator.SetFloat(_fAmmoHash, (float)weaponList[currentWeapon].currentAmmo / (float)weaponList[currentWeapon].weaponSO.maxAmmo);
+                animator.SetTrigger("Reset");
             }
         }
 
     }
     public void TryUseWeapon(int fireType)
     {
-        Debug.Log("으아잇푸르르");
         weaponList[currentWeapon].Fire(fireType);
         animator.SetFloat(_fAmmoHash, (float)weaponList[currentWeapon].currentAmmo / (float)weaponList[currentWeapon].weaponSO.maxAmmo);
     }
@@ -71,13 +71,12 @@ public class WeaponManager : MonoBehaviour
 
     public void PlaySound(AudioClip clip)
     {
-        _audioSource.PlayOneShot(clip);
+        _audioSource.PlayOneShot(clip,0.4f);
     }
     void Update()
     {
         //나중에 인풋시스템 넣어야디
-
-        animator.SetBool(_bFireHash, Input.GetKey(KeyCode.Mouse0));
+        animator.SetBool(_bFireHash, Input.GetKey(KeyCode.Mouse0) && PlayerInput.Instance.canRotate);
 
         animator.SetBool(_bReloadHash, Input.GetKey(KeyCode.R));
 
@@ -103,6 +102,22 @@ public class WeaponManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha5))
         {
             ChangeWeapon(4);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha6))
+        {
+            ChangeWeapon(5);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha7))
+        {
+            ChangeWeapon(6);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha8))
+        {
+            ChangeWeapon(7);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha9))
+        {
+            ChangeWeapon(8);
         }
     }
 }

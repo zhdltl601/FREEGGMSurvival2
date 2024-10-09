@@ -13,22 +13,22 @@ public class WeaponCompo : MonoBehaviour
     [SerializeField]
     List<ParticleSystem> _particles;
 
-    public WeaponCompo(WeaponSO weaponSO, int currentAmmo, bool isHave)//생성자밍
-    {
-        this.weaponSO = weaponSO;
-        this.currentAmmo = currentAmmo;
-        this.isHave = isHave;
-    }
+
 
     public virtual void Fire(int bulletIndex)
     {
         if(UseAmmo())
         {
+            if (weaponSO.bullet[bulletIndex] != null)
+            {
             Instantiate(weaponSO.bullet[bulletIndex],_shotPos.position,_shotPos.rotation);
+            }
         }
     }
-        public void EffectInvoke(int EffectIndex)
+    public void EffectInvoke(int EffectIndex)
     {
+        if(_particles.Count <= 0)return;
+        
         _particles[EffectIndex].Play();
     }
 

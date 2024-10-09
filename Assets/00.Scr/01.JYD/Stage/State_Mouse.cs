@@ -1,35 +1,35 @@
+using System;
 using DG.Tweening;
 using UnityEngine;
 
 public class State_Mouse : MonoBehaviour
 {
-    [SerializeField] private float maxCamDistance;
-    [SerializeField] private float minCamDistance;
-
     [SerializeField] private Transform target;
-
+    [SerializeField] private Transform player;
+    
     private Vector3 _mousePos;
-    private void FixedUpdate()
-    {
-        if(IsMouseMoved())
-            target.DOMove(GetDesiredCameraPosition(),1F);
-    }
+    private Camera mainCam;
     
-    private bool IsMouseMoved()
+    private bool isMousePress;
+
+    private void Awake()
     {
-        return Input.GetAxis("Mouse X") != 0 || Input.GetAxis("Mouse Y") != 0;
+        mainCam = Camera.main;
     }
-    
-    private Vector3 GetDesiredCameraPosition()
+
+    private void Update()
     {
-        _mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        _mousePos.z = 0;
-        Vector3 aimDirection = _mousePos - transform.position;
-        float distance = Vector3.Distance(transform.position , _mousePos);
-        distance = Mathf.Clamp(distance , minCamDistance , maxCamDistance);
-                            
-        Vector3 desiredPosition = transform.position + aimDirection.normalized * distance;
+        isMousePress = Input.GetMouseButton(1);
+
+        if (isMousePress)
+        {
+            _mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
+            target.position = _mousePos;
+        }
+        else
+        {
+            target.position = player.position;
+        }
         
-        return desiredPosition;      
     }
 }

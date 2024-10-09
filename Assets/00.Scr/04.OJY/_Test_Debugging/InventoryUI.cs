@@ -22,12 +22,17 @@ public class InventoryUI : MonoSingleton<InventoryUI>
     {
         base.Awake();
         //_camInv = Camera.main;//
+        SetActive(false);
         Inventory.OnItemChanged += HandleOnItemChanged;
     }
     protected override void OnDestroy()
     {
         base.OnDestroy();
         Inventory.OnItemChanged -= HandleOnItemChanged;
+    }
+    private void Start()
+    {
+        UIManager.Instance.ToggleQuest();
     }
     private void Update()
     {
@@ -39,7 +44,8 @@ public class InventoryUI : MonoSingleton<InventoryUI>
         {
             if (Input.GetKeyDown(KeyCode.A) && !Input.GetKey(KeyCode.LeftShift)) PlayerInventory.TryAddItemToInventory(itemTOADD);
             if (Input.GetKeyDown(KeyCode.A) && Input.GetKey(KeyCode.LeftShift)) PlayerInventory.TrySubtractFromInventory(itemTOADD);
-            if (Input.GetKeyDown(KeyCode.B)) Inventory.AddBluePrint(bpToAdd);
+            if (Input.GetKeyDown(KeyCode.Z)) Inventory.AddBluePrint(bpToAdd);
+            if (Input.GetKeyDown(KeyCode.Backspace)) PlayerInventory.CancelCraft(Player.CurrentCrafter);
         }
         void ObjSelect()
         {
@@ -47,13 +53,53 @@ public class InventoryUI : MonoSingleton<InventoryUI>
             Debug.DrawRay(_camInv.transform.position, mDir.direction * 50, Color.red, 2);
             if (Physics.Raycast(_camInv.transform.position, mDir.direction, out RaycastHit hitInfo, 50, _lm_item))
             {
-                if (hitInfo.transform.TryGetComponent(out InventoryItemVisual c)) PlayerInventory.TryAddItemToCraft(c.GetSO_Item, Player.CurrentCrafter);
+                if (hitInfo.transform.TryGetComponent(out InventoryItemVisual c))
+                {
+                    c.SelectObj();
+                    PlayerInventory.TryAddItemToCraft(c.GetSO_Item, Player.CurrentCrafter);
+                    //c.DestroyThisObj();
+                }
                 else Debug.LogError("ItemDoesntHave InventoryItem Comp" + hitInfo.transform.name);
             }
         }
+        void ObjEquip()
+        {
+            Ray mDir = _camInv.ScreenPointToRay(Input.mousePosition);
+            Debug.DrawRay(_camInv.transform.position, mDir.direction * 50, Color.red, 2);
+            if (Physics.Raycast(_camInv.transform.position, mDir.direction, out RaycastHit hitInfo, 50, _lm_item))
+            {
+                //PlayerInventory.GetWeaponManager.ChangeWeapon()
+            }
+        }
+        void ObjFocus()
+        {
+            Ray mDir = _camInv.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(_camInv.transform.position, mDir.direction, out RaycastHit hitInfo, 50, _lm_item))
+            {
+                if (hitInfo.transform.TryGetComponent(out InventoryItemVisual c))
+                {
+                    //c.SetItemInfoPanelOn(c.GetSO_Item, PlayerInventory.GetInventory[c.GetSO_Item]);//, hitInfo.point, _camInv);
+                    Vector2 canvasPoint = RectTransformUtility.WorldToScreenPoint(_camInv, hitInfo.point);
+                    ItemInfoPanel.Instance.SetItemInfoPanel(
+                        c.GetSO_Item.GetIcon, c.GetSO_Item.GetName,
+                        PlayerInventory.GetInventory[c.GetSO_Item],
+                        canvasPoint, _camInv);
+                }
+            }
+            else ItemInfoPanel.Instance.DisableInfoPanel();
+
+        }
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+
+            dbg_list[0].text = "test : " + Player.CurrentCrafter.GetItemsOnTable[itemTOADD];
+            dbg_list[1].text = "test2 : " + PlayerInventory.GetInventory[itemTOADD];
+        }
+        ObjFocus();
         KeyInput();
         DebugInput();
         if (Input.GetKeyDown(KeyCode.Mouse0)) ObjSelect();
+        if (Input.GetKeyDown(KeyCode.Mouse1)) ObjEquip();
     }
 
     /// <param name="amount">amount is how much item has changed</param>
@@ -84,20 +130,27 @@ public class InventoryUI : MonoSingleton<InventoryUI>
         void ON()
         {
             _camInv.gameObject.SetActive(true);
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
+            if (BshAmiKlr.GameManager.Canf)
+            {
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None; 
+            }
         }
         void OFF()
         {
-            PlayerInventory.CancelCraft(Player.CurrentCrafter);
             _camInv.gameObject.SetActive(false);
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
+            if (BshAmiKlr.GameManager.Canf)
+            {
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
+                PlayerInventory.CancelCraft(Player.CurrentCrafter);
+            }
         }
     }
     public bool ToggleInventory()
     {
         bool isInactive = !gameObject.activeSelf;
+        BlueprintViewer.Instance.RemoveAllByCrafting();
         SetActive(isInactive);
         return isInactive;
     }

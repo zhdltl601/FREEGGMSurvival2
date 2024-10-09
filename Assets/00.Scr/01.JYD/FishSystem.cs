@@ -1,12 +1,14 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 using DG.Tweening;
 using TMPro;
 
-public class FishSystem : MonoBehaviour
+public class FishSystem : MonoSingleton<FishSystem>
 {
     [SerializeField] private FishData fishData;
+    [SerializeField] private GameObject _droppedFishIns;
     
     private float _catchTimer;
     public float checkbarSpeed;
@@ -25,14 +27,36 @@ public class FishSystem : MonoBehaviour
     private float _fishOffset;
 
     private bool isCatch;
-    
+
+    private bool isFishing;
+    protected override void Awake()
+    {
+        base.Awake();
+    }
+
     private void OnEnable()
     {
         fish = Instantiate(fishData.fishObj,transform).GetComponent<RectTransform>();
+        isFishing = true;
     }
-    
+    private void Start()
+    {
+        FishEnd();
+    }
+
+    private void OnDisable()
+    {
+        Destroy(fish.gameObject);
+    }
+
     private void Update()
     {
+        if (isFishing && PlayerInput.Instance.IsMoving())
+        {
+            FishEnd();
+            return;
+        }
+        
         FishFlipController();
         FishMove();
         CheckBarMove();
@@ -92,7 +116,7 @@ public class FishSystem : MonoBehaviour
         
         GameObject textObj = new GameObject("SuccessText");
         TextMeshProUGUI text = textObj.AddComponent<TextMeshProUGUI>();
-        text.text = "<color=#FFD700> SEX! </color>";
+        text.text = "<color=#FFD700> SUCCESS! </color>";
         text.alignment = TextAlignmentOptions.Center;
         text.transform.SetParent(transform, false);
         
@@ -106,16 +130,29 @@ public class FishSystem : MonoBehaviour
         {
             Destroy(textObj.gameObject);
             FishEnd();
+            SpawnFish();
+            void SpawnFish()
+            {
+                print("spawn fish");
+                Instantiate(_droppedFishIns, PlayerMovementV2.Instance.transform.position + Vector3.up, Quaternion.identity, null);
+            }
         });
+
     }
 
-    private void FishEnd()
+    public void FishEnd()
     {
-        gameObject.SetActive(false);
         isCatch = false;
-        fishData = null;
-        Destroy(fish.gameObject);
+        isFishing = false;
+        //fishData = null;
+        _catchTimer = 0;
+        _fishFlipTimer = 0;
         Time.timeScale = 1;
+        _fishDir = 1;
+        
+        PlayerInput.Instance.canRotate = true;
+        
+        gameObject.SetActive(false);
     }
     
     private bool CheckSuccess()
