@@ -1186,7 +1186,7 @@ PrefabInstance:
         type: 3}
       propertyPath: inventory
       value: 
-      objectReference: {fileID: 5627323258206690163}
+      objectReference: {fileID: 0}
     - target: {fileID: 7608201272660373244, guid: 0f3028d60d7f6644384e1e0810d21cc3,
         type: 3}
       propertyPath: m_Name
@@ -1377,18 +1377,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1726367077005700099}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5627323258206690163 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6479849758166792048, guid: 64a42f42fbdbcb24d8a2fae0d8fa4d38,
-    type: 3}
-  m_PrefabInstance: {fileID: 1726367077005700099}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 870e7c7a143f1474295d4a4afc35b208, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &4390800118643494847
 PrefabInstance:
   m_ObjectHideFlags: 0
