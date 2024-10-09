@@ -27,6 +27,8 @@ public class Animal : Agent
     public float attackRadius = 1.2f;
     public float attackCooldown = 0.8f;
     private DamageCaster _damageCaster;
+
+    private Damageable _damageable;
     
     protected override void Awake()
     {
@@ -44,6 +46,7 @@ public class Animal : Agent
     {
         StateMachine.Initialize(AnimalStateEnum.Idle);
         _damageCaster = GetCompo<DamageCaster>();
+        _damageable = GetComponent<Damageable>();
         
         cols = new Collider[1];
     }

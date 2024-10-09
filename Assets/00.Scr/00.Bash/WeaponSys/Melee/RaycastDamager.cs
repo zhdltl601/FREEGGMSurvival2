@@ -7,12 +7,12 @@ public class RaycastDamager : Damageable
     public LayerMask _whatIsTarget;
     public bool Scan(Vector3 origin, Vector3 direction,float distance)
     {
-       if( Physics.Raycast(transform.position, transform.forward,out RaycastHit hit,distance,_whatIsTarget))
+        if( Physics.Raycast(transform.position, transform.forward,out RaycastHit hit,distance,_whatIsTarget))
         {
             ApplyDamage(hit.transform, hit.point, -hit.normal);
         return true; 
         }
-       return false;
+        return false;
     }
     public bool Scan(Vector3 origin, Vector3 direction, float distance,float radius)
     {
