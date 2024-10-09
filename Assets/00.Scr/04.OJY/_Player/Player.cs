@@ -74,11 +74,15 @@ Transform _camera = PlayerMovementV2.Instance.cameraRoot;//getcam
         //int initialYValue = 1; //get val from settings;
         if (IsCrafting)
         {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
             //ySens = 0;
             //xSens = 0;
         }
         else
         {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
             //xSens = initialXValue;
             //ySens = initialYValue;
         }

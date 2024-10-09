@@ -29,11 +29,19 @@ public class FishSystem : MonoSingleton<FishSystem>
     private bool isCatch;
 
     private bool isFishing;
-    
+    protected override void Awake()
+    {
+        base.Awake();
+    }
+
     private void OnEnable()
     {
         fish = Instantiate(fishData.fishObj,transform).GetComponent<RectTransform>();
         isFishing = true;
+    }
+    private void Start()
+    {
+        FishEnd();
     }
 
     private void OnDisable()

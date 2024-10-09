@@ -51,7 +51,10 @@ public class Animal : Agent
         
         cols = new Collider[1];
     }
-
+    private void OnDestroy()
+    {
+        _damageable.OnHitEvent -= EnteringBattleMode;
+    }
     private void Update()
     {
         StateMachine.currentState.Update();
