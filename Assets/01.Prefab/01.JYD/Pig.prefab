@@ -1116,9 +1116,10 @@ GameObject:
   - component: {fileID: 140617756067955542}
   - component: {fileID: 8464174027296601657}
   - component: {fileID: 614177310245779000}
+  - component: {fileID: 2723318819067985877}
   m_Layer: 0
   m_Name: Pig
-  m_TagString: Untagged
+  m_TagString: Hitable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1265,3 +1266,24 @@ MonoBehaviour:
   _health: 0
   maxHealth: 100
   _hitImpact: {fileID: 0}
+--- !u!65 &2723318819067985877
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9210566285373431913}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1.5}
+  m_Center: {x: 0, y: 0.5, z: 0}
