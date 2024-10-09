@@ -13304,7 +13304,7 @@ PrefabInstance:
         type: 3}
       propertyPath: inventory
       value: 
-      objectReference: {fileID: 4891010259604578018}
+      objectReference: {fileID: 0}
     - target: {fileID: 7608201272660373244, guid: 0f3028d60d7f6644384e1e0810d21cc3,
         type: 3}
       propertyPath: m_Name
@@ -13427,6 +13427,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 3099092830744319404, guid: 64a42f42fbdbcb24d8a2fae0d8fa4d38,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3460393114441770325, guid: 64a42f42fbdbcb24d8a2fae0d8fa4d38,
         type: 3}
@@ -14338,18 +14343,6 @@ Transform:
   - {fileID: 2500832327096329073}
   m_Father: {fileID: 1803298961968273632}
   m_LocalEulerAnglesHint: {x: 90, y: 10, z: 0}
---- !u!114 &4891010259604578018 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6479849758166792048, guid: 64a42f42fbdbcb24d8a2fae0d8fa4d38,
-    type: 3}
-  m_PrefabInstance: {fileID: 1877252204816705938}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 870e7c7a143f1474295d4a4afc35b208, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!222 &4939745947207260359
 CanvasRenderer:
   m_ObjectHideFlags: 0
