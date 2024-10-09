@@ -3295,6 +3295,16 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8396815556529702099, guid: 64a42f42fbdbcb24d8a2fae0d8fa4d38,
+        type: 3}
+      propertyPath: m_DefaultVelocity.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8396815556529702099, guid: 64a42f42fbdbcb24d8a2fae0d8fa4d38,
+        type: 3}
+      propertyPath: m_DefaultVelocity.y
+      value: -0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 8410196904535721353, guid: 64a42f42fbdbcb24d8a2fae0d8fa4d38,
         type: 3}
       propertyPath: m_Layer
