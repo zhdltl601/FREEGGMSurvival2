@@ -6,7 +6,9 @@ using UnityEngine;
 public class SaveAlphaDataSO : ScriptableObject
 {
     public List<float> Alphas;
-
+    
+    
+    
 
 
 }
