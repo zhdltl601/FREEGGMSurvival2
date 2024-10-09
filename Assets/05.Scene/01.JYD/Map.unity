@@ -6190,7 +6190,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentScene: 
-  mainText: {fileID: 0}
+  mainText: {fileID: 394196557}
   menu: {fileID: 54625664}
   text: {fileID: 1739341653}
   _img: {fileID: 876012054}
