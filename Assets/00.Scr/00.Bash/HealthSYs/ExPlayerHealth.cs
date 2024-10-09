@@ -18,11 +18,16 @@ public class ExPlayerHealth : ExHealth
         damage /= 1+Armor;
         base.GetDamage(damage, hitPoint, normal);
 
-        if(_hurtSOund)
-        _aud.PlayOneShot(_hurtSOund, 0.5f);
+       
+    }
+    public override void GetDamage(float damage)
+    {
+        if (_hurtSOund)
+            _aud.PlayOneShot(_hurtSOund, 0.5f);
 
         if (_impulse)
             _impulse.GenerateImpulse();
+        base.GetDamage(damage);
     }
 
     public override void Dead()

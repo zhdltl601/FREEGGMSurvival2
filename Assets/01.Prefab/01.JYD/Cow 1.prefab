@@ -469,6 +469,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3613173401983003520}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3903247954207878931
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 413946170491679149}
+  m_Layer: 0
+  m_Name: DamageCasterTrm
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &413946170491679149
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3903247954207878931}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.649, z: 0.918}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5498830423726860325}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4567769550148801529
 GameObject:
   m_ObjectHideFlags: 0
@@ -643,6 +674,7 @@ GameObject:
   - component: {fileID: 1822053908032803373}
   - component: {fileID: 6757863078080622975}
   - component: {fileID: 7618774081024227342}
+  - component: {fileID: 1405788449346859362}
   m_Layer: 0
   m_Name: Cow 1
   m_TagString: Hitable
@@ -664,6 +696,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7941967279620018983}
+  - {fileID: 413946170491679149}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7137013795826427212
@@ -687,7 +720,7 @@ MonoBehaviour:
   isBattleMode: 0
   chaseSpeed: 8
   chaseRadius: 20
-  attackRadius: 1.2
+  attackRadius: 1.76
   attackCooldown: 0.8
   attackAudioClip: []
 --- !u!114 &7755002373900916804
@@ -709,7 +742,7 @@ MonoBehaviour:
   currentPatrolIndex: 0
   _knockBackThreshold: 0
   _maxKnockBackTime: 0
-  stopOffset: 0
+  stopOffset: 0.1
   IsManualRotation: 0
 --- !u!114 &9060088474083527944
 MonoBehaviour:
@@ -740,7 +773,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 0.2
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -811,6 +844,23 @@ MonoBehaviour:
   _health: 0
   maxHealth: 100
   _hitImpact: {fileID: 0}
+--- !u!114 &1405788449346859362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7236219666660908993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e888e3e37ac4f8a80b7187eb28fadc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageCasterTrm: {fileID: 413946170491679149}
+  radius: 1.07
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!1 &7486158169275361672
 GameObject:
   m_ObjectHideFlags: 0
