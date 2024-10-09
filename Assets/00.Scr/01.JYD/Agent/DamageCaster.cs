@@ -12,6 +12,8 @@ public class DamageCaster : MonoBehaviour,IAgentComponent
 
     private Collider[] target;
 
+    public float damage;
+    
     public void Initialize(Agent agent)
     {
         Agent = agent;
@@ -25,7 +27,7 @@ public class DamageCaster : MonoBehaviour,IAgentComponent
     public void DamageCast()
     {
         target = Physics.OverlapSphere(damageCasterTrm.position, radius, whatIsPlayer);
-        print(target);
+        target[0].GetComponent<ExHealth>().GetDamage(damage);
     }
     
     
