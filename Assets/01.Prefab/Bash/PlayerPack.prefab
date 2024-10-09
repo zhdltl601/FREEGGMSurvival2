@@ -58,15 +58,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 951518008805681509}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.6427876, y: 0, z: 0, w: 0.7660445}
-  m_LocalPosition: {x: -2, y: -0.72, z: 1}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalRotation: {x: -0.6360782, y: 0, z: 0, w: 0.7716247}
+  m_LocalPosition: {x: 0, y: -0.2, z: 1.35}
+  m_LocalScale: {x: 1.4, y: 1.4, z: 1.4}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6905502197228134967}
   - {fileID: 5499562886443611451}
   m_Father: {fileID: 6987278196890776295}
-  m_LocalEulerAnglesHint: {x: -80, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -79, y: 0, z: 0}
 --- !u!1 &1500289847762869131
 GameObject:
   m_ObjectHideFlags: 0
@@ -679,10 +679,10 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 50.61
+  m_Intensity: 100
   m_Range: 25
-  m_SpotAngle: 104.64092
-  m_InnerSpotAngle: 15.1519
+  m_SpotAngle: 131.65979
+  m_InnerSpotAngle: 87.202194
   m_CookieSize: 10
   m_Shadows:
     m_Type: 0
@@ -1385,6 +1385,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6084086499422503566}
     m_Modifications:
+    - target: {fileID: 2768247986392973211, guid: 1e87df532a15cb749a5c8278b91d4992,
+        type: 3}
+      propertyPath: m_RenderPostProcessing
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3140336918590598690, guid: 1e87df532a15cb749a5c8278b91d4992,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1439,6 +1444,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: UICamera
+      objectReference: {fileID: 0}
+    - target: {fileID: 8983358926844702424, guid: 1e87df532a15cb749a5c8278b91d4992,
+        type: 3}
+      propertyPath: field of view
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 8983358926844702424, guid: 1e87df532a15cb749a5c8278b91d4992,
+        type: 3}
+      propertyPath: near clip plane
+      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
