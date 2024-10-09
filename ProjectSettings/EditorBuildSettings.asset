@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/05.Scene/01.JYD/JYD.unity
     guid: ae1ba752fe21972469b33fd2f707322f
+  - enabled: 1
+    path: Assets/05.Scene/01.JYD/Map 1.unity
+    guid: ded55b86b7fefe4469dc3499867cac52
   m_configObjects: {}

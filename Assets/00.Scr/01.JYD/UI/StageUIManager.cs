@@ -58,7 +58,7 @@ public class StageUIManager : MonoBehaviour
             SetActive(false);
             return;
         }
-        
+
         OnSceneChange?.Invoke(true);
         SceneManager.LoadScene(currentScene);
     }

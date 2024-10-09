@@ -66,6 +66,7 @@ public class PlayerMovementV2 : MonoSingleton<PlayerMovementV2>
         }
 
         _movDir = input * Mathf.Lerp(1, 0, (Vector3.Project(input, rb.velocity)+rb.velocity).magnitude / _maxSpeed);
+        _movDir *= Player.IsCrafting ? 0 : 1;
         rb.velocity += _movDir;
     }
 
@@ -98,6 +99,7 @@ public class PlayerMovementV2 : MonoSingleton<PlayerMovementV2>
         _mouseTmp.y -= PlayerInput.Instance.mouseMov.y * _mouseSpeed*Time.deltaTime;
         _mouseTmp.y = Mathf.Clamp(_mouseTmp.y, -89, 89);
 
-        cameraRoot.rotation = Quaternion.Euler(_mouseTmp.y, _mouseTmp.x, 0);
+        if(!Player.IsCrafting)
+            cameraRoot.rotation = Quaternion.Euler(_mouseTmp.y, _mouseTmp.x, 0);
     }
 }

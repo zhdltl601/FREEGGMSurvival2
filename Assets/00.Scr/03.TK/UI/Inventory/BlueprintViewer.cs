@@ -115,7 +115,7 @@ public class BlueprintViewer : MonoSingleton<BlueprintViewer>
     {
         blueprintsPanel.DOFade(1, 0f);
 
-        if(inventory.GetUnlockedBlueprints.Count == 0)
+        if(InventoryUI.Instance.PlayerInventory.GetUnlockedBlueprints.Count == 0)
         {
             Debug.LogWarning("Any blueprint doesn't unlocked!!");
             return;

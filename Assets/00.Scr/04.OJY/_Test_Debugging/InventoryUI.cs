@@ -22,12 +22,17 @@ public class InventoryUI : MonoSingleton<InventoryUI>
     {
         base.Awake();
         //_camInv = Camera.main;//
+        SetActive(false);
         Inventory.OnItemChanged += HandleOnItemChanged;
     }
     protected override void OnDestroy()
     {
         base.OnDestroy();
         Inventory.OnItemChanged -= HandleOnItemChanged;
+    }
+    private void Start()
+    {
+        UIManager.Instance.ToggleQuest();
     }
     private void Update()
     {
@@ -121,15 +126,21 @@ public class InventoryUI : MonoSingleton<InventoryUI>
         void ON()
         {
             _camInv.gameObject.SetActive(true);
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
+            if (BshAmiKlr.GameManager.Canf)
+            {
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None; 
+            }
         }
         void OFF()
         {
-            PlayerInventory.CancelCraft(Player.CurrentCrafter);
             _camInv.gameObject.SetActive(false);
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
+            if (BshAmiKlr.GameManager.Canf)
+            {
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
+                PlayerInventory.CancelCraft(Player.CurrentCrafter);
+            }
         }
     }
     public bool ToggleInventory()

@@ -16,12 +16,10 @@ MonoBehaviour:
   _maxAmount: 3
   _name: Strick
   _posVisInv:
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 1, z: 0}
-  - {x: 0, y: 2, z: 0}
+  - {x: -2.4, y: 2.6, z: 0.1}
+  - {x: -2.49, y: 2.3, z: 0.1}
   _rotVisInv:
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
+  - {x: 0.6, y: 90, z: -90}
+  - {x: -5, y: 69, z: -90}
   _models:
   - {fileID: 5590583170850968172, guid: 6456a4545d797474d92e5f445b9e6a5f, type: 3}

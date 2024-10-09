@@ -241,6 +241,7 @@ public class AStartManager : MonoBehaviour
             }
             
             stageUIManager.SetActive(true);
+            print(stage);
             stageUIManager.SetScene(stage.sceneName);
             
             //stage.SceneMove();   
