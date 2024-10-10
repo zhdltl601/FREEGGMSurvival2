@@ -679,10 +679,10 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 100
+  m_Intensity: 150
   m_Range: 25
-  m_SpotAngle: 131.65979
-  m_InnerSpotAngle: 87.202194
+  m_SpotAngle: 161.6732
+  m_InnerSpotAngle: 24.774292
   m_CookieSize: 10
   m_Shadows:
     m_Type: 0
@@ -883,7 +883,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &9187853050894477242
 Transform:
   m_ObjectHideFlags: 0
@@ -1167,6 +1167,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 9187853050894477242}
     m_Modifications:
+    - target: {fileID: 2206316630373353182, guid: 0f3028d60d7f6644384e1e0810d21cc3,
+        type: 3}
+      propertyPath: canvasRtrm
+      value: 
+      objectReference: {fileID: 8768843944189236739}
     - target: {fileID: 3853702343111063691, guid: 0f3028d60d7f6644384e1e0810d21cc3,
         type: 3}
       propertyPath: _piv
@@ -1366,6 +1371,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5425626993689631978, guid: 64a42f42fbdbcb24d8a2fae0d8fa4d38,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5425626993689631978, guid: 64a42f42fbdbcb24d8a2fae0d8fa4d38,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.63399994
+      objectReference: {fileID: 0}
+    - target: {fileID: 5425626993689631978, guid: 64a42f42fbdbcb24d8a2fae0d8fa4d38,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1493,4 +1513,4 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8644884210901684709}
-  m_Enabled: 1
+  m_Enabled: 0
