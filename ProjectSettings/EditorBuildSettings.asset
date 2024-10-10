@@ -92,4 +92,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/05.Scene/01.JYD/Running.unity
     guid: 0f572cdd81bc90a49bdbf92d1f60ca39
+  - enabled: 1
+    path: Assets/05.Scene/00.Bash/EndScene.unity
+    guid: 15c37a45aa6e2844695d5c40744063eb
   m_configObjects: {}
