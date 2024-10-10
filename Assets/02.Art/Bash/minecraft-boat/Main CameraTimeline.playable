@@ -1764,7 +1764,7 @@ MonoBehaviour:
     m_PreExtrapolationTime: 0
     m_DisplayName: left-4-dead-2-soundtrack-the-monsters-without
   - m_Version: 1
-    m_Start: 19.533333333333335
+    m_Start: 18.881632653061224
     m_ClipIn: 0
     m_Asset: {fileID: -3785334989862201250}
     m_Duration: 14.471836734693877
