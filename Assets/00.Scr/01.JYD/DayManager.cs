@@ -20,6 +20,10 @@ public class DayManager : MonoSingleton<DayManager>
     public static bool CanProcess { get; set; } = false;
     public static bool Is2D { get; set; } = false;
     public static int Multiplier { get; set; } = 1;
+    public void SetP(float n)
+    {
+        period = n;
+    }
 
     private static EDayState _currentState = EDayState.Morning;
     public static event Action<EDayState> OnChangeState;

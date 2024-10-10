@@ -46,6 +46,8 @@ public class PlayerMovementV2 : MonoSingleton<PlayerMovementV2>
     // Update is called once per frame
     private void Update()
     {
+        //if (Input.GetKeyDown(KeyCode.I)) BlueprintViewer.Instance.CreateBPOnCraftTable();
+        //if (Input.GetKeyDown(KeyCode.U)) BlueprintViewer.Instance.UnShowBPListUI();
         RotateCamera();
     }
     private void FixedUpdate()

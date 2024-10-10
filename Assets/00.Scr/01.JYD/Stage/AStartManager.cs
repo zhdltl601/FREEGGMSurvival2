@@ -98,6 +98,7 @@ public class AStartManager : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             //DayManager.Is2D
+            DayManager.Instance.SetP(40);
             DayManager.CanProcess = true;
         }
         void OnMap()
@@ -105,6 +106,7 @@ public class AStartManager : MonoBehaviour
             print("onmap");
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
+            DayManager.Instance.SetP(20);
             DayManager.CanProcess = false;
             //load
         }

@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: B_TestBlueprint
   m_EditorClassIdentifier: 
   list:
-  - so_item: {fileID: 11400000, guid: ab06225582c78284888a905711070f7e, type: 2}
-    amount: 2
-  result:
   - so_item: {fileID: 11400000, guid: b09d2b9f81cfc964496fac8bc62582b5, type: 2}
+    amount: 2
+  - so_item: {fileID: 11400000, guid: 9e4c447fbbba78c40a080b7317352184, type: 2}
+    amount: 1
+  result:
+  - so_item: {fileID: 11400000, guid: 1a14de223f1f8a94a8cc18e488657e52, type: 2}
     amount: 1

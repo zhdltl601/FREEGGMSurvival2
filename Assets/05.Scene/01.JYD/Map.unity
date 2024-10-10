@@ -2182,7 +2182,7 @@ PrefabInstance:
     - target: {fileID: 2349421836872739148, guid: 8b25853c8825e27428c9075253815a8a,
         type: 3}
       propertyPath: sceneName
-      value: Map_Tongyeong1
+      value: Map_Tongyeong
       objectReference: {fileID: 0}
     - target: {fileID: 3350475086739233891, guid: 8b25853c8825e27428c9075253815a8a,
         type: 3}
@@ -5270,6 +5270,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
       value: 1.0305085
+      objectReference: {fileID: 0}
+    - target: {fileID: 2349421836872739148, guid: 8b25853c8825e27428c9075253815a8a,
+        type: 3}
+      propertyPath: sceneName
+      value: Map_TheLake
       objectReference: {fileID: 0}
     - target: {fileID: 3350475086739233891, guid: 8b25853c8825e27428c9075253815a8a,
         type: 3}
